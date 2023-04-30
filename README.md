@@ -1,0 +1,143 @@
+# Tabletop Tactics data
+
+Metadata about the battles played on the [Tabletop Tactics](https://tabletoptactics.tv/) channel.
+
+## What's here?
+
+* [tabletoptactics.sql](tabletoptactics.sql): PostgreSQL dump of the data itself; see [schema.md](schema.md) for more details.
+* [inserter.py](inserter.py): simple Python script to add a new show to the database.
+
+## Data completeness
+
+As of 2023-04-30, the data contains shows released on the channel from 2022-04-22 to 2023-04-28. Specifically, this includes:
+
+* All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
+* All league reports
+* All narrative reports
+* All list analysis shows
+
+It does not currently include any:
+
+* Faction focus shows
+* How to paint shows
+* State of play shows
+* Backstage shows
+
+## Fun queries
+
+### Most common servoskull
+
+```
+select fullname, count(1) as n
+from shows
+join players on shows.servoskull_id = players.id
+group by fullname
+order by n desc;
+```
+
+```
+     fullname     | n
+------------------+----
+ James Jordan     | 50
+ Katie Foad       | 47
+ Lawrence Baker   | 34
+ Michael Hebditch | 27
+ Joe Ponting      | 23
+```
+
+### Most played faction by player
+
+```
+select fullname, faction, n
+from
+(
+  select fullname, faction, count(1) as n, rank() over (partition by fullname order by count(1) desc)
+  from players
+  join armies on players.id = armies.player_id
+  join factions on armies.faction_id = factions.id
+  group by fullname, faction
+) as x
+where rank = 1;
+``` 
+
+```
+     fullname     |       faction       | n
+------------------+---------------------+----
+ David Methven    | Sylvaneth           |  1
+ David Pettitt    | Space Marines       |  3
+ David Ugolini    | Chaos Space Marines |  1
+ Ed Pemberton     | Genestealer Cults   |  1
+ Fletcher Giles   | T'au Empire         | 11
+ James Jordan     | Space Marines       | 20
+ Joe Ponting      | Chaos Space Marines | 20
+ Josh Hill        | Sylvaneth           |  1
+ Katie Foad       | Tyranids            | 18
+ Lawrence Baker   | Space Marines       | 14
+ Mark             | Genestealer Cults   |  1
+ Matt Jarvis      | Aeldari             |  2
+ Maxine Blythin   | Space Marines       |  1
+ Michael Hebditch | Necrons             | 13
+ Ridvan Martinez  | Drukhari            |  1
+ Sam Weeks        | Space Marines       |  2
+ Stig             | Adeptus Mechanicus  | 14
+(17 rows)
+```
+
+i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 20 times.
+
+### Wins and losses for each faction
+
+```
+select faction, coalesce(wins, 0) as wins, coalesce(losses, 0) as losses
+from crosstab('
+  select faction, winner, count(1)
+  from armies
+  join factions on armies.faction_id = factions.id
+  where winner is not null
+  group by faction, winner
+  order by faction
+', 'select distinct winner from armies where winner is not null')
+as pivot(faction text, losses bigint, wins bigint)
+order by wins desc, losses;
+```
+
+```
+        faction        | wins | losses
+-----------------------+------+--------
+ Space Marines         |   33 |     18
+ Orks                  |   12 |      8
+ Chaos Space Marines   |   11 |     16
+ Necrons               |    9 |      6
+ T'au Empire           |    9 |      9
+ Astra Militarum       |    8 |     11
+ Soulblight Gravelords |    7 |      0
+ World Eaters          |    6 |      2
+ Leagues of Votann     |    6 |      4
+ Adeptus Mechanicus    |    6 |      7
+ Aeldari               |    6 |     10
+ Chaos Knights         |    5 |      1
+ Death Guard           |    5 |      3
+ Adeptus Custodes      |    5 |      4
+ Imperial Knights      |    5 |      5
+ Drukhari              |    5 |      6
+ Grey Knights          |    5 |      9
+ Tyranids              |    5 |     13
+ Idoneth Deepkin       |    4 |      2
+ Adepta Sororitas      |    4 |      4
+ Slaves to Darkness    |    3 |      3
+ Maggotkin of Nurgle   |    3 |      3
+ Stormcast Eternals    |    3 |      3
+ Thousand Sons         |    3 |      4
+ Harlequins            |    2 |      0
+ Nighthaunt            |    2 |      1
+ Seraphon              |    2 |      2
+ Ossiarch Bonereapers  |    2 |      5
+ Chaos Daemons         |    2 |      6
+ Skaven                |    1 |      0
+ Blades of Khorne      |    1 |      1
+ Ogor Mawtribes        |    1 |      1
+ Orruk Warclans        |    1 |      3
+ Genestealer Cults     |    1 |      5
+ Hedonites of Slaanesh |    1 |      5
+ Sylvaneth             |    0 |      2
+```
