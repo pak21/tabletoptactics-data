@@ -141,3 +141,7 @@ order by wins desc, losses;
  Hedonites of Slaanesh |    1 |      5
  Sylvaneth             |    0 |      2
 ```
+
+# License
+
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
