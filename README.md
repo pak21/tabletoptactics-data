@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-04-30, the data contains shows released on the channel from 2022-04-22 to 2023-04-28. Specifically, this includes:
+As of 2023-05-05, the data contains shows released on the channel from 2022-04-22 to 2023-05-05. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
 * All league reports
@@ -38,7 +38,7 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- James Jordan     | 50
+ James Jordan     | 52
  Katie Foad       | 47
  Lawrence Baker   | 34
  Michael Hebditch | 27
@@ -105,7 +105,7 @@ order by wins desc, losses;
         faction        | wins | losses
 -----------------------+------+--------
  Space Marines         |   33 |     18
- Orks                  |   12 |      8
+ Orks                  |   14 |      8
  Chaos Space Marines   |   11 |     16
  Necrons               |    9 |      6
  T'au Empire           |    9 |      9
@@ -113,8 +113,8 @@ order by wins desc, losses;
  Soulblight Gravelords |    7 |      0
  World Eaters          |    6 |      2
  Leagues of Votann     |    6 |      4
- Adeptus Mechanicus    |    6 |      7
- Aeldari               |    6 |     10
+ Adeptus Mechanicus    |    6 |      8
+ Aeldari               |    6 |     11
  Chaos Knights         |    5 |      1
  Death Guard           |    5 |      3
  Adeptus Custodes      |    5 |      4
@@ -124,14 +124,14 @@ order by wins desc, losses;
  Tyranids              |    5 |     13
  Idoneth Deepkin       |    4 |      2
  Adepta Sororitas      |    4 |      4
- Slaves to Darkness    |    3 |      3
+ Seraphon              |    3 |      2
  Maggotkin of Nurgle   |    3 |      3
  Stormcast Eternals    |    3 |      3
+ Slaves to Darkness    |    3 |      3
  Thousand Sons         |    3 |      4
  Harlequins            |    2 |      0
  Nighthaunt            |    2 |      1
- Seraphon              |    2 |      2
- Ossiarch Bonereapers  |    2 |      5
+ Ossiarch Bonereapers  |    2 |      6
  Chaos Daemons         |    2 |      6
  Skaven                |    1 |      0
  Blades of Khorne      |    1 |      1

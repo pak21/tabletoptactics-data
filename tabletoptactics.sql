@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.7 (Homebrew)
--- Dumped by pg_dump version 14.7 (Homebrew)
+-- Dumped from database version 15.2 (Debian 15.2-2)
+-- Dumped by pg_dump version 15.2 (Debian 15.2-2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -35,7 +35,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: armies; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: armies; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.armies (
@@ -48,10 +48,10 @@ CREATE TABLE public.armies (
 );
 
 
-ALTER TABLE public.armies OWNER TO philkendall;
+ALTER TABLE public.armies OWNER TO philip;
 
 --
--- Name: armies_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: armies_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.armies_id_seq
@@ -63,17 +63,17 @@ CREATE SEQUENCE public.armies_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.armies_id_seq OWNER TO philkendall;
+ALTER TABLE public.armies_id_seq OWNER TO philip;
 
 --
--- Name: armies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: armies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.armies_id_seq OWNED BY public.armies.id;
 
 
 --
--- Name: campaigns; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: campaigns; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.campaigns (
@@ -82,10 +82,10 @@ CREATE TABLE public.campaigns (
 );
 
 
-ALTER TABLE public.campaigns OWNER TO philkendall;
+ALTER TABLE public.campaigns OWNER TO philip;
 
 --
--- Name: campaigns_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: campaigns_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.campaigns_id_seq
@@ -97,17 +97,17 @@ CREATE SEQUENCE public.campaigns_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.campaigns_id_seq OWNER TO philkendall;
+ALTER TABLE public.campaigns_id_seq OWNER TO philip;
 
 --
--- Name: campaigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: campaigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.campaigns_id_seq OWNED BY public.campaigns.id;
 
 
 --
--- Name: factions; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: factions; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.factions (
@@ -117,10 +117,10 @@ CREATE TABLE public.factions (
 );
 
 
-ALTER TABLE public.factions OWNER TO philkendall;
+ALTER TABLE public.factions OWNER TO philip;
 
 --
--- Name: factions_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: factions_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.factions_id_seq
@@ -132,17 +132,17 @@ CREATE SEQUENCE public.factions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.factions_id_seq OWNER TO philkendall;
+ALTER TABLE public.factions_id_seq OWNER TO philip;
 
 --
--- Name: factions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: factions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.factions_id_seq OWNED BY public.factions.id;
 
 
 --
--- Name: games; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: games; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.games (
@@ -151,10 +151,10 @@ CREATE TABLE public.games (
 );
 
 
-ALTER TABLE public.games OWNER TO philkendall;
+ALTER TABLE public.games OWNER TO philip;
 
 --
--- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.games_id_seq
@@ -166,17 +166,17 @@ CREATE SEQUENCE public.games_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.games_id_seq OWNER TO philkendall;
+ALTER TABLE public.games_id_seq OWNER TO philip;
 
 --
--- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
 
 
 --
--- Name: leagueseasons; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: leagueseasons; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.leagueseasons (
@@ -187,10 +187,10 @@ CREATE TABLE public.leagueseasons (
 );
 
 
-ALTER TABLE public.leagueseasons OWNER TO philkendall;
+ALTER TABLE public.leagueseasons OWNER TO philip;
 
 --
--- Name: leagueseasons_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: leagueseasons_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.leagueseasons_id_seq
@@ -202,17 +202,17 @@ CREATE SEQUENCE public.leagueseasons_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.leagueseasons_id_seq OWNER TO philkendall;
+ALTER TABLE public.leagueseasons_id_seq OWNER TO philip;
 
 --
--- Name: leagueseasons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: leagueseasons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.leagueseasons_id_seq OWNED BY public.leagueseasons.id;
 
 
 --
--- Name: narrativeshows; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: narrativeshows; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.narrativeshows (
@@ -223,10 +223,10 @@ CREATE TABLE public.narrativeshows (
 );
 
 
-ALTER TABLE public.narrativeshows OWNER TO philkendall;
+ALTER TABLE public.narrativeshows OWNER TO philip;
 
 --
--- Name: narrativeshows_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: narrativeshows_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.narrativeshows_id_seq
@@ -238,17 +238,17 @@ CREATE SEQUENCE public.narrativeshows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.narrativeshows_id_seq OWNER TO philkendall;
+ALTER TABLE public.narrativeshows_id_seq OWNER TO philip;
 
 --
--- Name: narrativeshows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: narrativeshows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.narrativeshows_id_seq OWNED BY public.narrativeshows.id;
 
 
 --
--- Name: players; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: players; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.players (
@@ -258,10 +258,10 @@ CREATE TABLE public.players (
 );
 
 
-ALTER TABLE public.players OWNER TO philkendall;
+ALTER TABLE public.players OWNER TO philip;
 
 --
--- Name: players_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: players_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.players_id_seq
@@ -273,17 +273,17 @@ CREATE SEQUENCE public.players_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.players_id_seq OWNER TO philkendall;
+ALTER TABLE public.players_id_seq OWNER TO philip;
 
 --
--- Name: players_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: players_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.players_id_seq OWNED BY public.players.id;
 
 
 --
--- Name: shows; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: shows; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.shows (
@@ -297,10 +297,10 @@ CREATE TABLE public.shows (
 );
 
 
-ALTER TABLE public.shows OWNER TO philkendall;
+ALTER TABLE public.shows OWNER TO philip;
 
 --
--- Name: shows_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: shows_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.shows_id_seq
@@ -312,17 +312,17 @@ CREATE SEQUENCE public.shows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.shows_id_seq OWNER TO philkendall;
+ALTER TABLE public.shows_id_seq OWNER TO philip;
 
 --
--- Name: shows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: shows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.shows_id_seq OWNED BY public.shows.id;
 
 
 --
--- Name: showtypes; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: showtypes; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.showtypes (
@@ -331,10 +331,10 @@ CREATE TABLE public.showtypes (
 );
 
 
-ALTER TABLE public.showtypes OWNER TO philkendall;
+ALTER TABLE public.showtypes OWNER TO philip;
 
 --
--- Name: showtypes_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: showtypes_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.showtypes_id_seq
@@ -346,17 +346,17 @@ CREATE SEQUENCE public.showtypes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.showtypes_id_seq OWNER TO philkendall;
+ALTER TABLE public.showtypes_id_seq OWNER TO philip;
 
 --
--- Name: showtypes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: showtypes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.showtypes_id_seq OWNED BY public.showtypes.id;
 
 
 --
--- Name: subfactions; Type: TABLE; Schema: public; Owner: philkendall
+-- Name: subfactions; Type: TABLE; Schema: public; Owner: philip
 --
 
 CREATE TABLE public.subfactions (
@@ -366,10 +366,10 @@ CREATE TABLE public.subfactions (
 );
 
 
-ALTER TABLE public.subfactions OWNER TO philkendall;
+ALTER TABLE public.subfactions OWNER TO philip;
 
 --
--- Name: subfactions_id_seq; Type: SEQUENCE; Schema: public; Owner: philkendall
+-- Name: subfactions_id_seq; Type: SEQUENCE; Schema: public; Owner: philip
 --
 
 CREATE SEQUENCE public.subfactions_id_seq
@@ -381,87 +381,87 @@ CREATE SEQUENCE public.subfactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.subfactions_id_seq OWNER TO philkendall;
+ALTER TABLE public.subfactions_id_seq OWNER TO philip;
 
 --
--- Name: subfactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philkendall
+-- Name: subfactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
 --
 
 ALTER SEQUENCE public.subfactions_id_seq OWNED BY public.subfactions.id;
 
 
 --
--- Name: armies id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: armies id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies ALTER COLUMN id SET DEFAULT nextval('public.armies_id_seq'::regclass);
 
 
 --
--- Name: campaigns id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: campaigns id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.campaigns ALTER COLUMN id SET DEFAULT nextval('public.campaigns_id_seq'::regclass);
 
 
 --
--- Name: factions id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: factions id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.factions ALTER COLUMN id SET DEFAULT nextval('public.factions_id_seq'::regclass);
 
 
 --
--- Name: games id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: games id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
 
 
 --
--- Name: leagueseasons id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: leagueseasons id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.leagueseasons ALTER COLUMN id SET DEFAULT nextval('public.leagueseasons_id_seq'::regclass);
 
 
 --
--- Name: narrativeshows id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: narrativeshows id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.narrativeshows ALTER COLUMN id SET DEFAULT nextval('public.narrativeshows_id_seq'::regclass);
 
 
 --
--- Name: players id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: players id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.players ALTER COLUMN id SET DEFAULT nextval('public.players_id_seq'::regclass);
 
 
 --
--- Name: shows id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: shows id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.shows ALTER COLUMN id SET DEFAULT nextval('public.shows_id_seq'::regclass);
 
 
 --
--- Name: showtypes id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: showtypes id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.showtypes ALTER COLUMN id SET DEFAULT nextval('public.showtypes_id_seq'::regclass);
 
 
 --
--- Name: subfactions id; Type: DEFAULT; Schema: public; Owner: philkendall
+-- Name: subfactions id; Type: DEFAULT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.subfactions ALTER COLUMN id SET DEFAULT nextval('public.subfactions_id_seq'::regclass);
 
 
 --
--- Data for Name: armies; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: armies; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) FROM stdin;
@@ -849,11 +849,17 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 382	198	5	1	94	f
 383	199	4	4	103	f
 384	199	5	6	101	t
+385	200	2	25	34	f
+386	200	6	7	5	t
+387	201	3	8	7	t
+388	201	4	24	19	f
+389	202	4	4	4	f
+390	202	6	7	5	t
 \.
 
 
 --
--- Data for Name: campaigns; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: campaigns; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.campaigns (id, campaign) FROM stdin;
@@ -867,7 +873,7 @@ COPY public.campaigns (id, campaign) FROM stdin;
 
 
 --
--- Data for Name: factions; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: factions; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.factions (id, faction, game_id) FROM stdin;
@@ -911,7 +917,7 @@ COPY public.factions (id, faction, game_id) FROM stdin;
 
 
 --
--- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.games (id, game) FROM stdin;
@@ -921,7 +927,7 @@ COPY public.games (id, game) FROM stdin;
 
 
 --
--- Data for Name: leagueseasons; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: leagueseasons; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
@@ -954,11 +960,13 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 27	159	2	7
 28	184	2	8
 29	197	2	9
+30	200	2	10
+31	202	2	11
 \.
 
 
 --
--- Data for Name: narrativeshows; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: narrativeshows; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM stdin;
@@ -984,7 +992,7 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 
 
 --
--- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.players (id, fullname, nickname) FROM stdin;
@@ -1009,7 +1017,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 
 
 --
--- Data for Name: shows; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: shows; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) FROM stdin;
@@ -1209,11 +1217,14 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 197	2023-04-28	1	2	thousand-sons-vs-leagues-of-votann-season-2-ep-9-warhammer-40000-league-report	\N	5
 198	2022-04-23	1	1	white-scars-vs-thousand-sons-2000pts-warhammer-40000-league-report	rFAsEkGsZsg	6
 199	2022-04-22	1	2	ynnari-vs-grey-knights-2000pts-warhammer-40000-league-report	\N	1
+200	2023-05-02	1	2	adeptus-mechanicus-vs-orks-season-2-ep-10-warhammer-40000-league-report	\N	3
+201	2023-05-03	2	1	new-battletome-ossiarch-bonereapers-vs-seraphon-age-of-sigmar-battle-report	\N	5
+202	2023-05-05	1	2	aeldari-vs-orks-season-2-ep-11-warhammer-40000-league-report	\N	5
 \.
 
 
 --
--- Data for Name: showtypes; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: showtypes; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.showtypes (id, showtype) FROM stdin;
@@ -1225,7 +1236,7 @@ COPY public.showtypes (id, showtype) FROM stdin;
 
 
 --
--- Data for Name: subfactions; Type: TABLE DATA; Schema: public; Owner: philkendall
+-- Data for Name: subfactions; Type: TABLE DATA; Schema: public; Owner: philip
 --
 
 COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
@@ -1342,77 +1353,77 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 
 
 --
--- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 384, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 390, true);
 
 
 --
--- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.campaigns_id_seq', 6, true);
 
 
 --
--- Name: factions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: factions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.factions_id_seq', 38, true);
 
 
 --
--- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 
 
 --
--- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 29, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 31, true);
 
 
 --
--- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.narrativeshows_id_seq', 18, true);
 
 
 --
--- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.players_id_seq', 17, true);
 
 
 --
--- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 199, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 202, true);
 
 
 --
--- Name: showtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: showtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.showtypes_id_seq', 4, true);
 
 
 --
--- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philkendall
+-- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
 SELECT pg_catalog.setval('public.subfactions_id_seq', 109, true);
 
 
 --
--- Name: armies armies_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: armies armies_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies
@@ -1420,7 +1431,7 @@ ALTER TABLE ONLY public.armies
 
 
 --
--- Name: campaigns campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: campaigns campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.campaigns
@@ -1428,7 +1439,7 @@ ALTER TABLE ONLY public.campaigns
 
 
 --
--- Name: factions factions_faction_game_id_unq; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: factions factions_faction_game_id_unq; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.factions
@@ -1436,7 +1447,7 @@ ALTER TABLE ONLY public.factions
 
 
 --
--- Name: factions factions_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: factions factions_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.factions
@@ -1444,7 +1455,7 @@ ALTER TABLE ONLY public.factions
 
 
 --
--- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.games
@@ -1452,7 +1463,7 @@ ALTER TABLE ONLY public.games
 
 
 --
--- Name: leagueseasons leagueseasons_league_season_episode; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: leagueseasons leagueseasons_league_season_episode; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.leagueseasons
@@ -1460,7 +1471,7 @@ ALTER TABLE ONLY public.leagueseasons
 
 
 --
--- Name: leagueseasons leagueseasons_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: leagueseasons leagueseasons_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.leagueseasons
@@ -1468,7 +1479,7 @@ ALTER TABLE ONLY public.leagueseasons
 
 
 --
--- Name: narrativeshows narrativeshows_campaign_id_campaign_sequence_unq; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: narrativeshows narrativeshows_campaign_id_campaign_sequence_unq; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.narrativeshows
@@ -1476,7 +1487,7 @@ ALTER TABLE ONLY public.narrativeshows
 
 
 --
--- Name: narrativeshows narrativeshows_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: narrativeshows narrativeshows_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.narrativeshows
@@ -1484,7 +1495,7 @@ ALTER TABLE ONLY public.narrativeshows
 
 
 --
--- Name: players players_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: players players_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.players
@@ -1492,7 +1503,7 @@ ALTER TABLE ONLY public.players
 
 
 --
--- Name: shows shows_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: shows shows_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.shows
@@ -1500,7 +1511,7 @@ ALTER TABLE ONLY public.shows
 
 
 --
--- Name: showtypes showtypes_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: showtypes showtypes_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.showtypes
@@ -1508,7 +1519,7 @@ ALTER TABLE ONLY public.showtypes
 
 
 --
--- Name: subfactions subfactions_pkey; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: subfactions subfactions_pkey; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.subfactions
@@ -1516,7 +1527,7 @@ ALTER TABLE ONLY public.subfactions
 
 
 --
--- Name: subfactions subfactions_subfaction_faction_id; Type: CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: subfactions subfactions_subfaction_faction_id; Type: CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.subfactions
@@ -1524,182 +1535,182 @@ ALTER TABLE ONLY public.subfactions
 
 
 --
--- Name: armies_faction_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: armies_faction_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX armies_faction_id_idx ON public.armies USING btree (faction_id);
 
 
 --
--- Name: armies_player_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: armies_player_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX armies_player_id_idx ON public.armies USING btree (player_id);
 
 
 --
--- Name: armies_show_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: armies_show_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX armies_show_id_idx ON public.armies USING btree (show_id);
 
 
 --
--- Name: armies_subfaction_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: armies_subfaction_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX armies_subfaction_id_idx ON public.armies USING btree (subfaction_id);
 
 
 --
--- Name: campaigns_campaign_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: campaigns_campaign_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX campaigns_campaign_idx ON public.campaigns USING btree (campaign);
 
 
 --
--- Name: factions_faction_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: factions_faction_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX factions_faction_idx ON public.factions USING btree (faction);
 
 
 --
--- Name: factions_game_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: factions_game_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX factions_game_id_idx ON public.factions USING btree (game_id);
 
 
 --
--- Name: games_game_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: games_game_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX games_game_idx ON public.games USING btree (game);
 
 
 --
--- Name: leagueseasons_episode_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: leagueseasons_episode_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX leagueseasons_episode_idx ON public.leagueseasons USING btree (episode);
 
 
 --
--- Name: leagueseasons_league_season_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: leagueseasons_league_season_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX leagueseasons_league_season_idx ON public.leagueseasons USING btree (league_season);
 
 
 --
--- Name: leagueseasons_show_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: leagueseasons_show_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX leagueseasons_show_id_idx ON public.leagueseasons USING btree (show_id);
 
 
 --
--- Name: narrativeshows_campaign_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: narrativeshows_campaign_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX narrativeshows_campaign_id_idx ON public.narrativeshows USING btree (campaign_id);
 
 
 --
--- Name: narrativeshows_campaign_sequence_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: narrativeshows_campaign_sequence_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX narrativeshows_campaign_sequence_idx ON public.narrativeshows USING btree (campaign_sequence);
 
 
 --
--- Name: narrativeshows_show_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: narrativeshows_show_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX narrativeshows_show_id_idx ON public.narrativeshows USING btree (show_id);
 
 
 --
--- Name: players_fullname_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: players_fullname_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX players_fullname_idx ON public.players USING btree (fullname);
 
 
 --
--- Name: players_nickname_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: players_nickname_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX players_nickname_idx ON public.players USING btree (nickname);
 
 
 --
--- Name: shows_game_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_game_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX shows_game_id_idx ON public.shows USING btree (game_id);
 
 
 --
--- Name: shows_release_date_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_release_date_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX shows_release_date_idx ON public.shows USING btree (release_date);
 
 
 --
--- Name: shows_servoskull_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_servoskull_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX shows_servoskull_id_idx ON public.shows USING btree (servoskull_id);
 
 
 --
--- Name: shows_showtype_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_showtype_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX shows_showtype_id_idx ON public.shows USING btree (showtype_id);
 
 
 --
--- Name: shows_slug_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_slug_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX shows_slug_idx ON public.shows USING btree (slug);
 
 
 --
--- Name: shows_youtube_slug_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: shows_youtube_slug_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX shows_youtube_slug_idx ON public.shows USING btree (youtube_slug);
 
 
 --
--- Name: showtypes_showtype_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: showtypes_showtype_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE UNIQUE INDEX showtypes_showtype_idx ON public.showtypes USING btree (showtype);
 
 
 --
--- Name: subfactions_faction_id_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: subfactions_faction_id_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX subfactions_faction_id_idx ON public.subfactions USING btree (faction_id);
 
 
 --
--- Name: subfactions_subfaction_idx; Type: INDEX; Schema: public; Owner: philkendall
+-- Name: subfactions_subfaction_idx; Type: INDEX; Schema: public; Owner: philip
 --
 
 CREATE INDEX subfactions_subfaction_idx ON public.subfactions USING btree (subfaction);
 
 
 --
--- Name: armies armies_faction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: armies armies_faction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies
@@ -1707,7 +1718,7 @@ ALTER TABLE ONLY public.armies
 
 
 --
--- Name: armies armies_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: armies armies_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies
@@ -1715,7 +1726,7 @@ ALTER TABLE ONLY public.armies
 
 
 --
--- Name: armies armies_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: armies armies_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies
@@ -1723,7 +1734,7 @@ ALTER TABLE ONLY public.armies
 
 
 --
--- Name: armies armies_subfaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: armies armies_subfaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.armies
@@ -1731,7 +1742,7 @@ ALTER TABLE ONLY public.armies
 
 
 --
--- Name: factions factions_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: factions factions_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.factions
@@ -1739,7 +1750,7 @@ ALTER TABLE ONLY public.factions
 
 
 --
--- Name: leagueseasons leagueseasons_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: leagueseasons leagueseasons_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.leagueseasons
@@ -1747,7 +1758,7 @@ ALTER TABLE ONLY public.leagueseasons
 
 
 --
--- Name: narrativeshows narrativeshows_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: narrativeshows narrativeshows_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.narrativeshows
@@ -1755,7 +1766,7 @@ ALTER TABLE ONLY public.narrativeshows
 
 
 --
--- Name: narrativeshows narrativeshows_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: narrativeshows narrativeshows_show_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.narrativeshows
@@ -1763,7 +1774,7 @@ ALTER TABLE ONLY public.narrativeshows
 
 
 --
--- Name: shows shows_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: shows shows_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.shows
@@ -1771,7 +1782,7 @@ ALTER TABLE ONLY public.shows
 
 
 --
--- Name: shows shows_servoskull_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: shows shows_servoskull_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.shows
@@ -1779,7 +1790,7 @@ ALTER TABLE ONLY public.shows
 
 
 --
--- Name: shows shows_showtype_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: shows shows_showtype_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.shows
@@ -1787,7 +1798,7 @@ ALTER TABLE ONLY public.shows
 
 
 --
--- Name: subfactions subfactions_faction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philkendall
+-- Name: subfactions subfactions_faction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: philip
 --
 
 ALTER TABLE ONLY public.subfactions
