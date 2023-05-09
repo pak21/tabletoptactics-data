@@ -855,6 +855,10 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 388	201	4	24	19	f
 389	202	4	4	4	f
 390	202	6	7	5	t
+391	203	3	3	3	f
+392	203	5	14	\N	t
+393	204	6	11	9	t
+394	204	1	1	22	f
 \.
 
 
@@ -962,6 +966,7 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 29	197	2	9
 30	200	2	10
 31	202	2	11
+32	203	2	12
 \.
 
 
@@ -1220,6 +1225,8 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 200	2023-05-02	1	2	adeptus-mechanicus-vs-orks-season-2-ep-10-warhammer-40000-league-report	\N	3
 201	2023-05-03	2	1	new-battletome-ossiarch-bonereapers-vs-seraphon-age-of-sigmar-battle-report	\N	5
 202	2023-05-05	1	2	aeldari-vs-orks-season-2-ep-11-warhammer-40000-league-report	\N	5
+203	2023-05-09	1	2	thousand-sons-vs-astra-militarum-warhammer-40000-league-report	\N	4
+204	2023-05-06	1	1	ultramarines-vs-world-eaters-warhammer-40000-boarding-actions-battle-report	6VU41kmGd_Q	\N
 \.
 
 
@@ -1356,7 +1363,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 390, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 394, true);
 
 
 --
@@ -1384,7 +1391,7 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 31, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 32, true);
 
 
 --
@@ -1405,7 +1412,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 17, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 202, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 204, true);
 
 
 --
