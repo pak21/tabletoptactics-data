@@ -70,7 +70,7 @@ def main():
             winner_id = get_player(winner, cursor)
 
         servoskull = input('Servoskull? ')
-        servoskull_id = get_player(servoskull, cursor)
+        servoskull_id = get_player(servoskull, cursor) if servoskull else None
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 

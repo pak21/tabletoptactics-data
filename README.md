@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-05-05, the data contains shows released on the channel from 2022-04-22 to 2023-05-05. Specifically, this includes:
+As of 2023-05-09, the data contains shows released on the channel from 2022-04-22 to 2023-05-09. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
 * All league reports
@@ -39,7 +39,7 @@ order by n desc;
      fullname     | n
 ------------------+----
  James Jordan     | 52
- Katie Foad       | 47
+ Katie Foad       | 48
  Lawrence Baker   | 34
  Michael Hebditch | 27
  Joe Ponting      | 23
@@ -104,14 +104,14 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   33 |     18
+ Space Marines         |   33 |     19
  Orks                  |   14 |      8
  Chaos Space Marines   |   11 |     16
  Necrons               |    9 |      6
  T'au Empire           |    9 |      9
- Astra Militarum       |    8 |     11
+ Astra Militarum       |    9 |     11
  Soulblight Gravelords |    7 |      0
- World Eaters          |    6 |      2
+ World Eaters          |    7 |      2
  Leagues of Votann     |    6 |      4
  Adeptus Mechanicus    |    6 |      8
  Aeldari               |    6 |     11
@@ -128,7 +128,7 @@ order by wins desc, losses;
  Maggotkin of Nurgle   |    3 |      3
  Stormcast Eternals    |    3 |      3
  Slaves to Darkness    |    3 |      3
- Thousand Sons         |    3 |      4
+ Thousand Sons         |    3 |      5
  Harlequins            |    2 |      0
  Nighthaunt            |    2 |      1
  Ossiarch Bonereapers  |    2 |      6
