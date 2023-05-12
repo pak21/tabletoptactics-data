@@ -1225,8 +1225,8 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 200	2023-05-02	1	2	adeptus-mechanicus-vs-orks-season-2-ep-10-warhammer-40000-league-report	\N	3
 201	2023-05-03	2	1	new-battletome-ossiarch-bonereapers-vs-seraphon-age-of-sigmar-battle-report	\N	5
 202	2023-05-05	1	2	aeldari-vs-orks-season-2-ep-11-warhammer-40000-league-report	\N	5
-203	2023-05-09	1	2	thousand-sons-vs-astra-militarum-warhammer-40000-league-report	\N	4
-204	2023-05-06	1	1	ultramarines-vs-world-eaters-warhammer-40000-boarding-actions-battle-report	6VU41kmGd_Q	\N
+203	2023-05-05	1	2	thousand-sons-vs-astra-militarum-warhammer-40000-league-report	\N	4
+204	2023-05-05	1	1	ultramarines-vs-world-eaters-warhammer-40000-boarding-actions-battle-report	6VU41kmGd_Q	\N
 \.
 
 
