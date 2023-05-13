@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-05-09, the data contains shows released on the channel from 2022-04-22 to 2023-05-09. Specifically, this includes:
+As of 2023-05-13, the data contains shows released on the channel from 2022-04-22 to 2023-05-13. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
 * All league reports
@@ -38,10 +38,10 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- James Jordan     | 52
+ James Jordan     | 53
  Katie Foad       | 48
  Lawrence Baker   | 34
- Michael Hebditch | 27
+ Michael Hebditch | 29
  Joe Ponting      | 23
 ```
 
@@ -105,14 +105,14 @@ order by wins desc, losses;
         faction        | wins | losses
 -----------------------+------+--------
  Space Marines         |   33 |     19
- Orks                  |   14 |      8
+ Orks                  |   15 |      8
  Chaos Space Marines   |   11 |     16
  Necrons               |    9 |      6
  T'au Empire           |    9 |      9
  Astra Militarum       |    9 |     11
  Soulblight Gravelords |    7 |      0
  World Eaters          |    7 |      2
- Leagues of Votann     |    6 |      4
+ Leagues of Votann     |    6 |      5
  Adeptus Mechanicus    |    6 |      8
  Aeldari               |    6 |     11
  Chaos Knights         |    5 |      1
@@ -123,19 +123,19 @@ order by wins desc, losses;
  Grey Knights          |    5 |      9
  Tyranids              |    5 |     13
  Idoneth Deepkin       |    4 |      2
+ Seraphon              |    4 |      2
  Adepta Sororitas      |    4 |      4
- Seraphon              |    3 |      2
- Maggotkin of Nurgle   |    3 |      3
  Stormcast Eternals    |    3 |      3
+ Maggotkin of Nurgle   |    3 |      3
  Slaves to Darkness    |    3 |      3
  Thousand Sons         |    3 |      5
  Harlequins            |    2 |      0
- Nighthaunt            |    2 |      1
+ Nighthaunt            |    2 |      2
  Ossiarch Bonereapers  |    2 |      6
  Chaos Daemons         |    2 |      6
  Skaven                |    1 |      0
- Blades of Khorne      |    1 |      1
  Ogor Mawtribes        |    1 |      1
+ Blades of Khorne      |    1 |      1
  Orruk Warclans        |    1 |      3
  Genestealer Cults     |    1 |      5
  Hedonites of Slaanesh |    1 |      5

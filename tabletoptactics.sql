@@ -859,6 +859,10 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 392	203	5	14	\N	t
 393	204	6	11	9	t
 394	204	1	1	22	f
+395	205	1	18	14	f
+396	205	6	7	5	t
+397	206	3	8	110	t
+398	206	4	28	25	f
 \.
 
 
@@ -967,6 +971,7 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 30	200	2	10
 31	202	2	11
 32	203	2	12
+33	205	2	13
 \.
 
 
@@ -1227,6 +1232,8 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 202	2023-05-05	1	2	aeldari-vs-orks-season-2-ep-11-warhammer-40000-league-report	\N	5
 203	2023-05-05	1	2	thousand-sons-vs-astra-militarum-warhammer-40000-league-report	\N	4
 204	2023-05-05	1	1	ultramarines-vs-world-eaters-warhammer-40000-boarding-actions-battle-report	6VU41kmGd_Q	\N
+205	2023-05-12	1	2	orks-vs-leagues-of-votann-season-2-ep-13-warhammer-40000-league-report	\N	3
+206	2023-05-12	2	1	nighthaunt-vs-seraphon-age-of-sigmar-battle-report	FyQtKzNr24Y	5
 \.
 
 
@@ -1356,6 +1363,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 107	House Raven	26
 108	House Korvax	30
 109	Rapiers	6
+110	Starborne	8
 \.
 
 
@@ -1363,7 +1371,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 394, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 398, true);
 
 
 --
@@ -1391,7 +1399,7 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 32, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 33, true);
 
 
 --
@@ -1412,7 +1420,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 17, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 204, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 206, true);
 
 
 --
@@ -1426,7 +1434,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 4, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 109, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 110, true);
 
 
 --
