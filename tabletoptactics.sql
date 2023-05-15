@@ -869,6 +869,8 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 402	208	2	7	68	f
 403	209	3	7	5	t
 404	209	19	31	111	f
+405	210	3	38	89	t
+406	210	4	32	54	f
 \.
 
 
@@ -1245,6 +1247,7 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 207	2022-04-19	1	1	emperors-children-vs-catachans-2000pts-warhammer-40000-battle-report	\N	1
 208	2022-04-16	1	1	flesh-tearers-vs-orks-2000pts-warhammer-40000-battle-report	6Qh8gkq3oZc	4
 209	2022-04-15	1	1	adepta-sororitas-vs-orks-2000pts-warhammer-40000-battle-report	\N	6
+210	2022-04-12	1	2	tyranids-vs-harlequins-2000pts-warhammer-40000-league-report	\N	1
 \.
 
 
@@ -1383,7 +1386,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 404, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 406, true);
 
 
 --
@@ -1432,7 +1435,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 209, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 210, true);
 
 
 --
