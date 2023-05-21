@@ -871,6 +871,20 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 404	209	19	31	111	f
 405	210	3	38	89	t
 406	210	4	32	54	f
+407	211	5	20	16	f
+408	211	4	32	54	t
+409	212	3	3	3	f
+410	212	6	7	5	t
+411	213	1	37	112	t
+412	213	5	29	27	f
+413	214	1	2	88	f
+414	214	5	5	\N	t
+415	215	2	25	34	f
+416	215	5	14	\N	t
+417	216	3	38	89	t
+418	216	2	2	11	f
+419	217	3	1	95	f
+420	217	1	27	30	t
 \.
 
 
@@ -980,6 +994,8 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 31	202	2	11
 32	203	2	12
 33	205	2	13
+34	212	2	14
+35	215	2	15
 \.
 
 
@@ -1248,6 +1264,13 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 208	2022-04-16	1	1	flesh-tearers-vs-orks-2000pts-warhammer-40000-battle-report	6Qh8gkq3oZc	4
 209	2022-04-15	1	1	adepta-sororitas-vs-orks-2000pts-warhammer-40000-battle-report	\N	6
 210	2022-04-12	1	2	tyranids-vs-harlequins-2000pts-warhammer-40000-league-report	\N	1
+211	2022-04-09	1	1	new-codex-tyranids-vs-tau-empire-2000pts-warhammer-40000-battle-report	FCb8L64yyW0	6
+212	2023-05-16	1	2	thousand-sons-vs-orks-season-2-ep-14-warhammer-40000-league-report	\N	5
+213	2023-05-17	2	1	ironjawz-vs-skaven-age-of-sigmar-battle-report	\N	4
+214	2023-05-19	1	1	adeptus-custodes-vs-chaos-daemons-warhammer-40000-boarding-action-battle-report-2	\N	\N
+215	2023-05-20	1	2	adeptus-mechanicus-vs-astra-militarum-season-2-ep-15-warhammer-40000-league-report	WUIu5ztCKkk	4
+216	2022-04-08	1	2	harlequins-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	4
+217	2022-04-05	1	1	imperial-fists-vs-iron-warriors-2000pts-warhammer-40000-battle-report	\N	4
 \.
 
 
@@ -1368,7 +1391,6 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 98	Twilight	38
 99	Ryza	25
 100	Mortis Praetorians	24
-101	Rapiers	2
 102	Saim-Hann	4
 103	Ynnari	4
 104	Cult of Time	3
@@ -1376,9 +1398,10 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 106	Kraken	32
 107	House Raven	26
 108	House Korvax	30
-109	Rapiers	6
 110	Starborne	8
 111	Order of the Bloody Rose	31
+101	Rapiers	6
+112	Clans Moulder	37
 \.
 
 
@@ -1386,7 +1409,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 406, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 420, true);
 
 
 --
@@ -1414,7 +1437,7 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 33, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 35, true);
 
 
 --
@@ -1435,7 +1458,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 210, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 217, true);
 
 
 --
@@ -1449,7 +1472,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 4, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 111, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 112, true);
 
 
 --
