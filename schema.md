@@ -46,6 +46,7 @@ tabletoptactics=> \d armies
  faction_id    | integer |           | not null | 
  subfaction_id | integer |           |          | 
  winner        | boolean |           |          | 
+ codex_edition | integer |           | not null |
 ```
 
 * `id`: synthetic primary key for this army.
@@ -55,6 +56,9 @@ tabletoptactics=> \d armies
 * `subfaction_id`: reference to `subfactions.id` indicating the subfaction, if any, for this army (see "Factions and subfactions" below for details on the modelling).
 * `winner`: true if this army was on the winning side of the battle, false if it was on the losing side. Null if the battle was a draw or otherwise inconclusive.
   * Generally you can expect there to be one winning army and one losing army for each non-drawn battle, but in some cases (narrative shows) there may be more than one winner or loser.
+* `codex_edition`: the edition of the game the codex for this faction was released for - e.g. `8` or `9` for Warhammer 40,000 factions, or `2` or `3` for Age of Sigmar factions.
+  * This gives a clue as to which subfactions are relevant for a faction - e.g. 8th Edition Harlequins use masques, while 9th Edition Harlequins use saedaths. There is currently no attempt to model this relationship though.
+  * Yes, these are battletomes in Age of Sigmar. No, I don't care.
 
 ## Other tables
 
