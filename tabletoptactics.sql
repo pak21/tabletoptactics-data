@@ -885,6 +885,18 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner) F
 418	216	2	2	11	f
 419	217	3	1	95	f
 420	217	1	27	30	t
+421	218	3	9	6	t
+422	218	2	13	63	f
+423	219	1	18	14	f
+424	219	6	7	5	t
+425	220	6	7	5	t
+426	220	5	14	\N	f
+427	221	5	20	16	t
+428	221	1	31	111	f
+429	222	1	19	113	\N
+430	222	4	24	114	\N
+431	223	2	25	34	f
+432	223	5	14	\N	t
 \.
 
 
@@ -996,6 +1008,9 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 33	205	2	13
 34	212	2	14
 35	215	2	15
+36	223	2	16
+37	219	2	17
+38	220	2	18
 \.
 
 
@@ -1271,6 +1286,12 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 215	2023-05-20	1	2	adeptus-mechanicus-vs-astra-militarum-season-2-ep-15-warhammer-40000-league-report	WUIu5ztCKkk	4
 216	2022-04-08	1	2	harlequins-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	4
 217	2022-04-05	1	1	imperial-fists-vs-iron-warriors-2000pts-warhammer-40000-battle-report	\N	4
+218	2023-05-23	2	1	soulblight-gravelords-vs-ogor-mawtribes-age-of-sigmar-battle-report	\N	4
+219	2023-05-26	1	2	orks-vs-leagues-of-votann-semi-final-season-2-ep-17-warhammer-40000-league-report	\N	3
+220	2023-05-27	1	2	astra-militarum-vs-orks-season-2-final-warhammer-40000-league-report	0fhXPDRj1Eg	3
+221	2023-05-30	1	1	tau-empire-vs-adepta-sororitas-warhammer-40000-battle-report	\N	\N
+222	2023-06-02	2	1	ossiarch-bonereapers-vs-slaves-to-darkness-age-of-sigmar-battle-report	\N	5
+223	2023-05-23	1	2	adeptus-mechanicus-vs-astra-militarum-season-2-semi-final-1-warhammer-40000-league-report	\N	4
 \.
 
 
@@ -1402,6 +1423,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 111	Order of the Bloody Rose	31
 101	Rapiers	6
 112	Clans Moulder	37
+113	Knights of the Empty Throne	19
+114	Ivory Host	24
 \.
 
 
@@ -1409,7 +1432,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 420, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 432, true);
 
 
 --
@@ -1437,7 +1460,7 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 35, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
 
 
 --
@@ -1458,7 +1481,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 217, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 223, true);
 
 
 --
@@ -1472,7 +1495,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 4, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 112, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 114, true);
 
 
 --

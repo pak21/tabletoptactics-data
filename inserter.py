@@ -66,8 +66,8 @@ def main():
         army1 = input_army_details(1, cursor)
         army2 = input_army_details(2, cursor)
         if army2:
-            winner = input('Winner? ')
-            winner_id = get_player(winner, cursor)
+            winner = input('Winner? ') or None
+            winner_id = get_player(winner, cursor) if winner else None
 
         servoskull = input('Servoskull? ')
         servoskull_id = get_player(servoskull, cursor) if servoskull else None
