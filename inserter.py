@@ -4,6 +4,11 @@ import contextlib
 
 import psycopg2
 
+DEFAULT_EDITION = {
+    'Age of Sigmar': 3,
+    'Warhammer 40,000': 10,
+}
+
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
     results = cursor.fetchall()
@@ -45,8 +50,8 @@ def add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_
     cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id))
     return cursor.fetchall()[0][0]
 
-def add_army(show_id, army, winner, cursor):
-    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner) values (%s, %s, %s, %s, %s)', (show_id, army['player'], army['faction'], army['subfaction'], winner))
+def add_army(show_id, army, winner, edition, cursor):
+    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army['player'], army['faction'], army['subfaction'], winner, edition))
 
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
@@ -56,6 +61,7 @@ def main():
 
         game = input('Game? ')
         game_id = get_game(game, cursor)
+        edition = DEFAULT_EDITION[game]
 
         showtype = input('Show type? ')
         showtype_id = get_showtype(showtype, cursor)
@@ -74,9 +80,9 @@ def main():
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
-        add_army(show_id, army1, army1['player'] == winner_id, cursor)
+        add_army(show_id, army1, army1['player'] == winner_id, edition, cursor)
         if army2:
-            add_army(show_id, army2, army2['player'] == winner_id, cursor)
+            add_army(show_id, army2, army2['player'] == winner_id, edition, cursor)
 
         conn.commit()
 

@@ -2,6 +2,10 @@
 
 The two primary tables in the database are `shows`, which represents the individual shows, and `armies`, which represents the armies used in each show.
 
+## 10th Edition WIP
+
+I'm still working out how all this fits together for 10th Edition. Things may need to change!
+
 ## `shows`
 
 Each row in this table represents one show.
@@ -219,3 +223,7 @@ Some other factors can reduce the completeness and/or accuracy of subfaction inf
 * Most factions allow creation of custom subfactions by selecting from a list of traits. I haven't attempted to model these and have just left the subfaction empty in these cases.
   * This also applies to things like the Drukhari Realspace Raid which allow selection from multiple subfactions.
   * One exception here is the Necron "Obsekh Dynasty" (Eternal Conquerors + Relentlessly Expansionist), mostly because that's what Chef used in his Season 1 league list.
+
+### 10th Edition WIP
+
+I'm currently using the detachment (Gladius Task Force, Invasion Fleet, etc) as the subfaction in 10th Edition. Time will tell if this is useful modelling or not.

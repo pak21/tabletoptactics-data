@@ -9,12 +9,13 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-06-03, the data contains shows released on the channel from 2022-04-05 to 2023-06-02. Specifically, this includes:
+As of 2023-06-13, the data contains shows released on the channel from 2022-04-05 to 2023-06-03. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
 * All league reports
 * All narrative reports
 * All list analysis shows
+* The 10th edition introductory "How to play" show
 
 It does not currently include any:
 
@@ -74,7 +75,7 @@ where rank = 1;
  Joe Ponting      | Chaos Space Marines | 21
  Josh Hill        | Sylvaneth           |  1
  Katie Foad       | Tyranids            | 20
- Lawrence Baker   | Space Marines       | 15
+ Lawrence Baker   | Space Marines       | 16
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1

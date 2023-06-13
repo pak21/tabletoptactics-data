@@ -898,6 +898,8 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 126	68	4	24	32	f	2
 32	19	4	24	19	f	2
 123	66	3	8	7	t	2
+434	225	6	1	119	\N	10
+435	225	1	32	120	\N	10
 \.
 
 
@@ -1293,6 +1295,7 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 221	2023-05-30	1	1	tau-empire-vs-adepta-sororitas-warhammer-40000-battle-report	\N	\N
 222	2023-06-02	2	1	ossiarch-bonereapers-vs-slaves-to-darkness-age-of-sigmar-battle-report	\N	5
 223	2023-05-23	1	2	adeptus-mechanicus-vs-astra-militarum-season-2-semi-final-1-warhammer-40000-league-report	\N	4
+225	2023-06-03	1	5	how-to-play-warhammer-40000-10th-edition	s3xJudBU2dw	\N
 \.
 
 
@@ -1305,6 +1308,7 @@ COPY public.showtypes (id, showtype) FROM stdin;
 2	League report
 3	Narrative report
 4	List analysis
+5	How to play
 \.
 
 
@@ -1430,6 +1434,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 116	Catachan	14
 117	133rd Lambdan Lions	14
 118	Tallarn	14
+119	Gladius Task Force	1
+120	Invasion Fleet	32
 \.
 
 
@@ -1437,7 +1443,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 432, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 435, true);
 
 
 --
@@ -1486,21 +1492,21 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 223, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 225, true);
 
 
 --
 -- Name: showtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.showtypes_id_seq', 4, true);
+SELECT pg_catalog.setval('public.showtypes_id_seq', 5, true);
 
 
 --
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 118, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 120, true);
 
 
 --
