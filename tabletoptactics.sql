@@ -900,6 +900,27 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 123	66	3	8	7	t	2
 434	225	6	1	119	\N	10
 435	225	1	32	120	\N	10
+436	227	4	32	120	\N	10
+437	228	5	1	119	\N	10
+438	229	3	35	121	t	3
+439	229	1	23	57	f	3
+440	230	6	1	122	\N	10
+441	231	5	1	1	\N	10
+442	232	5	1	123	\N	10
+443	233	4	1	51	\N	10
+444	234	1	1	13	\N	10
+445	235	1	27	124	\N	10
+447	237	6	11	\N	\N	10
+446	236	1	33	\N	\N	10
+448	238	3	3	126	\N	10
+449	240	1	5	127	\N	10
+450	241	3	30	128	\N	10
+451	242	3	25	129	\N	10
+452	243	4	31	130	\N	10
+453	244	5	14	131	\N	10
+454	245	1	2	132	\N	10
+455	246	6	6	133	\N	10
+456	247	3	26	134	\N	10
 \.
 
 
@@ -1296,6 +1317,26 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 222	2023-06-02	2	1	ossiarch-bonereapers-vs-slaves-to-darkness-age-of-sigmar-battle-report	\N	5
 223	2023-05-23	1	2	adeptus-mechanicus-vs-astra-militarum-season-2-semi-final-1-warhammer-40000-league-report	\N	4
 225	2023-06-03	1	5	how-to-play-warhammer-40000-10th-edition	s3xJudBU2dw	\N
+227	2023-06-08	1	6	10th-edition-tyranids-index-warhammer-40000-faction-focus	\N	\N
+228	2023-06-09	1	6	10th-edition-space-marines-index-warhammer-40000-faction-focus	\N	\N
+229	2023-06-10	2	1	idoneth-deepkin-vs-blades-of-khorne-age-of-sigmar-battle-report	GesIEsqhaqg	5
+230	2023-06-12	1	6	10th-edition-blood-angels-index-warhammer-40000-faction-focus	\N	\N
+231	2023-06-12	1	6	10th-edition-dark-angels-index-warhammer-40000-faction-focus	\N	\N
+232	2023-06-12	1	6	10th-edition-space-wolves-index-warhammer-40000-faction-focus	\N	\N
+233	2023-06-12	1	6	10th-edition-black-templars-index-warhammer-40000-faction-focus	\N	\N
+234	2023-06-12	1	6	10th-edition-deathwatch-index-warhammer-40000-faction-focus	\N	\N
+235	2023-06-13	1	6	10th-edition-chaos-space-marines-index-warhammer-40000-faction-focus	\N	\N
+236	2023-06-13	1	6	10th-edition-death-guard-index-warhammer-40000-faction-focus	\N	\N
+237	2023-06-13	1	6	10th-edition-world-eaters-index-warhammer-40000-faction-focus	\N	\N
+238	2023-06-13	1	6	10th-edition-thousand-sons-index-warhammer-40000-faction-focus	\N	\N
+240	2023-06-13	1	6	10th-edition-chaos-daemons-index-warhammer-40000-faction-focus	\N	\N
+241	2023-06-13	1	6	10th-edition-chaos-knights-index-warhammer-40000-faction-focus	\N	\N
+242	2023-06-14	1	6	10th-edition-adeptus-mechanicus-index-warhammer-40000-faction-focus	\N	\N
+243	2023-06-14	1	6	10th-edition-adepta-sororitas-index-warhammer-40000-faction-focus	\N	\N
+244	2023-06-14	1	6	10th-edition-astra-militarum-index-warhammer-40000-faction-focus	\N	\N
+245	2023-06-14	1	6	10th-edition-adeptus-custodes-index-warhammer-40000-faction-focus	\N	\N
+246	2023-06-14	1	6	10th-edition-grey-knights-index-warhammer-40000-faction-focus	\N	\N
+247	2023-06-14	1	6	10th-edition-imperial-knights-index-warhammer-40000-faction-focus/	\N	\N
 \.
 
 
@@ -1309,6 +1350,7 @@ COPY public.showtypes (id, showtype) FROM stdin;
 3	Narrative report
 4	List analysis
 5	How to play
+6	Faction focus
 \.
 
 
@@ -1436,6 +1478,19 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 118	Tallarn	14
 119	Gladius Task Force	1
 120	Invasion Fleet	32
+121	Goretide	35
+122	Blood Angels	1
+123	Space Wolves	1
+124	Slaves to Darkness	27
+126	Cult of Magic	3
+127	Daemonic Incursion	5
+128	Traitoris Lance	30
+129	Rad-cohort	25
+130	Hallowed Martyrs	31
+131	Combined Regiment	14
+132	Shield Host	2
+133	Teleport Strike Force	6
+134	Noble Lance	26
 \.
 
 
@@ -1443,7 +1498,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 435, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 456, true);
 
 
 --
@@ -1492,21 +1547,21 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 225, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 247, true);
 
 
 --
 -- Name: showtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.showtypes_id_seq', 5, true);
+SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 
 
 --
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 120, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 134, true);
 
 
 --

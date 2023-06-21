@@ -74,15 +74,19 @@ def main():
         if army2:
             winner = input('Winner? ') or None
             winner_id = get_player(winner, cursor) if winner else None
+        else:
+            winner_id = None
 
         servoskull = input('Servoskull? ')
         servoskull_id = get_player(servoskull, cursor) if servoskull else None
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
-        add_army(show_id, army1, army1['player'] == winner_id, edition, cursor)
+        army1_is_winner = army1['player'] == winner_id if winner_id else None
+        add_army(show_id, army1, army1_is_winner, edition, cursor)
         if army2:
-            add_army(show_id, army2, army2['player'] == winner_id, edition, cursor)
+            army2_is_winner = army2['player'] == winner_id if winner_id else None
+            add_army(show_id, army2, army2_is_winner, edition, cursor)
 
         conn.commit()
 

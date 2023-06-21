@@ -9,17 +9,18 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-06-13, the data contains shows released on the channel from 2022-04-05 to 2023-06-03. Specifically, this includes:
+As of 2023-06-21, the data contains shows released on the channel from 2022-04-05 to 2023-06-14. Specifically, this includes:
 
-* All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/)
+* All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
 * All narrative reports
 * All list analysis shows
 * The 10th edition introductory "How to play" show
+* The 10th edition "Faction focus" shows
 
 It does not currently include any:
 
-* Faction focus shows
+* Faction focus shows before 10th edition
 * How to paint shows
 * State of play shows
 * Backstage shows
@@ -39,8 +40,8 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
+ James Jordan     | 56
  Katie Foad       | 55
- James Jordan     | 55
  Lawrence Baker   | 36
  Michael Hebditch | 31
  Joe Ponting      | 25
@@ -70,12 +71,12 @@ where rank = 1;
  Ed Pemberton     | Genestealer Cults   |  1
  Fletcher Giles   | T'au Empire         | 11
  James Hamill     | Adepta Sororitas    |  1
- James Jordan     | Space Marines       | 20
+ James Jordan     | Space Marines       | 23
  James Otero      | Astra Militarum     |  1
- Joe Ponting      | Chaos Space Marines | 21
+ Joe Ponting      | Chaos Space Marines | 22
  Josh Hill        | Sylvaneth           |  1
- Katie Foad       | Tyranids            | 20
- Lawrence Baker   | Space Marines       | 16
+ Katie Foad       | Tyranids            | 21
+ Lawrence Baker   | Space Marines       | 17
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
@@ -85,7 +86,7 @@ where rank = 1;
  Stig             | Adeptus Mechanicus  | 17
 ```
 
-i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 21 times.
+i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 22 times.
 
 ### Wins and losses for each faction
 
@@ -125,8 +126,8 @@ order by wins desc, losses;
  Adeptus Custodes      |    5 |      6
  Grey Knights          |    5 |      9
  Harlequins            |    4 |      0
- Idoneth Deepkin       |    4 |      2
  Seraphon              |    4 |      2
+ Idoneth Deepkin       |    4 |      3
  Adepta Sororitas      |    4 |      6
  Slaves to Darkness    |    3 |      3
  Stormcast Eternals    |    3 |      3
@@ -134,9 +135,9 @@ order by wins desc, losses;
  Thousand Sons         |    3 |      6
  Chaos Daemons         |    3 |      6
  Skaven                |    2 |      0
+ Blades of Khorne      |    2 |      1
  Nighthaunt            |    2 |      2
  Ossiarch Bonereapers  |    2 |      6
- Blades of Khorne      |    1 |      1
  Ogor Mawtribes        |    1 |      2
  Orruk Warclans        |    1 |      4
  Genestealer Cults     |    1 |      5

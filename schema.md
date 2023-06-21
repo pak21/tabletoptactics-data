@@ -117,6 +117,22 @@ tabletoptactics=> \d factions
 * `faction`: the name of this faction, e.g. "Space Marines".
 * `game_id`: reference to `games.id` indicating the game this faction is part of.
 
+### `games`
+
+Each row represents one game.
+
+```
+tabletoptactics=> \d games
+                            Table "public.games"
+ Column |  Type   | Collation | Nullable |              Default
+--------+---------+-----------+----------+-----------------------------------
+ id     | integer |           | not null | nextval('games_id_seq'::regclass)
+ game   | text    |           | not null |
+```
+
+* `id`: synthetic primary key for this game.
+* `game`: the name of this game, e.g. "Warhammer 40,000".
+
 ### `leagueseasons`
 
 Each row represents one battle in a league season.
