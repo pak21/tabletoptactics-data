@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import contextlib
+import datetime
+import urllib.parse
 
 import psycopg2
 
@@ -57,7 +59,12 @@ def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
 
     with contextlib.closing(conn.cursor()) as cursor:
-        release_date = input('Show release date? ')
+        raw_url = input('URL? ')
+        url = urllib.parse.urlparse(raw_url)
+        components = url.path.split('/')
+        date_components = [int(c) for c in components[1:4]]
+        slug = components[4]
+        release_date = datetime.date(*date_components)
 
         game = input('Game? ')
         game_id = get_game(game, cursor)
@@ -66,7 +73,6 @@ def main():
         showtype = input('Show type? ')
         showtype_id = get_showtype(showtype, cursor)
 
-        slug = input('tabletoptactics.tv slug? ')
         youtube_slug = input('YouTube slug? ') or None
 
         army1 = input_army_details(1, cursor)

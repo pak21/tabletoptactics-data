@@ -910,7 +910,6 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 443	233	4	1	51	\N	10
 444	234	1	1	13	\N	10
 445	235	1	27	124	\N	10
-447	237	6	11	\N	\N	10
 446	236	1	33	\N	\N	10
 448	238	3	3	126	\N	10
 449	240	1	5	127	\N	10
@@ -921,6 +920,20 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 454	245	1	2	132	\N	10
 455	246	6	6	133	\N	10
 456	247	3	26	134	\N	10
+457	248	4	4	135	\N	10
+458	249	6	15	136	\N	10
+459	250	3	36	137	\N	10
+460	251	1	18	138	\N	10
+461	252	3	16	139	\N	10
+462	253	6	7	140	\N	10
+463	254	5	20	141	\N	10
+464	255	6	1	119	t	10
+465	255	1	27	124	f	10
+447	237	6	11	143	\N	10
+466	256	1	2	132	f	10
+467	256	6	11	143	t	10
+468	257	3	16	139	t	10
+469	257	4	4	135	f	10
 \.
 
 
@@ -1336,7 +1349,17 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 244	2023-06-14	1	6	10th-edition-astra-militarum-index-warhammer-40000-faction-focus	\N	\N
 245	2023-06-14	1	6	10th-edition-adeptus-custodes-index-warhammer-40000-faction-focus	\N	\N
 246	2023-06-14	1	6	10th-edition-grey-knights-index-warhammer-40000-faction-focus	\N	\N
-247	2023-06-14	1	6	10th-edition-imperial-knights-index-warhammer-40000-faction-focus/	\N	\N
+248	2023-06-15	1	6	10th-edition-aeldari-index-warhammer-40000-faction-focus	\N	\N
+249	2023-06-15	1	6	10th-edition-drukhari-index-warhammer-40000-faction-focus	\N	\N
+250	2023-06-15	1	6	10th-edition-genestealer-cults-index-warhammer-40000-faction-focus	\N	\N
+247	2023-06-14	1	6	10th-edition-imperial-knights-index-warhammer-40000-faction-focus	\N	\N
+251	2023-06-15	1	6	10th-edition-leagues-of-votann-index-warhammer-40000-faction-focus	\N	\N
+252	2023-06-15	1	6	10th-edition-necrons-index-warhammer-40000-faction-focus	\N	\N
+253	2023-06-15	1	6	10th-edition-orks-index-warhammer-40000-faction-focus	\N	\N
+254	2023-06-15	1	6	10th-edition-tau-empire-index-warhammer-40000-faction-focus	\N	\N
+255	2023-06-16	1	1	chaos-space-marines-vs-space-marines-warhammer-40000-battle-report	MZyG_lVxTgs	5
+256	2023-06-19	1	1	world-eaters-vs-adeptus-custodes-warhammer-40000-battle-report	\N	5
+257	2023-06-20	1	1	aeldari-vs-necrons-warhammer-40000-battle-report	\N	5
 \.
 
 
@@ -1491,6 +1514,14 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 132	Shield Host	2
 133	Teleport Strike Force	6
 134	Noble Lance	26
+135	Battle Host	4
+136	Realspace Raiders	15
+137	Ascension Day	36
+138	Oathband	18
+139	Awakened Dynasty	16
+140	Waaagh! Tribe	7
+141	Kauyon	20
+143	Berzerker Warband	11
 \.
 
 
@@ -1498,7 +1529,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 456, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 469, true);
 
 
 --
@@ -1547,7 +1578,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 247, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 257, true);
 
 
 --
@@ -1561,7 +1592,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 134, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 143, true);
 
 
 --
