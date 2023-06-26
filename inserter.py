@@ -63,8 +63,8 @@ def main():
         url = urllib.parse.urlparse(raw_url)
         components = url.path.split('/')
         date_components = [int(c) for c in components[1:4]]
-        slug = components[4]
         release_date = datetime.date(*date_components)
+        slug = components[4]
 
         game = input('Game? ')
         game_id = get_game(game, cursor)

@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-06-22, the data contains shows released on the channel from 2022-04-05 to 2023-06-20. Specifically, this includes:
+As of 2023-06-26, the data contains shows released on the channel from 2022-04-05 to 2023-06-23. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -43,7 +43,7 @@ order by n desc;
  James Jordan     | 59
  Katie Foad       | 55
  Lawrence Baker   | 36
- Michael Hebditch | 31
+ Michael Hebditch | 33
  Joe Ponting      | 25
 ```
 
@@ -71,9 +71,9 @@ where rank = 1;
  Ed Pemberton     | Genestealer Cults   |  1
  Fletcher Giles   | T'au Empire         | 11
  James Hamill     | Adepta Sororitas    |  1
- James Jordan     | Space Marines       | 23
+ James Jordan     | Space Marines       | 24
  James Otero      | Astra Militarum     |  1
- Joe Ponting      | Chaos Space Marines | 23
+ Joe Ponting      | Chaos Space Marines | 24
  Josh Hill        | Sylvaneth           |  1
  Katie Foad       | Tyranids            | 21
  Lawrence Baker   | Space Marines       | 18
@@ -86,7 +86,7 @@ where rank = 1;
  Stig             | Adeptus Mechanicus  | 17
 ```
 
-i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 23 times.
+i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 24 times.
 
 ### Wins and losses for each faction
 
@@ -107,9 +107,9 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   35 |     20
+ Space Marines         |   35 |     21
  Orks                  |   19 |      9
- Chaos Space Marines   |   13 |     17
+ Chaos Space Marines   |   14 |     17
  Astra Militarum       |   11 |     13
  Necrons               |   10 |      6
  T'au Empire           |   10 |     10
@@ -129,16 +129,16 @@ order by wins desc, losses;
  Seraphon              |    4 |      2
  Idoneth Deepkin       |    4 |      3
  Adepta Sororitas      |    4 |      6
- Slaves to Darkness    |    3 |      3
  Stormcast Eternals    |    3 |      3
- Maggotkin of Nurgle   |    3 |      3
- Thousand Sons         |    3 |      6
+ Slaves to Darkness    |    3 |      3
+ Maggotkin of Nurgle   |    3 |      4
  Chaos Daemons         |    3 |      6
+ Thousand Sons         |    3 |      6
  Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
+ Ogor Mawtribes        |    2 |      2
  Nighthaunt            |    2 |      2
  Ossiarch Bonereapers  |    2 |      6
- Ogor Mawtribes        |    1 |      2
  Orruk Warclans        |    1 |      4
  Genestealer Cults     |    1 |      5
  Hedonites of Slaanesh |    1 |      5
