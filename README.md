@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-06-26, the data contains shows released on the channel from 2022-04-05 to 2023-06-23. Specifically, this includes:
+As of 2023-06-27, the data contains shows released on the channel from 2022-04-05 to 2023-06-24. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -42,7 +42,7 @@ order by n desc;
 ------------------+----
  James Jordan     | 59
  Katie Foad       | 55
- Lawrence Baker   | 36
+ Lawrence Baker   | 37
  Michael Hebditch | 33
  Joe Ponting      | 25
 ```
@@ -108,11 +108,11 @@ order by wins desc, losses;
         faction        | wins | losses
 -----------------------+------+--------
  Space Marines         |   35 |     21
- Orks                  |   19 |      9
+ Orks                  |   20 |      9
  Chaos Space Marines   |   14 |     17
  Astra Militarum       |   11 |     13
  Necrons               |   10 |      6
- T'au Empire           |   10 |     10
+ T'au Empire           |   10 |     11
  Soulblight Gravelords |    8 |      0
  World Eaters          |    8 |      2
  Leagues of Votann     |    6 |      6

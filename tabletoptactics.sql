@@ -938,6 +938,8 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 471	258	2	13	63	t	3
 472	259	1	27	124	t	10
 473	259	5	1	1	f	10
+474	260	3	7	140	t	10
+475	260	5	20	141	f	10
 \.
 
 
@@ -1366,6 +1368,7 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 257	2023-06-20	1	1	aeldari-vs-necrons-warhammer-40000-battle-report	\N	5
 258	2023-06-21	2	1	maggotkin-of-nurgle-vs-ogor-mawtribes-age-of-sigmar-battle-report-2	\N	3
 259	2023-06-23	1	1	dark-angels-vs-chaos-space-marines-warhammer-40000-battle-report	\N	3
+260	2023-06-24	1	1	tau-empire-vs-orks-warhammer-40000-battle-report	GtSHGdTHhYo	6
 \.
 
 
@@ -1535,7 +1538,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 473, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 475, true);
 
 
 --
@@ -1584,7 +1587,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 259, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 260, true);
 
 
 --
