@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.2 (Debian 15.2-2)
--- Dumped by pg_dump version 15.2 (Debian 15.2-2)
+-- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
+-- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -910,7 +910,6 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 443	233	4	1	51	\N	10
 444	234	1	1	13	\N	10
 445	235	1	27	124	\N	10
-446	236	1	33	\N	\N	10
 448	238	3	3	126	\N	10
 449	240	1	5	127	\N	10
 450	241	3	30	128	\N	10
@@ -940,6 +939,15 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 473	259	5	1	1	f	10
 474	260	3	7	140	t	10
 475	260	5	20	141	f	10
+476	261	3	30	128	t	10
+477	261	2	25	129	f	10
+478	263	1	19	\N	f	3
+479	263	5	29	\N	t	3
+446	236	1	33	144	\N	10
+480	264	5	14	131	t	10
+481	264	1	33	144	f	10
+482	265	6	6	133	t	10
+483	265	1	5	127	f	10
 \.
 
 
@@ -1369,6 +1377,10 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 258	2023-06-21	2	1	maggotkin-of-nurgle-vs-ogor-mawtribes-age-of-sigmar-battle-report-2	\N	3
 259	2023-06-23	1	1	dark-angels-vs-chaos-space-marines-warhammer-40000-battle-report	\N	3
 260	2023-06-24	1	1	tau-empire-vs-orks-warhammer-40000-battle-report	GtSHGdTHhYo	6
+261	2023-06-27	1	1	chaos-knights-vs-adeptus-mechanicus-warhammer-40000-battle-report	\N	4
+263	2023-06-28	2	1	ironjawz-vs-slaves-to-darkness-age-of-sigmar-battle-report	\N	4
+264	2023-06-30	1	1	death-guard-vs-astra-militarum-warhammer-40000-battle-report	\N	4
+265	2023-07-01	1	1	chaos-daemons-vs-grey-knights-warhammer-400000-battle-report	_mOQnQjjXqc	5
 \.
 
 
@@ -1531,6 +1543,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 140	Waaagh! Tribe	7
 141	Kauyon	20
 143	Berzerker Warband	11
+144	Plague Company	33
 \.
 
 
@@ -1538,7 +1551,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 475, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 483, true);
 
 
 --
@@ -1587,7 +1600,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 19, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 260, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 265, true);
 
 
 --
@@ -1601,7 +1614,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 143, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 144, true);
 
 
 --
