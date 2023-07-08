@@ -11,6 +11,33 @@ DEFAULT_EDITION = {
     'Warhammer 40,000': 10,
 }
 
+def load_games(cursor):
+    cursor.execute(f'select id, game from games')
+    results = cursor.fetchall()
+    return {g: gid for gid, g in results}
+
+def load_showtypes(cursor):
+    cursor.execute(f'select id, showtype from showtypes')
+    results = cursor.fetchall()
+    return {st: stid for stid, st in results}
+
+def normalize_for_slug(s):
+    return s.lower().replace(' ', '-').replace(',', '')
+
+def get_id_from_slug(slug, lookup, objtype):
+    for obj, obj_id in lookup.items():
+        if normalize_for_slug(obj) in slug:
+            return obj_id, obj
+
+    obj = input(f"Couldn't obtain {objtype} automatically, please input manually: ")
+    return lookup[obj], obj
+
+def get_game(slug, games):
+    return get_id_from_slug(slug, games, 'game')
+
+def get_showtype(slug, showtypes):
+    return get_id_from_slug(slug, showtypes, 'show type')
+
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
     results = cursor.fetchall()
@@ -18,12 +45,6 @@ def get_id(value, table, column, objecttype, cursor):
         raise Exception(f'{objecttype} "{value}" does not exist. Are you sure?')
 
     return results[0][0]
-
-def get_game(game, cursor):
-    return get_id(game, 'games', 'game', 'Game', cursor)
-
-def get_showtype(showtype, cursor):
-    return get_id(showtype, 'showtypes', 'showtype', 'Show type', cursor)
 
 def get_player(player, cursor):
     return get_id(player, 'players', 'nickname', 'Player', cursor)
@@ -59,6 +80,9 @@ def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
 
     with contextlib.closing(conn.cursor()) as cursor:
+        games = load_games(cursor)
+        showtypes = load_showtypes(cursor)
+
         raw_url = input('URL? ')
         url = urllib.parse.urlparse(raw_url)
         components = url.path.split('/')
@@ -66,12 +90,10 @@ def main():
         release_date = datetime.date(*date_components)
         slug = components[4]
 
-        game = input('Game? ')
-        game_id = get_game(game, cursor)
+        game_id, game = get_game(slug, games)
         edition = DEFAULT_EDITION[game]
 
-        showtype = input('Show type? ')
-        showtype_id = get_showtype(showtype, cursor)
+        showtype_id, _ = get_showtype(slug, showtypes)
 
         youtube_slug = input('YouTube slug? ') or None
 

@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-07-03, the data contains shows released on the channel from 2022-04-05 to 2023-07-01. Specifically, this includes:
+As of 2023-07-08, the data contains shows released on the channel from 2022-04-05 to 2023-07-08. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -42,9 +42,9 @@ order by n desc;
 ------------------+----
  James Jordan     | 60
  Katie Foad       | 58
- Lawrence Baker   | 37
+ Lawrence Baker   | 38
  Michael Hebditch | 33
- Joe Ponting      | 25
+ Joe Ponting      | 27
 ```
 
 ### Most played faction by player
@@ -77,6 +77,7 @@ where rank = 1;
  Josh Hill        | Sylvaneth           |  1
  Katie Foad       | Tyranids            | 21
  Lawrence Baker   | Space Marines       | 18
+ Lennard          | Space Marines       |  1
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
@@ -107,7 +108,7 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   35 |     21
+ Space Marines         |   35 |     22
  Orks                  |   20 |      9
  Chaos Space Marines   |   14 |     17
  Astra Militarum       |   12 |     13
@@ -115,11 +116,11 @@ order by wins desc, losses;
  T'au Empire           |   10 |     11
  Soulblight Gravelords |    8 |      0
  World Eaters          |    8 |      2
+ Aeldari               |    7 |     12
  Chaos Knights         |    6 |      1
  Leagues of Votann     |    6 |      6
  Grey Knights          |    6 |      9
  Adeptus Mechanicus    |    6 |     11
- Aeldari               |    6 |     12
  Tyranids              |    6 |     14
  Death Guard           |    5 |      4
  Imperial Knights      |    5 |      5
@@ -128,19 +129,19 @@ order by wins desc, losses;
  Harlequins            |    4 |      0
  Seraphon              |    4 |      2
  Idoneth Deepkin       |    4 |      3
- Adepta Sororitas      |    4 |      6
+ Adepta Sororitas      |    4 |      7
  Stormcast Eternals    |    3 |      3
  Maggotkin of Nurgle   |    3 |      4
  Slaves to Darkness    |    3 |      4
  Thousand Sons         |    3 |      6
+ Ossiarch Bonereapers  |    3 |      6
  Chaos Daemons         |    3 |      7
  Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
- Ogor Mawtribes        |    2 |      2
  Nighthaunt            |    2 |      2
+ Ogor Mawtribes        |    2 |      3
  Orruk Warclans        |    2 |      4
- Ossiarch Bonereapers  |    2 |      6
- Genestealer Cults     |    1 |      5
+ Genestealer Cults     |    2 |      5
  Hedonites of Slaanesh |    1 |      5
  Sylvaneth             |    0 |      2
 ```

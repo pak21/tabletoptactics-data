@@ -948,6 +948,12 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 481	264	1	33	144	f	10
 482	265	6	6	133	t	10
 483	265	1	5	127	f	10
+484	266	3	36	137	t	10
+485	266	4	31	130	f	10
+486	267	3	4	135	t	10
+487	267	20	1	119	f	10
+488	268	4	24	\N	t	3
+489	268	2	13	63	f	3
 \.
 
 
@@ -1115,6 +1121,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 17	Sam Weeks	Sam
 18	James Otero	James
 19	James Hamill	Poseidon
+20	Lennard	Lenny
 \.
 
 
@@ -1381,6 +1388,9 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 263	2023-06-28	2	1	ironjawz-vs-slaves-to-darkness-age-of-sigmar-battle-report	\N	4
 264	2023-06-30	1	1	death-guard-vs-astra-militarum-warhammer-40000-battle-report	\N	4
 265	2023-07-01	1	1	chaos-daemons-vs-grey-knights-warhammer-400000-battle-report	_mOQnQjjXqc	5
+266	2023-07-04	1	1	genestealer-cults-vs-adepta-sororitas-warhammer-40000-battle-report	\N	1
+267	2023-07-07	1	1	space-marines-vs-harlequins-warhammer-40000-battle-report	\N	6
+268	2023-07-08	2	1	ossiarch-bonereapers-vs-ogor-mawtribes-age-of-sigmar-battle-report	tYQcnmv_dFo	1
 \.
 
 
@@ -1551,7 +1561,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 483, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 489, true);
 
 
 --
@@ -1593,14 +1603,14 @@ SELECT pg_catalog.setval('public.narrativeshows_id_seq', 18, true);
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.players_id_seq', 19, true);
+SELECT pg_catalog.setval('public.players_id_seq', 20, true);
 
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 265, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 268, true);
 
 
 --

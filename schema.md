@@ -229,7 +229,7 @@ tabletoptactics=> \d subfactions
 
 ## Factions and subfactions
 
-"Faction" isn't quite as tightly defined in the game as it sometimes appears - for example, a battle-forged army can choose "Imperium" as its faction and build a "soup" list from multiple Imperium codexes. 9th Edition in particular discourages this type of army building in that it means everything in the army loses its "super doctrine" (e.g. Masters of the Warp for Grey Knights) so it's pretty rare, but in theory in can happen. There was for example, one successful list which put (pre-nerf) Tzeentch Flamers into a Death Guard army, making it formally a "Chaos" army. For the purposes of this database, I've mapped "faction" to "codex" with one exception: Harlequins are a separate faction from Aeldari proper. (Ynnari remain part of the Aeldari faction, even though they can include both Drukhari and Harlequins. This isn't perfect, but there's no perfect solution here).
+"Faction" isn't quite as tightly defined in the game as it sometimes appears - for example, a battle-forged army can choose "Imperium" as its faction and build a "soup" list from multiple Imperium codexes. 9th Edition in particular discourages this type of army building in that it means everything in the army loses its "super doctrine" (e.g. Masters of the Warp for Grey Knights) so it's pretty rare, but in theory in can happen. There was for example, one successful list which put (pre-nerf) Tzeentch Flamers into a Death Guard army, making it formally a "Chaos" army. For the purposes of this database, I've mapped "faction" to "codex" with one exception: pre-10th Edition, Harlequins are a separate faction from Aeldari proper. (Ynnari remain part of the Aeldari faction, even though they can include both Drukhari and Harlequins. This isn't perfect, but there's no perfect solution here).
 
 Everything above applies double to "subfaction". For some factions, the subfaction makes a huge difference to the army - consider a Dark Angels army vs a Deathwatch army. For some factions, it's a important choice but not all defining - consider Thousand Sons Cult of Duplicity vs Cult of Time. For some factions, the subfaction isn't really a meaningful concept - consider 9th Edition Astra Militarum, which can now pull from all regiments. I've listed subfactions for the first two cases but haven't for the third case (primarily Astra Militarum and Chaos Daemons).
 
@@ -242,4 +242,5 @@ Some other factors can reduce the completeness and/or accuracy of subfaction inf
 
 ### 10th Edition WIP
 
-I'm currently using the detachment (Gladius Task Force, Invasion Fleet, etc) as the subfaction in 10th Edition. Time will tell if this is useful modelling or not.
+* I'm currently using the detachment (Gladius Task Force, Invasion Fleet, etc) as the subfaction in 10th Edition. Time will tell if this is useful modelling or not.
+* 10th Edition Harlequins are just an Aeldari army for now; I'm assuming they'll get some more unique rules when the codex comes out.
