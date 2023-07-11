@@ -6,11 +6,6 @@ import urllib.parse
 
 import psycopg2
 
-DEFAULT_EDITION = {
-    'Age of Sigmar': 3,
-    'Warhammer 40,000': 10,
-}
-
 def load_games(cursor):
     cursor.execute(f'select id, game from games')
     results = cursor.fetchall()
@@ -36,7 +31,8 @@ def get_game(slug, games):
     return get_id_from_slug(slug, games, 'game')
 
 def get_showtype(slug, showtypes):
-    return get_id_from_slug(slug, showtypes, 'show type')
+    showtype_id, _ = get_id_from_slug(slug, showtypes, 'show type')
+    return showtype_id
 
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
@@ -67,7 +63,38 @@ def input_army_details(n, cursor):
     subfaction = input(f'Army {n} subfaction? ')
     subfaction_id = get_subfaction(subfaction, cursor) if subfaction else None
 
-    return {'player': player_id, 'faction': faction_id, 'subfaction': subfaction_id}
+    return {'player': player_id, 'faction': faction_id, 'faction_name': faction, 'subfaction': subfaction_id}
+
+FACTION_DATES_9TH = {
+    'Tyranids': datetime.date(2022, 4, 9),
+    'Chaos Knights': datetime.date(2022, 5, 7),
+    'Imperial Knights': datetime.date(2022, 5, 10),
+    'Chaos Space Marines': datetime.date(2022, 6, 25),
+    'Chaos Daemons': datetime.date(2022, 8, 27),
+    'Leagues of Votann': datetime.date(2022, 9, 17), # Included for reference, but can't be any games before this!
+    'Astra Militarum': datetime.date(2022, 11, 12),
+    'World Eaters': datetime.date(2023, 2, 4),
+}
+
+def get_edition_wh40k(army, release_date):
+    # Last 9th Edition game on the channel was 2023-05-30
+    if release_date > datetime.date(2023, 5, 30):
+        return 10
+
+    try:
+        is_8th = release_date < FACTION_DATES_9TH[army['faction_name']]
+    except KeyError:
+        is_8th = False
+
+    return 8 if is_8th else 9
+
+EDITION_FUNCTIONS = {
+    'Warhammer 40,000': get_edition_wh40k,
+    'Age of Sigmar': lambda a, rd: 3
+}
+
+def get_edition(army, game, release_date):
+    return EDITION_FUNCTIONS[game](army, release_date)
 
 def add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor):
     cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id))
@@ -91,9 +118,8 @@ def main():
         slug = components[4]
 
         game_id, game = get_game(slug, games)
-        edition = DEFAULT_EDITION[game]
 
-        showtype_id, _ = get_showtype(slug, showtypes)
+        showtype_id = get_showtype(slug, showtypes)
 
         youtube_slug = input('YouTube slug? ') or None
 
@@ -111,10 +137,12 @@ def main():
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
         army1_is_winner = army1['player'] == winner_id if winner_id else None
-        add_army(show_id, army1, army1_is_winner, edition, cursor)
+        army1_edition = get_edition(army1, game, release_date)
+        add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
         if army2:
             army2_is_winner = army2['player'] == winner_id if winner_id else None
-            add_army(show_id, army2, army2_is_winner, edition, cursor)
+            army2_edition = get_edition(army2, game, release_date)
+            add_army(show_id, army2, army2_is_winner, army2_edition, cursor)
 
         conn.commit()
 

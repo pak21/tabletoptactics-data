@@ -954,6 +954,22 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 487	267	20	1	119	f	10
 488	268	4	24	\N	t	3
 489	268	2	13	63	f	3
+490	269	5	20	61	t	9
+491	269	1	2	26	f	9
+495	271	4	15	145	f	9
+492	270	5	20	61	t	9
+493	270	1	2	26	f	9
+494	271	2	25	97	t	9
+496	272	2	25	97	f	9
+497	272	4	4	103	t	9
+499	274	5	20	141	t	10
+500	274	2	2	132	f	10
+501	275	3	27	85	t	8
+502	275	5	14	\N	f	8
+503	276	3	16	146	t	9
+504	276	1	1	22	f	9
+505	277	4	4	103	t	9
+506	277	3	36	92	f	9
 \.
 
 
@@ -968,6 +984,8 @@ COPY public.campaigns (id, campaign) FROM stdin;
 4	Gerunda Hive
 5	Dharros Prime
 6	Tahnus IX
+7	Eldor Minor
+8	Caligula IX
 \.
 
 
@@ -1094,6 +1112,10 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 16	165	5	2
 17	173	6	1
 18	174	6	2
+19	269	7	1
+20	270	7	2
+21	271	8	1
+22	272	8	2
 \.
 
 
@@ -1391,6 +1413,14 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 266	2023-07-04	1	1	genestealer-cults-vs-adepta-sororitas-warhammer-40000-battle-report	\N	1
 267	2023-07-07	1	1	space-marines-vs-harlequins-warhammer-40000-battle-report	\N	6
 268	2023-07-08	2	1	ossiarch-bonereapers-vs-ogor-mawtribes-age-of-sigmar-battle-report	tYQcnmv_dFo	1
+269	2022-03-04	1	3	tau-empire-vs-adeptus-custodes-1750pts-warhammer-40000-narrative-report	\N	6
+270	2022-04-02	1	3	adeptus-custodes-vs-tau-empire-1750pts-warhammer-40000-narrative-report	L7ZUlLdmyNs	4
+271	2022-02-19	1	3	drukhari-vs-adeptus-mechanicus-1750pts-warhammer-40000-narrative-report	Q0vNq9PMf68	1
+272	2022-04-01	1	3	ynnari-vs-adeptus-mechancus-warhammer-40000-narrative-report	\N	1
+274	2023-07-11	1	1	adeptus-custodes-vs-tau-empire-warhammer-40000-battle-report	\N	4
+275	2022-03-29	1	1	astra-militarum-vs-chaos-space-marines-2000pts-warhammer-40000-battle-report	\N	4
+276	2022-03-26	1	1	new-tempest-of-war-ultramarines-vs-necrons-2000pts-warhammer-40000-battle-report	u7A5CiKZCRk	4
+277	2022-03-25	1	2	ynnari-vs-genestealer-cults-2000pts-warhammer-40000-league-report	\N	6
 \.
 
 
@@ -1554,6 +1584,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 141	Kauyon	20
 143	Berzerker Warband	11
 144	Plague Company	33
+145	Cult of the Red Grief	15
+146	Szarekhan	16
 \.
 
 
@@ -1561,14 +1593,14 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 489, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 506, true);
 
 
 --
 -- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.campaigns_id_seq', 6, true);
+SELECT pg_catalog.setval('public.campaigns_id_seq', 8, true);
 
 
 --
@@ -1596,7 +1628,7 @@ SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 18, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 22, true);
 
 
 --
@@ -1610,7 +1642,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 20, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 268, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 277, true);
 
 
 --
@@ -1624,7 +1656,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 144, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 146, true);
 
 
 --

@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-07-08, the data contains shows released on the channel from 2022-04-05 to 2023-07-08. Specifically, this includes:
+As of 2023-07-11, the data contains shows released on the channel from 2022-03-25 to 2023-07-11. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
