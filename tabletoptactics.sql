@@ -970,6 +970,14 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 504	276	1	1	22	f	9
 505	277	4	4	103	t	9
 506	277	3	36	92	f	9
+507	278	8	1	122	f	9
+508	278	6	11	\N	t	8
+509	279	1	7	147	t	9
+510	279	2	25	97	f	9
+511	280	5	39	\N	f	3
+512	280	4	22	18	t	3
+513	281	1	7	140	f	10
+514	281	4	4	103	t	10
 \.
 
 
@@ -1030,6 +1038,7 @@ COPY public.factions (id, faction, game_id) FROM stdin;
 36	Genestealer Cults	1
 37	Skaven	2
 38	Harlequins	1
+39	Fyreslayers	2
 \.
 
 
@@ -1421,6 +1430,10 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 275	2022-03-29	1	1	astra-militarum-vs-chaos-space-marines-2000pts-warhammer-40000-battle-report	\N	4
 276	2022-03-26	1	1	new-tempest-of-war-ultramarines-vs-necrons-2000pts-warhammer-40000-battle-report	u7A5CiKZCRk	4
 277	2022-03-25	1	2	ynnari-vs-genestealer-cults-2000pts-warhammer-40000-league-report	\N	6
+278	2022-03-19	1	2	blood-angels-vs-world-eaters-2000pts-warhammer-40000-league-report	RXa7yAQbvhc	4
+279	2022-03-22	1	1	orks-vs-adeptus-mechanicus-2000pts-warhammer-40000-battle-report-2	\N	3
+280	2023-07-12	2	1	fyreslayers-vs-hedonists-of-slaanesh-age-of-sigmar-battle-report	\N	3
+281	2023-07-14	1	1	orks-vs-ynnari-warhammer-40000-battle-report	\N	5
 \.
 
 
@@ -1586,6 +1599,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 144	Plague Company	33
 145	Cult of the Red Grief	15
 146	Szarekhan	16
+147	Bad Moons	7
 \.
 
 
@@ -1593,7 +1607,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 506, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 514, true);
 
 
 --
@@ -1607,7 +1621,7 @@ SELECT pg_catalog.setval('public.campaigns_id_seq', 8, true);
 -- Name: factions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.factions_id_seq', 38, true);
+SELECT pg_catalog.setval('public.factions_id_seq', 39, true);
 
 
 --
@@ -1642,7 +1656,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 20, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 277, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 281, true);
 
 
 --
@@ -1656,7 +1670,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 146, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 147, true);
 
 
 --

@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-07-11, the data contains shows released on the channel from 2022-03-25 to 2023-07-11. Specifically, this includes:
+As of 2023-07-15, the data contains shows released on the channel from 2022-03-19 to 2023-07-14. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -40,11 +40,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- James Jordan     | 60
- Katie Foad       | 58
- Lawrence Baker   | 38
- Michael Hebditch | 33
- Joe Ponting      | 27
+ Katie Foad       | 63
+ James Jordan     | 61
+ Lawrence Baker   | 40
+ Michael Hebditch | 35
+ Joe Ponting      | 29
 ```
 
 ### Most played faction by player
@@ -74,6 +74,7 @@ where rank = 1;
  James Jordan     | Space Marines       | 24
  James Otero      | Astra Militarum     |  1
  Joe Ponting      | Chaos Space Marines | 24
+ Josh Hill        | Space Marines       |  1
  Josh Hill        | Sylvaneth           |  1
  Katie Foad       | Tyranids            | 21
  Lawrence Baker   | Space Marines       | 18
@@ -81,10 +82,10 @@ where rank = 1;
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
- Michael Hebditch | Necrons             | 15
+ Michael Hebditch | Necrons             | 16
  Ridvan Martinez  | Drukhari            |  1
  Sam Weeks        | Space Marines       |  2
- Stig             | Adeptus Mechanicus  | 18
+ Stig             | Adeptus Mechanicus  | 21
 ```
 
 i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 24 times.
@@ -108,41 +109,42 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   35 |     22
- Orks                  |   20 |      9
- Chaos Space Marines   |   14 |     17
- Astra Militarum       |   12 |     13
- Necrons               |   10 |      6
- T'au Empire           |   10 |     11
+ Space Marines         |   35 |     24
+ Orks                  |   21 |     10
+ Chaos Space Marines   |   15 |     17
+ T'au Empire           |   13 |     11
+ Astra Militarum       |   12 |     14
+ Necrons               |   11 |      6
+ Aeldari               |   10 |     12
+ World Eaters          |    9 |      2
  Soulblight Gravelords |    8 |      0
- World Eaters          |    8 |      2
- Aeldari               |    7 |     12
+ Adeptus Mechanicus    |    7 |     13
  Chaos Knights         |    6 |      1
  Leagues of Votann     |    6 |      6
  Grey Knights          |    6 |      9
- Adeptus Mechanicus    |    6 |     11
  Tyranids              |    6 |     14
  Death Guard           |    5 |      4
  Imperial Knights      |    5 |      5
- Drukhari              |    5 |      6
- Adeptus Custodes      |    5 |      7
+ Drukhari              |    5 |      7
+ Adeptus Custodes      |    5 |     10
  Harlequins            |    4 |      0
  Seraphon              |    4 |      2
  Idoneth Deepkin       |    4 |      3
  Adepta Sororitas      |    4 |      7
  Stormcast Eternals    |    3 |      3
- Maggotkin of Nurgle   |    3 |      4
  Slaves to Darkness    |    3 |      4
- Thousand Sons         |    3 |      6
+ Maggotkin of Nurgle   |    3 |      4
  Ossiarch Bonereapers  |    3 |      6
+ Thousand Sons         |    3 |      6
  Chaos Daemons         |    3 |      7
  Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
  Nighthaunt            |    2 |      2
  Ogor Mawtribes        |    2 |      3
  Orruk Warclans        |    2 |      4
- Genestealer Cults     |    2 |      5
- Hedonites of Slaanesh |    1 |      5
+ Hedonites of Slaanesh |    2 |      5
+ Genestealer Cults     |    2 |      6
+ Fyreslayers           |    0 |      1
  Sylvaneth             |    0 |      2
 ```
 
