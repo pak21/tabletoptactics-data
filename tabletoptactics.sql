@@ -978,6 +978,16 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 512	280	4	22	18	t	3
 513	281	1	7	140	f	10
 514	281	4	4	103	t	10
+515	282	6	4	42	t	9
+516	282	4	31	76	f	9
+517	283	1	1	13	t	10
+518	283	4	32	120	f	10
+519	284	1	18	138	f	10
+520	284	6	15	136	t	10
+521	285	3	36	58	t	9
+522	285	1	1	13	f	9
+523	286	1	33	86	f	9
+524	286	2	2	11	t	9
 \.
 
 
@@ -1434,6 +1444,11 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 279	2022-03-22	1	1	orks-vs-adeptus-mechanicus-2000pts-warhammer-40000-battle-report-2	\N	3
 280	2023-07-12	2	1	fyreslayers-vs-hedonists-of-slaanesh-age-of-sigmar-battle-report	\N	3
 281	2023-07-14	1	1	orks-vs-ynnari-warhammer-40000-battle-report	\N	5
+282	2022-03-18	1	1	craftworlds-vs-adepta-sororitas-2000pts-warhammer-40000-battle-report	\N	1
+283	2023-07-15	1	1	tyranids-vs-deathwatch-warhammer-40000-battle-report	CdKn3oh4MWY	5
+284	2023-07-18	1	1	leagues-of-votann-vs-drukhari-warhammer-40000-battle-report	\N	5
+285	2022-03-12	1	1	deathwatch-vs-genestealer-cults-2000pts-warhammer-40000-battle-report	pxPIU6sOZY	6
+286	2022-03-15	1	2	death-guard-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	4
 \.
 
 
@@ -1607,7 +1622,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 514, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 524, true);
 
 
 --
@@ -1656,7 +1671,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 20, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 281, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 286, true);
 
 
 --
