@@ -988,6 +988,16 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 522	285	1	1	13	f	9
 523	286	1	33	86	f	9
 524	286	2	2	11	t	9
+525	288	3	3	126	t	10
+526	288	21	1	123	f	10
+527	289	3	16	139	f	10
+528	289	1	33	144	t	10
+529	290	3	5	127	t	10
+530	290	4	11	143	f	10
+531	291	3	8	7	t	3
+532	291	5	12	\N	f	3
+533	292	3	36	137	t	10
+534	292	5	14	131	f	10
 \.
 
 
@@ -1163,6 +1173,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 18	James Otero	James
 19	James Hamill	Poseidon
 20	Lennard	Lenny
+21	Steve Joll	Steve
 \.
 
 
@@ -1449,6 +1460,11 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 284	2023-07-18	1	1	leagues-of-votann-vs-drukhari-warhammer-40000-battle-report	\N	5
 285	2022-03-12	1	1	deathwatch-vs-genestealer-cults-2000pts-warhammer-40000-battle-report	pxPIU6sOZY	6
 286	2022-03-15	1	2	death-guard-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	4
+288	2023-07-21	1	1	space-wolves-vs-thousand-sons-warhammer-40000-battle-report	\N	6
+289	2023-07-22	1	1	necrons-vs-death-guard-warhammer-40000-boarding-action-battle-report	XM68xEuiyAU	\N
+290	2023-07-25	1	1	world-eaters-vs-chaos-daemons-warhammer-40000-battle-report	\N	1
+291	2023-07-26	2	1	maggotkin-of-nurgle-vs-seraphon-age-of-sigmar-battle-report	\N	4
+292	2023-07-28	1	1	genestealer-cults-vs-astra-militarum-warhammer-40000-battle-report	\N	4
 \.
 
 
@@ -1622,7 +1638,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 524, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 534, true);
 
 
 --
@@ -1664,14 +1680,14 @@ SELECT pg_catalog.setval('public.narrativeshows_id_seq', 22, true);
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.players_id_seq', 20, true);
+SELECT pg_catalog.setval('public.players_id_seq', 21, true);
 
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 286, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 292, true);
 
 
 --
