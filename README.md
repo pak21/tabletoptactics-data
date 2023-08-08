@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-07-15, the data contains shows released on the channel from 2022-03-19 to 2023-07-14. Specifically, this includes:
+As of 2023-08-08, the data contains shows released on the channel from 2022-03-19 to 2023-08-05. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -40,11 +40,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- Katie Foad       | 63
- James Jordan     | 61
- Lawrence Baker   | 40
- Michael Hebditch | 35
- Joe Ponting      | 29
+ Katie Foad       | 69
+ James Jordan     | 65
+ Lawrence Baker   | 43
+ Michael Hebditch | 37
+ Joe Ponting      | 31
 ```
 
 ### Most played faction by player
@@ -69,26 +69,29 @@ where rank = 1;
  David Pettitt    | Space Marines       |  3
  David Ugolini    | Chaos Space Marines |  1
  Ed Pemberton     | Genestealer Cults   |  1
- Fletcher Giles   | T'au Empire         | 11
+ Fletcher Giles   | T'au Empire         | 12
+ James Beaver     | Necrons             |  1
  James Hamill     | Adepta Sororitas    |  1
- James Jordan     | Space Marines       | 24
+ James Jordan     | Space Marines       | 25
  James Otero      | Astra Militarum     |  1
- Joe Ponting      | Chaos Space Marines | 24
+ Joe Ponting      | Chaos Space Marines | 25
  Josh Hill        | Space Marines       |  1
+ Josh Hill        | Slaves to Darkness  |  1
  Josh Hill        | Sylvaneth           |  1
- Katie Foad       | Tyranids            | 21
- Lawrence Baker   | Space Marines       | 18
+ Katie Foad       | Tyranids            | 22
+ Lawrence Baker   | Space Marines       | 19
  Lennard          | Space Marines       |  1
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
- Michael Hebditch | Necrons             | 16
+ Michael Hebditch | Necrons             | 17
  Ridvan Martinez  | Drukhari            |  1
  Sam Weeks        | Space Marines       |  2
+ Steve Joll       | Space Marines       |  1
  Stig             | Adeptus Mechanicus  | 21
 ```
 
-i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 24 times.
+i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 25 times.
 
 ### Wins and losses for each faction
 
@@ -109,41 +112,41 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   35 |     24
+ Space Marines         |   37 |     27
  Orks                  |   21 |     10
- Chaos Space Marines   |   15 |     17
- T'au Empire           |   13 |     11
- Astra Militarum       |   12 |     14
- Necrons               |   11 |      6
- Aeldari               |   10 |     12
- World Eaters          |    9 |      2
+ Chaos Space Marines   |   16 |     17
+ T'au Empire           |   14 |     12
+ Astra Militarum       |   12 |     15
+ Necrons               |   11 |      8
+ Aeldari               |   11 |     13
+ World Eaters          |    9 |      3
  Soulblight Gravelords |    8 |      0
- Adeptus Mechanicus    |    7 |     13
- Chaos Knights         |    6 |      1
- Leagues of Votann     |    6 |      6
- Grey Knights          |    6 |      9
- Tyranids              |    6 |     14
- Death Guard           |    5 |      4
+ Adeptus Mechanicus    |    8 |     13
+ Tyranids              |    7 |     15
+ Chaos Knights         |    6 |      2
+ Death Guard           |    6 |      5
+ Leagues of Votann     |    6 |      7
+ Drukhari              |    6 |      7
+ Adeptus Custodes      |    6 |     10
+ Grey Knights          |    6 |     10
+ Harlequins            |    5 |      0
+ Seraphon              |    5 |      2
  Imperial Knights      |    5 |      5
- Drukhari              |    5 |      7
- Adeptus Custodes      |    5 |     10
- Harlequins            |    4 |      0
- Seraphon              |    4 |      2
+ Adepta Sororitas      |    5 |      9
  Idoneth Deepkin       |    4 |      3
- Adepta Sororitas      |    4 |      7
+ Thousand Sons         |    4 |      6
+ Genestealer Cults     |    4 |      6
+ Chaos Daemons         |    4 |      7
  Stormcast Eternals    |    3 |      3
- Slaves to Darkness    |    3 |      4
- Maggotkin of Nurgle   |    3 |      4
+ Slaves to Darkness    |    3 |      5
+ Hedonites of Slaanesh |    3 |      5
+ Maggotkin of Nurgle   |    3 |      5
  Ossiarch Bonereapers  |    3 |      6
- Thousand Sons         |    3 |      6
- Chaos Daemons         |    3 |      7
  Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
  Nighthaunt            |    2 |      2
  Ogor Mawtribes        |    2 |      3
  Orruk Warclans        |    2 |      4
- Hedonites of Slaanesh |    2 |      5
- Genestealer Cults     |    2 |      6
  Fyreslayers           |    0 |      1
  Sylvaneth             |    0 |      2
 ```

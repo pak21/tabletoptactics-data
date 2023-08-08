@@ -956,6 +956,7 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 489	268	2	13	63	f	3
 490	269	5	20	61	t	9
 491	269	1	2	26	f	9
+537	296	1	31	84	t	9
 495	271	4	15	145	f	9
 492	270	5	20	61	t	9
 493	270	1	2	26	f	9
@@ -998,6 +999,21 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 532	291	5	12	\N	f	3
 533	292	3	36	137	t	10
 534	292	5	14	131	f	10
+535	295	3	20	61	t	9
+536	295	1	4	42	f	9
+538	296	5	30	148	f	8
+539	298	1	25	129	t	10
+540	298	5	6	133	f	10
+541	299	4	22	18	t	3
+542	299	8	19	\N	f	3
+543	300	5	1	119	f	10
+544	300	1	27	124	t	10
+545	301	3	38	89	t	9
+546	301	1	31	111	f	9
+547	302	3	32	120	t	10
+548	302	7	20	141	f	10
+549	303	6	1	122	t	10
+550	303	22	16	139	f	10
 \.
 
 
@@ -1174,6 +1190,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 19	James Hamill	Poseidon
 20	Lennard	Lenny
 21	Steve Joll	Steve
+22	James Beaver	Beaver
 \.
 
 
@@ -1465,6 +1482,14 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 290	2023-07-25	1	1	world-eaters-vs-chaos-daemons-warhammer-40000-battle-report	\N	1
 291	2023-07-26	2	1	maggotkin-of-nurgle-vs-seraphon-age-of-sigmar-battle-report	\N	4
 292	2023-07-28	1	1	genestealer-cults-vs-astra-militarum-warhammer-40000-battle-report	\N	4
+295	2022-03-11	1	2	tau-empire-vs-aeldari-2000pts-warhammer-40000-league-report	\N	4
+296	2022-03-08	1	1	chaos-knights-vs-adepta-sororitas-2000pts-warhammer-40000-battle-report	\N	6
+298	2023-08-01	1	1	new-army-dark-mechanicum-vs-grey-knights-warhammer-40k-battle-report	\N	3
+299	2023-08-02	2	1	slaves-to-darkness-vs-hedonites-of-slaanesh-age-of-sigmar-battle-report	\N	5
+300	2023-07-29	1	1	space-marines-vs-chaos-space-marines-warhammer-40000-battle-report	93BTtTAl8JY	4
+301	2022-03-05	1	2	adepta-sororitas-vs-harlequins-2000pts-warhammer-40000-league-report	DRIx0WZPQ3Y	4
+302	2023-08-04	1	1	tyranids-vs-tau-empire-warhammer-40000-battle-report	\N	5
+303	2023-08-05	1	1	tabletop-tactics-vs-the-gaming-beaver-40k-battle-report-flesh-tearers-vs-necrons	H3cEOHIvqiM	3
 \.
 
 
@@ -1631,6 +1656,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 145	Cult of the Red Grief	15
 146	Szarekhan	16
 147	Bad Moons	7
+148	House Lucaris	30
 \.
 
 
@@ -1638,7 +1664,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 534, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 550, true);
 
 
 --
@@ -1680,14 +1706,14 @@ SELECT pg_catalog.setval('public.narrativeshows_id_seq', 22, true);
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.players_id_seq', 21, true);
+SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 292, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 303, true);
 
 
 --
@@ -1701,7 +1727,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 147, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 148, true);
 
 
 --
