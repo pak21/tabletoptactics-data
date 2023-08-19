@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.3 (Debian 15.3-0+deb12u1)
--- Dumped by pg_dump version 15.3 (Debian 15.3-0+deb12u1)
+-- Dumped from database version 15.4 (Debian 15.4-1)
+-- Dumped by pg_dump version 15.4 (Debian 15.4-1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1014,6 +1014,10 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 548	302	7	20	141	f	10
 549	303	6	1	122	t	10
 550	303	22	16	139	f	10
+551	305	3	16	139	t	10
+552	305	4	15	136	f	10
+553	306	4	3	126	f	10
+554	306	2	2	132	t	10
 \.
 
 
@@ -1490,6 +1494,8 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 301	2022-03-05	1	2	adepta-sororitas-vs-harlequins-2000pts-warhammer-40000-league-report	DRIx0WZPQ3Y	4
 302	2023-08-04	1	1	tyranids-vs-tau-empire-warhammer-40000-battle-report	\N	5
 303	2023-08-05	1	1	tabletop-tactics-vs-the-gaming-beaver-40k-battle-report-flesh-tearers-vs-necrons	H3cEOHIvqiM	3
+305	2023-08-08	1	1	necrons-vs-drukhari-warhammer-40k-battle-report	\N	5
+306	2023-08-11	1	1	adeptus-custodes-vs-thousand-sons-warhammer-40k-battle-report	\N	3
 \.
 
 
@@ -1664,7 +1670,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 550, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 554, true);
 
 
 --
@@ -1713,7 +1719,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 303, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 306, true);
 
 
 --

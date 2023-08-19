@@ -7,19 +7,20 @@ import urllib.parse
 import psycopg2
 
 def load_games(cursor):
-    cursor.execute(f'select id, game from games')
-    results = cursor.fetchall()
-    return {g: gid for gid, g in results}
+    cursor.execute(f'select game, id from games')
+    return dict(cursor.fetchall())
 
 def load_showtypes(cursor):
-    cursor.execute(f'select id, showtype from showtypes')
-    results = cursor.fetchall()
-    return {st: stid for stid, st in results}
+    cursor.execute(f'select showtype, id from showtypes')
+    return dict(cursor.fetchall())
 
 def normalize_for_slug(s):
     return s.lower().replace(' ', '-').replace(',', '')
 
 def get_id_from_slug(slug, lookup, objtype):
+    if objtype == 'game' and 'warhammer-40k' in slug:
+        return lookup['Warhammer 40,000'], 'Warhammer 40,000'
+
     for obj, obj_id in lookup.items():
         if normalize_for_slug(obj) in slug:
             return obj_id, obj
