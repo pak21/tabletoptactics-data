@@ -1018,6 +1018,22 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 552	305	4	15	136	f	10
 553	306	4	3	126	f	10
 554	306	2	2	132	t	10
+555	307	3	23	149	t	3
+556	307	4	28	25	f	3
+557	308	4	32	120	\N	10
+558	308	3	14	131	\N	10
+559	309	5	4	135	t	10
+560	309	4	5	127	f	10
+561	310	1	1	119	\N	10
+562	310	5	7	140	\N	10
+563	311	2	26	134	t	10
+564	311	1	30	128	f	10
+565	312	3	9	150	t	3
+566	312	5	21	17	f	3
+567	313	1	25	129	f	10
+568	313	4	31	130	t	10
+569	314	4	4	135	t	10
+570	314	12	15	136	f	10
 \.
 
 
@@ -1184,7 +1200,6 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 9	David Pettitt	Dave
 10	Mark	Mark
 11	David Ugolini	Gizmo
-12	Ridvan Martinez	Blade
 13	Maxine Blythin	Maxine
 14	Ed Pemberton	Ed
 15	Matt Jarvis	Matt
@@ -1195,6 +1210,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 20	Lennard	Lenny
 21	Steve Joll	Steve
 22	James Beaver	Beaver
+12	Ridvan Martinez	Skaredcast
 \.
 
 
@@ -1496,6 +1512,14 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 303	2023-08-05	1	1	tabletop-tactics-vs-the-gaming-beaver-40k-battle-report-flesh-tearers-vs-necrons	H3cEOHIvqiM	3
 305	2023-08-08	1	1	necrons-vs-drukhari-warhammer-40k-battle-report	\N	5
 306	2023-08-11	1	1	adeptus-custodes-vs-thousand-sons-warhammer-40k-battle-report	\N	3
+307	2023-08-12	2	1	idoneth-deepkin-vs-nighthaunt-age-of-sigmar-battle-report-2	egR5fLZ0dYM	5
+308	2023-08-15	1	1	astra-militarum-vs-tyranids-warhammer-40k-battle-report	\N	5
+309	2023-08-18	1	1	aeldari-vs-chaos-daemons-warhammer-40k-battle-report	\N	1
+310	2023-08-19	1	1	space-marines-vs-orks-warhammer-40000-boarding-action-battle-report	zKl8XJcNjmY	\N
+311	2023-08-22	1	1	imperial-knights-vs-chaos-knights-warhammer-40k-battle-report	\N	5
+312	2023-08-23	2	1	stormcast-eternals-vs-soulblight-gravelords-age-of-sigmar-battle-report	\N	4
+313	2023-08-25	1	1	adeptus-mechanicus-vs-adepta-sororitas-warhammer-40k-battle-report	\N	5
+314	2023-08-26	1	1	guest-collab-aeldari-vs-drukhari-warhammer-40k-battle-report	h2QT1VZU4UE	6
 \.
 
 
@@ -1663,6 +1687,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 146	Szarekhan	16
 147	Bad Moons	7
 148	House Lucaris	30
+149	Dhom-hain	23
+150	Legion of Night	9
 \.
 
 
@@ -1670,7 +1696,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 554, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 570, true);
 
 
 --
@@ -1719,7 +1745,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 306, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 314, true);
 
 
 --
@@ -1733,7 +1759,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 148, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 150, true);
 
 
 --

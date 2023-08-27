@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-08-08, the data contains shows released on the channel from 2022-03-19 to 2023-08-05. Specifically, this includes:
+As of 2023-08-27, the data contains shows released on the channel from 2022-03-19 to 2023-08-26. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -24,6 +24,7 @@ It does not currently include any:
 * How to paint shows
 * State of play shows
 * Backstage shows
+* Podcast episodes
 
 ## Fun queries
 
@@ -40,11 +41,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- Katie Foad       | 69
- James Jordan     | 65
- Lawrence Baker   | 43
- Michael Hebditch | 37
- Joe Ponting      | 31
+ Katie Foad       | 70
+ James Jordan     | 70
+ Lawrence Baker   | 44
+ Michael Hebditch | 38
+ Joe Ponting      | 32
 ```
 
 ### Most played faction by player
@@ -75,17 +76,17 @@ where rank = 1;
  James Jordan     | Space Marines       | 25
  James Otero      | Astra Militarum     |  1
  Joe Ponting      | Chaos Space Marines | 25
- Josh Hill        | Space Marines       |  1
- Josh Hill        | Slaves to Darkness  |  1
  Josh Hill        | Sylvaneth           |  1
- Katie Foad       | Tyranids            | 22
+ Josh Hill        | Slaves to Darkness  |  1
+ Josh Hill        | Space Marines       |  1
+ Katie Foad       | Tyranids            | 23
  Lawrence Baker   | Space Marines       | 19
  Lennard          | Space Marines       |  1
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
- Michael Hebditch | Necrons             | 17
- Ridvan Martinez  | Drukhari            |  1
+ Michael Hebditch | Necrons             | 18
+ Ridvan Martinez  | Drukhari            |  2
  Sam Weeks        | Space Marines       |  2
  Steve Joll       | Space Marines       |  1
  Stig             | Adeptus Mechanicus  | 21
@@ -116,35 +117,35 @@ order by wins desc, losses;
  Orks                  |   21 |     10
  Chaos Space Marines   |   16 |     17
  T'au Empire           |   14 |     12
+ Aeldari               |   13 |     13
+ Necrons               |   12 |      8
  Astra Militarum       |   12 |     15
- Necrons               |   11 |      8
- Aeldari               |   11 |     13
+ Soulblight Gravelords |    9 |      0
  World Eaters          |    9 |      3
- Soulblight Gravelords |    8 |      0
- Adeptus Mechanicus    |    8 |     13
+ Adeptus Mechanicus    |    8 |     14
+ Adeptus Custodes      |    7 |     10
  Tyranids              |    7 |     15
- Chaos Knights         |    6 |      2
+ Chaos Knights         |    6 |      3
  Death Guard           |    6 |      5
+ Imperial Knights      |    6 |      5
  Leagues of Votann     |    6 |      7
- Drukhari              |    6 |      7
- Adeptus Custodes      |    6 |     10
+ Drukhari              |    6 |      9
+ Adepta Sororitas      |    6 |      9
  Grey Knights          |    6 |     10
  Harlequins            |    5 |      0
  Seraphon              |    5 |      2
- Imperial Knights      |    5 |      5
- Adepta Sororitas      |    5 |      9
- Idoneth Deepkin       |    4 |      3
- Thousand Sons         |    4 |      6
+ Idoneth Deepkin       |    5 |      3
  Genestealer Cults     |    4 |      6
- Chaos Daemons         |    4 |      7
- Stormcast Eternals    |    3 |      3
- Slaves to Darkness    |    3 |      5
+ Thousand Sons         |    4 |      7
+ Chaos Daemons         |    4 |      8
+ Stormcast Eternals    |    3 |      4
  Hedonites of Slaanesh |    3 |      5
  Maggotkin of Nurgle   |    3 |      5
+ Slaves to Darkness    |    3 |      5
  Ossiarch Bonereapers  |    3 |      6
  Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
- Nighthaunt            |    2 |      2
+ Nighthaunt            |    2 |      3
  Ogor Mawtribes        |    2 |      3
  Orruk Warclans        |    2 |      4
  Fyreslayers           |    0 |      1
