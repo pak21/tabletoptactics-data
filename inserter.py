@@ -1,26 +1,40 @@
 #!/usr/bin/env python3
 
 import contextlib
+import dataclasses
 import datetime
 import urllib.parse
 
 import psycopg2
 
-def load_games(cursor):
-    cursor.execute(f'select game, id from games')
+@dataclasses.dataclass
+class ArmyInfo:
+    faction_id: int
+    faction: str
+    player_id: int = None
+    subfaction_id: int = None
+
+def load_objects(objecttype, table, cursor):
+    cursor.execute(f'select {objecttype}, id from {table}')
     return dict(cursor.fetchall())
+
+def load_games(cursor):
+    return load_objects('game', 'games', cursor)
 
 def load_showtypes(cursor):
-    cursor.execute(f'select showtype, id from showtypes')
-    return dict(cursor.fetchall())
+    return load_objects('showtype', 'showtypes', cursor)
+
+def load_factions(cursor):
+    return load_objects('faction', 'factions', cursor);
+
+def load_subfactions(cursor):
+    cursor.execute(f'select s.id, s.subfaction, f.id, f.faction from subfactions as s join factions as f on s.faction_id = f.id')
+    return {s: (sid, f, fid) for sid, s, fid, f in cursor.fetchall()}
 
 def normalize_for_slug(s):
-    return s.lower().replace(' ', '-').replace(',', '')
+    return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e')
 
 def get_id_from_slug(slug, lookup, objtype):
-    if objtype == 'game' and 'warhammer-40k' in slug:
-        return lookup['Warhammer 40,000'], 'Warhammer 40,000'
-
     for obj, obj_id in lookup.items():
         if normalize_for_slug(obj) in slug:
             return obj_id, obj
@@ -29,11 +43,32 @@ def get_id_from_slug(slug, lookup, objtype):
     return lookup[obj], obj
 
 def get_game(slug, games):
+    if 'warhammer-40k' in slug:
+        return games['Warhammer 40,000'], 'Warhammer 40,000'
+
     return get_id_from_slug(slug, games, 'game')
 
 def get_showtype(slug, showtypes):
     showtype_id, _ = get_id_from_slug(slug, showtypes, 'show type')
     return showtype_id
+
+def extract_armies_from_slug(slug, factions, subfactions):
+    armies_found = {}
+
+    for faction, faction_id in factions.items():
+        faction_index = slug.find(normalize_for_slug(faction))
+        if faction_index != -1:
+            armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
+        
+    for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
+        subfaction_index = slug.find(normalize_for_slug(subfaction))
+        if subfaction_index != -1:
+            armies_found[subfaction_index] = ArmyInfo(faction_id=faction_id, faction=faction, subfaction_id=subfaction_id)
+
+    if len(armies_found) != 2:
+        raise Exception('Found {len(armies_found)} armies in slug "{slug}"; giving up')
+
+    return [armies_found[k] for k in sorted(armies_found)]
 
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
@@ -52,21 +87,17 @@ def get_faction(faction, cursor):
 def get_subfaction(subfaction, cursor):
     return get_id(subfaction, 'subfactions', 'subfaction', 'Subfaction', cursor)
 
-def input_army_details(n, cursor):
+def input_army_details(n, army, cursor):
     player = input(f'Army {n} player? ')
-    if not player:
-        return None
-    player_id = get_player(player, cursor)
+    army.player_id = get_player(player, cursor)
 
-    faction = input(f'Army {n} faction? ')
-    faction_id = get_faction(faction, cursor)
-
-    subfaction = input(f'Army {n} subfaction? ')
-    subfaction_id = get_subfaction(subfaction, cursor) if subfaction else None
-
-    return {'player': player_id, 'faction': faction_id, 'faction_name': faction, 'subfaction': subfaction_id}
+    if army.subfaction_id is None:
+        subfaction = input(f'Army {n} subfaction? ')
+        army.subfaction_id = get_subfaction(subfaction, cursor) if subfaction else None
 
 FACTION_DATES_9TH = {
+    'Aeldari': datetime.date(2022, 2, 26),
+    'Harlequins': datetime.date(2022, 2, 26),
     'Tyranids': datetime.date(2022, 4, 9),
     'Chaos Knights': datetime.date(2022, 5, 7),
     'Imperial Knights': datetime.date(2022, 5, 10),
@@ -83,7 +114,7 @@ def get_edition_wh40k(army, release_date):
         return 10
 
     try:
-        is_8th = release_date < FACTION_DATES_9TH[army['faction_name']]
+        is_8th = release_date < FACTION_DATES_9TH[army.faction]
     except KeyError:
         is_8th = False
 
@@ -102,7 +133,7 @@ def add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_
     return cursor.fetchall()[0][0]
 
 def add_army(show_id, army, winner, edition, cursor):
-    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army['player'], army['faction'], army['subfaction'], winner, edition))
+    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, winner, edition))
 
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
@@ -110,6 +141,8 @@ def main():
     with contextlib.closing(conn.cursor()) as cursor:
         games = load_games(cursor)
         showtypes = load_showtypes(cursor)
+        factions = load_factions(cursor)
+        subfactions = load_subfactions(cursor)
 
         raw_url = input('URL? ')
         url = urllib.parse.urlparse(raw_url)
@@ -119,13 +152,14 @@ def main():
         slug = components[4]
 
         game_id, game = get_game(slug, games)
-
         showtype_id = get_showtype(slug, showtypes)
+
+        army1, army2 = extract_armies_from_slug(slug, factions, subfactions)
 
         youtube_slug = input('YouTube slug? ') or None
 
-        army1 = input_army_details(1, cursor)
-        army2 = input_army_details(2, cursor)
+        input_army_details(1, army1, cursor)
+        input_army_details(2, army2, cursor)
         if army2:
             winner = input('Winner? ') or None
             winner_id = get_player(winner, cursor) if winner else None
@@ -137,11 +171,11 @@ def main():
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
-        army1_is_winner = army1['player'] == winner_id if winner_id else None
+        army1_is_winner = army1.player == winner_id if winner_id else None
         army1_edition = get_edition(army1, game, release_date)
         add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
         if army2:
-            army2_is_winner = army2['player'] == winner_id if winner_id else None
+            army2_is_winner = army2.player == winner_id if winner_id else None
             army2_edition = get_edition(army2, game, release_date)
             add_army(show_id, army2, army2_is_winner, army2_edition, cursor)
 

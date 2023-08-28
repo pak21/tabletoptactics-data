@@ -1034,6 +1034,8 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 568	313	4	31	130	t	10
 569	314	4	4	135	t	10
 570	314	12	15	136	f	10
+571	315	5	6	36	f	9
+572	315	6	4	4	t	9
 \.
 
 
@@ -1520,6 +1522,7 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 312	2023-08-23	2	1	stormcast-eternals-vs-soulblight-gravelords-age-of-sigmar-battle-report	\N	4
 313	2023-08-25	1	1	adeptus-mechanicus-vs-adepta-sororitas-warhammer-40k-battle-report	\N	5
 314	2023-08-26	1	1	guest-collab-aeldari-vs-drukhari-warhammer-40k-battle-report	h2QT1VZU4UE	6
+315	2022-03-01	1	1	grey-knights-vs-ulthwe-2000pts-warhammer-40000-battle-report	\N	1
 \.
 
 
@@ -1696,7 +1699,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 570, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 572, true);
 
 
 --
@@ -1745,7 +1748,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 314, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 315, true);
 
 
 --
