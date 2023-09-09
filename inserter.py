@@ -32,7 +32,7 @@ def load_subfactions(cursor):
     return {s: (sid, f, fid) for sid, s, fid, f in cursor.fetchall()}
 
 def normalize_for_slug(s):
-    return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e')
+    return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
 
 def get_id_from_slug(slug, lookup, objtype):
     for obj, obj_id in lookup.items():
@@ -61,14 +61,27 @@ def extract_armies_from_slug(slug, factions, subfactions):
             armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
         
     for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
+        if subfaction == 'World Eaters':
+            # This causes problems because it is also the name of the faction
+            continue
         subfaction_index = slug.find(normalize_for_slug(subfaction))
         if subfaction_index != -1:
             armies_found[subfaction_index] = ArmyInfo(faction_id=faction_id, faction=faction, subfaction_id=subfaction_id)
 
-    if len(armies_found) != 2:
-        raise Exception('Found {len(armies_found)} armies in slug "{slug}"; giving up')
+    match len(armies_found):
+        case 0:
+            raise Exception(f'Found no armies in slug "{slug}"; giving up')
 
-    return [armies_found[k] for k in sorted(armies_found)]
+        case 1:
+            idx = list(armies_found)[0]
+            return [armies_found[idx], None]
+
+        case 2:
+            return [armies_found[k] for k in sorted(armies_found)]
+
+        case _:
+            raise Exception(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
+
 
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
@@ -88,7 +101,17 @@ def get_subfaction(subfaction, cursor):
     return get_id(subfaction, 'subfactions', 'subfaction', 'Subfaction', cursor)
 
 def input_army_details(n, army, cursor):
-    player = input(f'Army {n} player? ')
+    player = input(f'Army {n} player? ') or None
+    if army:
+        if player is None:
+            raise Exception(f'Must have a player for the {army.faction} army')
+    else:
+        if player is None:
+            return
+        faction = input(f'Army {n} faction? ')
+        faction_id = get_faction(faction, cursor)
+        army = ArmyInfo(faction_id=faction_id, faction=faction)
+
     army.player_id = get_player(player, cursor)
 
     if army.subfaction_id is None:
@@ -171,11 +194,11 @@ def main():
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
-        army1_is_winner = army1.player == winner_id if winner_id else None
+        army1_is_winner = army1.player_id == winner_id if winner_id else None
         army1_edition = get_edition(army1, game, release_date)
         add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
         if army2:
-            army2_is_winner = army2.player == winner_id if winner_id else None
+            army2_is_winner = army2.player_id == winner_id if winner_id else None
             army2_edition = get_edition(army2, game, release_date)
             add_army(show_id, army2, army2_is_winner, army2_edition, cursor)
 

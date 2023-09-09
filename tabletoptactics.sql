@@ -1036,6 +1036,20 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 570	314	12	15	136	f	10
 571	315	5	6	36	f	9
 572	315	6	4	4	t	9
+573	317	3	20	141	t	10
+574	317	4	18	138	f	10
+575	318	3	11	143	t	10
+576	318	5	6	133	f	10
+577	319	4	32	152	t	10
+578	319	5	14	131	f	10
+579	320	4	32	151	f	10
+580	320	6	1	122	t	10
+581	321	5	29	27	t	3
+582	321	2	37	71	f	3
+583	322	7	32	\N	\N	10
+584	323	7	32	\N	\N	10
+585	324	1	33	144	t	10
+586	324	5	1	119	f	10
 \.
 
 
@@ -1052,6 +1066,7 @@ COPY public.campaigns (id, campaign) FROM stdin;
 6	Tahnus IX
 7	Eldor Minor
 8	Caligula IX
+9	The Plague War
 \.
 
 
@@ -1183,6 +1198,7 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 20	270	7	2
 21	271	8	1
 22	272	8	2
+23	324	9	1
 \.
 
 
@@ -1523,6 +1539,14 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 313	2023-08-25	1	1	adeptus-mechanicus-vs-adepta-sororitas-warhammer-40k-battle-report	\N	5
 314	2023-08-26	1	1	guest-collab-aeldari-vs-drukhari-warhammer-40k-battle-report	h2QT1VZU4UE	6
 315	2022-03-01	1	1	grey-knights-vs-ulthwe-2000pts-warhammer-40000-battle-report	\N	1
+317	2023-08-29	1	1	tau-empire-vs-leagues-of-votann-warhammer-40k-battle-report	\N	5
+318	2023-09-01	1	1	world-eaters-vs-grey-knights-warhammer-40k-battle-report	\N	4
+319	2023-09-02	1	1	new-codex-tyranids-vs-astra-militarum-warhammer-40k-battle-report	t5CefL9Y7dA	6
+320	2023-09-05	1	1	new-codex-tyranids-vs-flesh-tearers-warhammer-40k-battle-report	\N	5
+321	2023-09-06	2	1	orruk-warclans-vs-skaven-age-of-sigmar-battle-report	\N	1
+322	2023-09-06	1	7	how-to-paint-the-tyranids-death-leaper-warhammer-40k-how-to-paint	\N	\N
+323	2023-09-06	1	7	how-to-paint-tyranids-brains-warhammer-40k-painting-tutorial	hQ7YpyFjNGw	\N
+324	2023-09-08	1	3	death-guard-vs-space-marines-warhammer-40k-battle-report	\N	6
 \.
 
 
@@ -1537,6 +1561,7 @@ COPY public.showtypes (id, showtype) FROM stdin;
 4	List analysis
 5	How to play
 6	Faction focus
+7	How to paint
 \.
 
 
@@ -1692,6 +1717,11 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 148	House Lucaris	30
 149	Dhom-hain	23
 150	Legion of Night	9
+151	Crusher Stampede	32
+152	Endless Swarm	32
+153	Assimilation Swarm	32
+154	Vanguard Onslaught	32
+155	Synaptic Nexus	32
 \.
 
 
@@ -1699,14 +1729,14 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 572, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 586, true);
 
 
 --
 -- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.campaigns_id_seq', 8, true);
+SELECT pg_catalog.setval('public.campaigns_id_seq', 9, true);
 
 
 --
@@ -1734,7 +1764,7 @@ SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 22, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 23, true);
 
 
 --
@@ -1748,21 +1778,21 @@ SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 315, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 324, true);
 
 
 --
 -- Name: showtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.showtypes_id_seq', 6, true);
+SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 
 
 --
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 150, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 155, true);
 
 
 --

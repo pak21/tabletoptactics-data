@@ -9,19 +9,20 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-08-27, the data contains shows released on the channel from 2022-03-19 to 2023-08-26. Specifically, this includes:
+As of 2023-09-09, the data contains shows released on the channel from 2022-03-01 to 2023-09-08. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
 * All narrative reports
 * All list analysis shows
 * The 10th edition introductory "How to play" show
-* The 10th edition "Faction focus" shows
+* The 10th edition introductory "Faction focus" shows
+* How to paint shows from 10th edition onwards
 
 It does not currently include any:
 
-* Faction focus shows before 10th edition
-* How to paint shows
+* Faction focus shows with more than one presenter
+* How to paint shows before 10th edition
 * State of play shows
 * Backstage shows
 * Podcast episodes
@@ -41,11 +42,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- Katie Foad       | 70
- James Jordan     | 70
- Lawrence Baker   | 44
+ James Jordan     | 72
+ Katie Foad       | 71
+ Lawrence Baker   | 46
  Michael Hebditch | 38
- Joe Ponting      | 32
+ Joe Ponting      | 34
 ```
 
 ### Most played faction by player
@@ -73,14 +74,14 @@ where rank = 1;
  Fletcher Giles   | T'au Empire         | 12
  James Beaver     | Necrons             |  1
  James Hamill     | Adepta Sororitas    |  1
- James Jordan     | Space Marines       | 25
+ James Jordan     | Space Marines       | 26
  James Otero      | Astra Militarum     |  1
  Joe Ponting      | Chaos Space Marines | 25
  Josh Hill        | Sylvaneth           |  1
  Josh Hill        | Slaves to Darkness  |  1
  Josh Hill        | Space Marines       |  1
- Katie Foad       | Tyranids            | 23
- Lawrence Baker   | Space Marines       | 19
+ Katie Foad       | Tyranids            | 25
+ Lawrence Baker   | Space Marines       | 20
  Lennard          | Space Marines       |  1
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
@@ -113,25 +114,25 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   37 |     27
+ Space Marines         |   38 |     28
  Orks                  |   21 |     10
  Chaos Space Marines   |   16 |     17
- T'au Empire           |   14 |     12
- Aeldari               |   13 |     13
+ T'au Empire           |   15 |     12
+ Aeldari               |   14 |     13
  Necrons               |   12 |      8
- Astra Militarum       |   12 |     15
+ Astra Militarum       |   12 |     16
+ World Eaters          |   10 |      3
  Soulblight Gravelords |    9 |      0
- World Eaters          |    9 |      3
  Adeptus Mechanicus    |    8 |     14
+ Tyranids              |    8 |     16
+ Death Guard           |    7 |      5
  Adeptus Custodes      |    7 |     10
- Tyranids              |    7 |     15
  Chaos Knights         |    6 |      3
- Death Guard           |    6 |      5
  Imperial Knights      |    6 |      5
- Leagues of Votann     |    6 |      7
+ Leagues of Votann     |    6 |      8
  Drukhari              |    6 |      9
  Adepta Sororitas      |    6 |      9
- Grey Knights          |    6 |     10
+ Grey Knights          |    6 |     12
  Harlequins            |    5 |      0
  Seraphon              |    5 |      2
  Idoneth Deepkin       |    5 |      3
@@ -139,15 +140,15 @@ order by wins desc, losses;
  Thousand Sons         |    4 |      7
  Chaos Daemons         |    4 |      8
  Stormcast Eternals    |    3 |      4
- Hedonites of Slaanesh |    3 |      5
+ Orruk Warclans        |    3 |      4
  Maggotkin of Nurgle   |    3 |      5
  Slaves to Darkness    |    3 |      5
+ Hedonites of Slaanesh |    3 |      5
  Ossiarch Bonereapers  |    3 |      6
- Skaven                |    2 |      0
  Blades of Khorne      |    2 |      1
+ Skaven                |    2 |      1
  Nighthaunt            |    2 |      3
  Ogor Mawtribes        |    2 |      3
- Orruk Warclans        |    2 |      4
  Fyreslayers           |    0 |      1
  Sylvaneth             |    0 |      2
 ```
