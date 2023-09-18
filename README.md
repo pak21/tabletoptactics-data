@@ -9,7 +9,7 @@ Metadata about the battles played on the [Tabletop Tactics](https://tabletoptact
 
 ## Data completeness
 
-As of 2023-09-09, the data contains shows released on the channel from 2022-03-01 to 2023-09-08. Specifically, this includes:
+As of 2023-09-09, the data contains shows released on the channel from 2022-02-19 to 2023-09-08. Specifically, this includes:
 
 * All battle reports _except_ the "X vs everyone" shows (e.g. [Rogal Dorn vs everyone](https://tabletoptactics.tv/2023/02/22/the-rogal-dorn-vs-everyone-warhammer-40000-battle-report/))
 * All league reports
@@ -42,11 +42,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
+ Katie Foad       | 72
  James Jordan     | 72
- Katie Foad       | 71
  Lawrence Baker   | 46
- Michael Hebditch | 38
- Joe Ponting      | 34
+ Michael Hebditch | 40
+ Joe Ponting      | 35
 ```
 
 ### Most played faction by player
@@ -68,7 +68,7 @@ where rank = 1;
      fullname     |       faction       | n
 ------------------+---------------------+----
  David Methven    | Sylvaneth           |  1
- David Pettitt    | Space Marines       |  3
+ David Pettitt    | Space Marines       |  4
  David Ugolini    | Chaos Space Marines |  1
  Ed Pemberton     | Genestealer Cults   |  1
  Fletcher Giles   | T'au Empire         | 12
@@ -86,7 +86,7 @@ where rank = 1;
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
- Michael Hebditch | Necrons             | 18
+ Michael Hebditch | Necrons             | 19
  Ridvan Martinez  | Drukhari            |  2
  Sam Weeks        | Space Marines       |  2
  Steve Joll       | Space Marines       |  1
@@ -114,24 +114,24 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   38 |     28
+ Space Marines         |   39 |     28
  Orks                  |   21 |     10
+ Aeldari               |   16 |     13
  Chaos Space Marines   |   16 |     17
  T'au Empire           |   15 |     12
- Aeldari               |   14 |     13
- Necrons               |   12 |      8
+ Necrons               |   12 |      9
  Astra Militarum       |   12 |     16
- World Eaters          |   10 |      3
+ World Eaters          |   10 |      4
  Soulblight Gravelords |    9 |      0
+ Adeptus Custodes      |    8 |     10
  Adeptus Mechanicus    |    8 |     14
  Tyranids              |    8 |     16
  Death Guard           |    7 |      5
- Adeptus Custodes      |    7 |     10
  Chaos Knights         |    6 |      3
- Imperial Knights      |    6 |      5
+ Imperial Knights      |    6 |      6
  Leagues of Votann     |    6 |      8
- Drukhari              |    6 |      9
  Adepta Sororitas      |    6 |      9
+ Drukhari              |    6 |     10
  Grey Knights          |    6 |     12
  Harlequins            |    5 |      0
  Seraphon              |    5 |      2

@@ -1050,6 +1050,14 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 584	323	7	32	\N	\N	10
 585	324	1	33	144	t	10
 586	324	5	1	119	f	10
+587	325	4	4	135	t	10
+588	325	5	26	134	f	10
+589	326	6	4	46	t	9
+590	326	3	16	47	f	9
+591	327	6	15	75	f	9
+592	327	2	2	11	t	9
+593	328	4	11	\N	f	8
+594	328	9	1	51	t	9
 \.
 
 
@@ -1547,6 +1555,10 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 322	2023-09-06	1	7	how-to-paint-the-tyranids-death-leaper-warhammer-40k-how-to-paint	\N	\N
 323	2023-09-06	1	7	how-to-paint-tyranids-brains-warhammer-40k-painting-tutorial	hQ7YpyFjNGw	\N
 324	2023-09-08	1	3	death-guard-vs-space-marines-warhammer-40k-battle-report	\N	6
+325	2023-09-09	1	1	aeldari-vs-imperial-knights-warhammer-40k-battle-report	K7Vw2vaVAD0	3
+326	2022-02-26	1	1	new-codex-aeldari-craftworlds-vs-necrons-2000pts-warhammer-40000-battle-report	5_ed8ZIT6z8	4
+327	2022-02-25	1	2	drukhari-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	1
+328	2022-02-22	1	1	world-eaters-vs-black-templars-2000pts-warhammer-40000-battle-report	\N	3
 \.
 
 
@@ -1729,7 +1741,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 586, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 594, true);
 
 
 --
@@ -1778,7 +1790,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 22, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 324, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 328, true);
 
 
 --
