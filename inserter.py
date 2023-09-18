@@ -7,12 +7,7 @@ import urllib.parse
 
 import psycopg2
 
-@dataclasses.dataclass
-class ArmyInfo:
-    faction_id: int
-    faction: str
-    player_id: int = None
-    subfaction_id: int = None
+import tabletoptactics as tt
 
 def load_objects(objecttype, table, cursor):
     cursor.execute(f'select {objecttype}, id from {table}')
@@ -31,12 +26,9 @@ def load_subfactions(cursor):
     cursor.execute(f'select s.id, s.subfaction, f.id, f.faction from subfactions as s join factions as f on s.faction_id = f.id')
     return {s: (sid, f, fid) for sid, s, fid, f in cursor.fetchall()}
 
-def normalize_for_slug(s):
-    return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
-
 def get_id_from_slug(slug, lookup, objtype):
     for obj, obj_id in lookup.items():
-        if normalize_for_slug(obj) in slug:
+        if tt.normalize_for_slug(obj) in slug:
             return obj_id, obj
 
     obj = input(f"Couldn't obtain {objtype} automatically, please input manually: ")
@@ -51,37 +43,6 @@ def get_game(slug, games):
 def get_showtype(slug, showtypes):
     showtype_id, _ = get_id_from_slug(slug, showtypes, 'show type')
     return showtype_id
-
-def extract_armies_from_slug(slug, factions, subfactions):
-    armies_found = {}
-
-    for faction, faction_id in factions.items():
-        faction_index = slug.find(normalize_for_slug(faction))
-        if faction_index != -1:
-            armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
-        
-    for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
-        if subfaction == 'World Eaters':
-            # This causes problems because it is also the name of the faction
-            continue
-        subfaction_index = slug.find(normalize_for_slug(subfaction))
-        if subfaction_index != -1:
-            armies_found[subfaction_index] = ArmyInfo(faction_id=faction_id, faction=faction, subfaction_id=subfaction_id)
-
-    match len(armies_found):
-        case 0:
-            raise Exception(f'Found no armies in slug "{slug}"; giving up')
-
-        case 1:
-            idx = list(armies_found)[0]
-            return [armies_found[idx], None]
-
-        case 2:
-            return [armies_found[k] for k in sorted(armies_found)]
-
-        case _:
-            raise Exception(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
-
 
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
@@ -110,7 +71,7 @@ def input_army_details(n, army, cursor):
             return
         faction = input(f'Army {n} faction? ')
         faction_id = get_faction(faction, cursor)
-        army = ArmyInfo(faction_id=faction_id, faction=faction)
+        army = tt.ArmyInfo(faction_id=faction_id, faction=faction)
 
     army.player_id = get_player(player, cursor)
 
@@ -177,7 +138,7 @@ def main():
         game_id, game = get_game(slug, games)
         showtype_id = get_showtype(slug, showtypes)
 
-        army1, army2 = extract_armies_from_slug(slug, factions, subfactions)
+        army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
 
         youtube_slug = input('YouTube slug? ') or None
 
