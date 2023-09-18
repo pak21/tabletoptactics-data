@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import contextlib
-import dataclasses
 import datetime
-import urllib.parse
 
 import psycopg2
 
@@ -129,11 +127,7 @@ def main():
         subfactions = load_subfactions(cursor)
 
         raw_url = input('URL? ')
-        url = urllib.parse.urlparse(raw_url)
-        components = url.path.split('/')
-        date_components = [int(c) for c in components[1:4]]
-        release_date = datetime.date(*date_components)
-        slug = components[4]
+        release_date, slug = parse_url(raw_url)
 
         game_id, game = get_game(slug, games)
         showtype_id = get_showtype(slug, showtypes)

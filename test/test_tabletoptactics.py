@@ -1,3 +1,5 @@
+import datetime
+
 import pytest
 
 import tabletoptactics as tt
@@ -75,3 +77,11 @@ def test_extract_armies_from_slug_throws_exception_if_three_armies_found(faction
 
     with pytest.raises(Exception):
         armies = tt.extract_armies_from_slug(slug, factions, subfactions)
+
+def test_parse_url_parses_correctly():
+    raw_url = 'https://tabletoptactics.tv/2023/09/12/world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report/'
+
+    release_date, slug = tt.parse_url(raw_url)
+
+    assert release_date == datetime.date(2023, 9, 12)
+    assert slug == 'world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report'

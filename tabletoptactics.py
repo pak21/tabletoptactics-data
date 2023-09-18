@@ -1,4 +1,6 @@
 import dataclasses
+import datetime
+import urllib.parse
 
 @dataclasses.dataclass
 class ArmyInfo:
@@ -6,6 +8,12 @@ class ArmyInfo:
     faction: str
     player_id: int = None
     subfaction_id: int = None
+
+def parse_url(raw_url):
+    url = urllib.parse.urlparse(raw_url)
+    components = url.path.split('/')
+    date_components = [int(c) for c in components[1:4]]
+    return datetime.date(*date_components), components[4]
 
 def normalize_for_slug(s):
     return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
