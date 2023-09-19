@@ -18,6 +18,26 @@ def parse_url(raw_url):
 def normalize_for_slug(s):
     return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
 
+def _get_id_from_slug(slug, lookup, objtype):
+    for obj, obj_id in lookup.items():
+        if normalize_for_slug(obj) in slug:
+            return obj_id, obj
+
+    raise Exception("Couldn't obtain {objtype} automatically from {slug}")
+
+    #obj = input(f"Couldn't obtain {objtype} automatically, please input manually: ")
+    #return lookup[obj], obj
+
+def get_game(slug, games):
+    if 'warhammer-40k' in slug:
+        return games['Warhammer 40,000'], 'Warhammer 40,000'
+
+    return _get_id_from_slug(slug, games, 'game')
+
+def get_showtype(slug, showtypes):
+    showtype_id, _ = _get_id_from_slug(slug, showtypes, 'show type')
+    return showtype_id
+
 def extract_armies_from_slug(slug, factions, subfactions):
     armies_found = {}
 

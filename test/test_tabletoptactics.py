@@ -20,6 +20,18 @@ def subfactions():
         'World Eaters': (3, 'World Eaters', 3),
     }
 
+@pytest.fixture
+def games():
+    return {
+        'Warhammer 40,000': 1,
+    }
+
+@pytest.fixture
+def showtypes():
+    return {
+        'Battle report': 1,
+    }
+
 @pytest.mark.parametrize('unnormalized,expected',[
     ('Dark Angels', 'dark-angels'),
     ('Ulthwé', 'ulthwe'),
@@ -85,3 +97,26 @@ def test_parse_url_parses_correctly():
 
     assert release_date == datetime.date(2023, 9, 12)
     assert slug == 'world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report'
+
+def test_get_game_parses_correctly(games):
+    slug = 'space-marines-vs-orks-warhammer-40000-boarding-action-battle-report'
+
+    game_id, game = tt.get_game(slug, games)
+
+    assert game_id == 1
+    assert game == 'Warhammer 40,000'
+
+def test_get_game_has_special_case_for_40k(games):
+    slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
+
+    game_id, game = tt.get_game(slug, games)
+
+    assert game_id == 1
+    assert game == 'Warhammer 40,000'
+
+def test_get_showtype_parses_correctly(showtypes):
+    slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
+
+    showtype_id = tt.get_showtype(slug, showtypes)
+
+    assert showtype_id == 1

@@ -32,16 +32,6 @@ def get_id_from_slug(slug, lookup, objtype):
     obj = input(f"Couldn't obtain {objtype} automatically, please input manually: ")
     return lookup[obj], obj
 
-def get_game(slug, games):
-    if 'warhammer-40k' in slug:
-        return games['Warhammer 40,000'], 'Warhammer 40,000'
-
-    return get_id_from_slug(slug, games, 'game')
-
-def get_showtype(slug, showtypes):
-    showtype_id, _ = get_id_from_slug(slug, showtypes, 'show type')
-    return showtype_id
-
 def get_id(value, table, column, objecttype, cursor):
     cursor.execute(f'select id from {table} where {column} = %s', (value,))
     results = cursor.fetchall()
@@ -127,10 +117,10 @@ def main():
         subfactions = load_subfactions(cursor)
 
         raw_url = input('URL? ')
-        release_date, slug = parse_url(raw_url)
+        release_date, slug = tt.parse_url(raw_url)
 
-        game_id, game = get_game(slug, games)
-        showtype_id = get_showtype(slug, showtypes)
+        game_id, game = tt.get_game(slug, games)
+        showtype_id = tt.get_showtype(slug, showtypes)
 
         army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
 
