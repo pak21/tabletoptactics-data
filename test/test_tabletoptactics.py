@@ -101,7 +101,7 @@ def test_parse_url_parses_correctly():
 def test_get_game_parses_correctly(games):
     slug = 'space-marines-vs-orks-warhammer-40000-boarding-action-battle-report'
 
-    game_id, game = tt.get_game(slug, games)
+    game_id, game = tt.get_game(slug, games, None)
 
     assert game_id == 1
     assert game == 'Warhammer 40,000'
@@ -109,14 +109,28 @@ def test_get_game_parses_correctly(games):
 def test_get_game_has_special_case_for_40k(games):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
 
-    game_id, game = tt.get_game(slug, games)
+    game_id, game = tt.get_game(slug, games, None)
 
     assert game_id == 1
     assert game == 'Warhammer 40,000'
 
+def test_get_game_uses_missing_callback_if_unmatched(games):
+    slug = 'space-marines-vs-orks-boarding-action-battle-report'
+
+    game_id, game = tt.get_game(slug, games, lambda: 'Warhammer 40,000')
+
+    assert game_id == 1
+
 def test_get_showtype_parses_correctly(showtypes):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
 
-    showtype_id = tt.get_showtype(slug, showtypes)
+    showtype_id = tt.get_showtype(slug, showtypes, None)
+
+    assert showtype_id == 1
+
+def test_get_showtype_uses_missing_callback_if_unmatched(showtypes):
+    slug = 'aeldari-vs-imperial-knights-warhammer-40k'
+
+    showtype_id = tt.get_showtype(slug, showtypes, lambda: 'Battle report')
 
     assert showtype_id == 1

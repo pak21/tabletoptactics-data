@@ -49,6 +49,9 @@ def get_faction(faction, cursor):
 def get_subfaction(subfaction, cursor):
     return get_id(subfaction, 'subfactions', 'subfaction', 'Subfaction', cursor)
 
+def input_missing(objtype):
+    return input(f"Couldn't obtain {objtype} automatically, please input manually: ")
+
 def input_army_details(n, army, cursor):
     player = input(f'Army {n} player? ') or None
     if army:
@@ -119,8 +122,8 @@ def main():
         raw_url = input('URL? ')
         release_date, slug = tt.parse_url(raw_url)
 
-        game_id, game = tt.get_game(slug, games)
-        showtype_id = tt.get_showtype(slug, showtypes)
+        game_id, game = tt.get_game(slug, games, lambda: input_missing('game'))
+        showtype_id = tt.get_showtype(slug, showtypes, lambda: input_missing('show type'))
 
         army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
 
