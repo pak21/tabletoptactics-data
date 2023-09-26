@@ -12,6 +12,19 @@ class ArmyInfo:
 @dataclasses.dataclass
 class InputData:
     url: str = None
+    youtube: str = None
+    game: str = None
+    showtype: str = None
+    winner: str = None
+    servoskull: str = None
+
+    army1player: str = None
+    army1faction: str = None
+    army1subfaction: str = None
+
+    army2player: str = None
+    army2faction: str = None
+    army2subfaction: str = None
 
 def parse_url(raw_url):
     url = urllib.parse.urlparse(raw_url)
@@ -110,7 +123,11 @@ def get_edition(army, game, release_date):
 def parse_input(data):
     input_data = InputData()
     for line in data.split('\n'):
+        if not line:
+            continue
         key, value = line.split(': ', 1)
+        if not hasattr(input_data, key):
+            raise Exception(f'Unknown input data key {key}')
         setattr(input_data, key, value)
 
     return input_data

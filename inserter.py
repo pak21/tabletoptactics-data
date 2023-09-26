@@ -2,6 +2,7 @@
 
 import contextlib
 import datetime
+import sys
 
 import psycopg2
 
@@ -27,27 +28,22 @@ def load_subfactions(cursor):
 def load_players(cursor):
     return load_objects('nickname', 'players', cursor)
 
-def get_data(prompt):
-    return input(prompt + '? ')
-
-def input_missing(objtype):
-    return get_data(f"Couldn't obtain {objtype} automatically, please input manually")
-
-def input_army_details(n, army, factions, subfactions, players):
-    player = get_data(f'Army {n} player') or None
+def input_army_details(n, army, factions, subfactions, players, input_data):
+    prefix = f'army{n}'
+    player = getattr(input_data, prefix + 'player')
     if army:
         if player is None:
             raise Exception(f'Must have a player for the {army.faction} army')
     else:
         if player is None:
             return None
-        faction = get_data(f'Army {n} faction')
+        faction = getattr(input_data, prefix + 'faction')
         army = tt.ArmyInfo(faction_id=factions[faction], faction=faction)
 
     army.player_id = players[player]
 
     if army.subfaction_id is None:
-        subfaction = get_data(f'Army {n} subfaction')
+        subfaction = getattr(input_data, prefix + 'subfaction')
         army.subfaction_id = subfactions[subfaction][0] if subfaction else None
 
     return army
@@ -62,6 +58,9 @@ def add_army(show_id, army, winner, edition, cursor):
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
 
+    with open(sys.argv[1]) as f:
+        input_data = tt.parse_input(f.read())
+
     with contextlib.closing(conn.cursor()) as cursor:
         games = load_games(cursor)
         showtypes = load_showtypes(cursor)
@@ -69,32 +68,43 @@ def main():
         subfactions = load_subfactions(cursor)
         players = load_players(cursor)
 
-        raw_url = get_data('URL')
-        release_date, slug = tt.parse_url(raw_url)
+        release_date, slug = tt.parse_url(input_data.url)
 
-        game_id, game = tt.get_game(slug, games, lambda: input_missing('game'))
-        showtype_id = tt.get_showtype(slug, showtypes, lambda: input_missing('show type'))
+        game_id, game = tt.get_game(slug, games, lambda: input_data.game)
+        showtype_id = tt.get_showtype(slug, showtypes, lambda: input_data.showtype)
 
         army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
 
-        youtube_slug = get_data('YouTube slug') or None
+        youtube_slug = input_data.youtube
 
-        army1 = input_army_details(1, army1, factions, subfactions, players)
-        army2 = input_army_details(2, army2, factions, subfactions, players)
+        army1 = input_army_details(1, army1, factions, subfactions, players, input_data)
+        army2 = input_army_details(2, army2, factions, subfactions, players, input_data)
         if army2:
-            winner = get_data('Winner') or None
+            winner = input_data.winner
             winner_id = players[winner] if winner else None
         else:
             winner_id = None
-
-        servoskull = get_data('Servoskull')
-        servoskull_id = players[servoskull] if servoskull else None
 
         army1_is_winner = army1.player_id == winner_id if winner_id else None
         army1_edition = tt.get_edition(army1, game, release_date)
         if army2:
             army2_is_winner = army2.player_id == winner_id if winner_id else None
             army2_edition = tt.get_edition(army2, game, release_date)
+
+        servoskull = input_data.servoskull
+        servoskull_id = players[servoskull] if servoskull else None
+
+        if True:
+            print()
+            print(release_date)
+            print(slug)
+            print(game_id)
+            print(showtype_id)
+            print(army1, army1_is_winner, army1_edition)
+            print(army2, army2_is_winner, army2_edition)
+            print(servoskull_id)
+
+            raise Exception('x')
 
         show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
 
