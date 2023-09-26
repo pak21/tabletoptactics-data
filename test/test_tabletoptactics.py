@@ -33,6 +33,13 @@ def showtypes():
         'Battle report': 1,
     }
 
+@pytest.fixture
+def players():
+    return {
+        'Spider': 1,
+        'Jinx': 2
+    }
+
 @pytest.mark.parametrize('unnormalized,expected',[
     ('Dark Angels', 'dark-angels'),
     ('Ulthwé', 'ulthwe'),
@@ -191,3 +198,64 @@ def test_get_edition_returns_8_before_9th_edition_codex_release():
     edition = tt.get_edition(army, game, release_date)
 
     assert edition == 8
+
+def test_update_army_sets_army1_player(players, factions, subfactions):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
+    input_data = tt.InputData(army1player='Spider')
+
+    new_army = tt.update_army_info(old_army, input_data, 1, players, factions, subfactions)
+
+    assert new_army.player_id == 1
+
+def test_update_army_set_army2_player(players, factions, subfactions):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
+    input_data = tt.InputData(army2player='Spider')
+
+    new_army = tt.update_army_info(old_army, input_data, 2, players, factions, subfactions)
+
+    assert new_army.player_id == 1
+
+def test_update_army_requires_player(players, factions, subfactions):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
+
+    with pytest.raises(Exception):
+        new_army = tt.update_army_info(old_army, tt.InputData(), 1, players, factions, subfactions)
+
+def test_update_army_does_not_require_player_if_none(players, factions, subfactions):
+    new_army = tt.update_army_info(None, tt.InputData(), 1, players, factions, subfactions)
+
+    assert new_army is None
+
+def test_update_army_sets_subfaction(players, factions, subfactions):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Chaos Space Marines')
+    input_data = tt.InputData(army1player='Spider', army1subfaction="Emperor's Children")
+
+    new_army = tt.update_army_info(old_army, input_data, 1, players, factions, subfactions)
+
+    assert new_army.subfaction_id == 1
+
+def test_update_army_creates_army(players, factions, subfactions):
+    input_data = tt.InputData(army1player='Spider', army1faction='Chaos Space Marines')
+
+    new_army = tt.update_army_info(None, input_data, 1, players, factions, subfactions)
+
+    assert new_army is not None
+    assert new_army.faction_id == 2
+
+def test_set_winner_does_nothing_if_not_specified(players):
+    army1 = tt.ArmyInfo(faction_id=1, faction='Space Marines')
+    army2 = tt.ArmyInfo(faction_id=2, faction='Tyranids')
+
+    tt.set_winner(army1, army2, tt.InputData(), players)
+
+    assert army1.winner is None
+
+def test_sets_winner_if_specified(players):
+    army1 = tt.ArmyInfo(faction_id=1, faction='Space Marines', player_id=1)
+    army2 = tt.ArmyInfo(faction_id=2, faction='Tyranids', player_id=2)
+    input_data = tt.InputData(winner='Jinx')
+
+    tt.set_winner(army1, army2, input_data, players)
+
+    assert army1.winner == False
+    assert army2.winner == True

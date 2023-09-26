@@ -145,3 +145,49 @@ def parse_input(data):
         setattr(input_data, key, value)
 
     return input_data
+
+def update_army_info(army, input_data, army_number, players, factions, subfactions):
+    prefix = f'army{army_number}'
+    player = getattr(input_data, prefix + 'player')
+
+    if army:
+        army.player_id = players[player]
+    else:
+        if player:
+            faction = getattr(input_data, prefix + 'faction')
+            army = ArmyInfo(faction_id=factions[faction], faction=faction, player_id=players[player])
+        else:  
+            return None
+
+    subfaction = getattr(input_data, prefix + 'subfaction')
+    if subfaction:
+        army.subfaction_id = subfactions[subfaction][0]
+
+    return army
+
+def set_winner(army1, army2, input_data, players):
+    if input_data.winner:
+        winner_id = players[input_data.winner]
+        army1.winner = army1.player_id == winner_id
+        army2.winner = army2.player_id == winner_id
+
+def create_show_data(input_data, games, showtypes, players, factions, subfactions):
+    release_date, slug = parse_url(input_data.url)
+
+    game_id, game = get_game(slug, games, input_data.game)
+    showtype_id = get_showtype(slug, showtypes, input_data.showtype)
+    servoskull = input_data.servoskull
+    servoskull_id = players[servoskull] if servoskull else None
+
+    army1, army2 = extract_armies_from_slug(slug, factions, subfactions)
+
+    army1 = update_army_info(army1, input_data, 1, players, factions, subfactions)
+    army2 = update_army_info(army2, input_data, 2, players, factions, subfactions)
+
+    set_winner(army1, army2, input_data, players)
+
+    army1.edition = get_edition(army1, game, release_date)
+    if army2:
+        army2.edition = get_edition(army2, game, release_date)
+
+    return ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
