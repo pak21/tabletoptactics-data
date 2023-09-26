@@ -9,6 +9,10 @@ class ArmyInfo:
     player_id: int = None
     subfaction_id: int = None
 
+@dataclasses.dataclass
+class InputData:
+    url: str = None
+
 def parse_url(raw_url):
     url = urllib.parse.urlparse(raw_url)
     components = url.path.split('/')
