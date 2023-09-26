@@ -10,6 +10,7 @@ def factions():
         'Space Marines': 1,
         'Chaos Space Marines': 2,
         'World Eaters': 3,
+        'Astra Militarum': 4
     }
 
 @pytest.fixture
@@ -89,6 +90,14 @@ def test_extract_armies_from_slug_throws_exception_if_three_armies_found(faction
 
     with pytest.raises(Exception):
         armies = tt.extract_armies_from_slug(slug, factions, subfactions)
+
+def test_extract_armies_from_slug_handles_chaos_space_marines(factions, subfactions):
+    slug = 'astra-militarum-vs-chaos-space-marines-warhammer-40k-battle-report'
+
+    armies = tt.extract_armies_from_slug(slug, factions, subfactions)
+
+    assert armies[0].faction_id == 4
+    assert armies[1].faction_id == 2
 
 def test_parse_url_parses_correctly():
     raw_url = 'https://tabletoptactics.tv/2023/09/12/world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report/'

@@ -42,7 +42,11 @@ def extract_armies_from_slug(slug, factions, subfactions):
     for faction, faction_id in factions.items():
         faction_index = slug.find(normalize_for_slug(faction))
         if faction_index != -1:
-            armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
+            # If we found 'chaos-space-marines', we don't want to match this as a Space Marines army
+            if faction == 'Space Marines' and faction_index >= 6 and slug[faction_index-6:faction_index] == 'chaos-':
+                pass
+            else:
+                armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
 
     for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
         if subfaction == 'World Eaters':
