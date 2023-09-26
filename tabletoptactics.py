@@ -35,22 +35,21 @@ def parse_url(raw_url):
 def normalize_for_slug(s):
     return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
 
-def _get_id_from_slug(slug, lookup, missing_fn):
+def _get_id_from_slug(slug, lookup, missing_value):
     for obj, obj_id in lookup.items():
         if normalize_for_slug(obj) in slug:
             return obj_id, obj
 
-    obj = missing_fn()
-    return lookup[obj], obj
+    return lookup[missing_value], missing_value
 
-def get_game(slug, games, missing_fn):
+def get_game(slug, games, missing_value):
     if 'warhammer-40k' in slug:
         return games['Warhammer 40,000'], 'Warhammer 40,000'
 
-    return _get_id_from_slug(slug, games, missing_fn)
+    return _get_id_from_slug(slug, games, missing_value)
 
-def get_showtype(slug, showtypes, missing_fn):
-    showtype_id, _ = _get_id_from_slug(slug, showtypes, missing_fn)
+def get_showtype(slug, showtypes, missing_value):
+    showtype_id, _ = _get_id_from_slug(slug, showtypes, missing_value)
     return showtype_id
 
 def extract_armies_from_slug(slug, factions, subfactions):

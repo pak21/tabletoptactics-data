@@ -123,12 +123,18 @@ def test_get_game_has_special_case_for_40k(games):
     assert game_id == 1
     assert game == 'Warhammer 40,000'
 
-def test_get_game_uses_missing_callback_if_unmatched(games):
+def test_get_game_uses_missing_value_if_unmatched(games):
     slug = 'space-marines-vs-orks-boarding-action-battle-report'
 
-    game_id, game = tt.get_game(slug, games, lambda: 'Warhammer 40,000')
+    game_id, game = tt.get_game(slug, games, 'Warhammer 40,000')
 
     assert game_id == 1
+
+def test_get_game_throws_exception_if_no_value(games):
+    slug = 'space-marines-vs-orks-boarding-action-battle-report'
+
+    with pytest.raises(Exception):
+        tt.get_game(slug, games, None)
 
 def test_get_showtype_parses_correctly(showtypes):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
@@ -137,12 +143,18 @@ def test_get_showtype_parses_correctly(showtypes):
 
     assert showtype_id == 1
 
-def test_get_showtype_uses_missing_callback_if_unmatched(showtypes):
+def test_get_showtype_uses_missing_value_if_unmatched(showtypes):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k'
 
-    showtype_id = tt.get_showtype(slug, showtypes, lambda: 'Battle report')
+    showtype_id = tt.get_showtype(slug, showtypes, 'Battle report')
 
     assert showtype_id == 1
+
+def test_get_showtype_throws_exception_if_unmatched():
+    slug = 'aeldari-vs-imperial-knights-warhammer-40k'
+
+    with pytest.raises(Exception):
+        showtype_id = tt.get_showtype(slug, showtypes, None)
 
 def test_get_edition_returns_3_for_age_of_sigmar():
     army = tt.ArmyInfo(faction_id=1, faction='Seraphon')

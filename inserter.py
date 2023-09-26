@@ -70,12 +70,10 @@ def main():
 
         release_date, slug = tt.parse_url(input_data.url)
 
-        game_id, game = tt.get_game(slug, games, lambda: input_data.game)
-        showtype_id = tt.get_showtype(slug, showtypes, lambda: input_data.showtype)
+        game_id, game = tt.get_game(slug, games, input_data.game)
+        showtype_id = tt.get_showtype(slug, showtypes, input_data.showtype)
 
         army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
-
-        youtube_slug = input_data.youtube
 
         army1 = input_army_details(1, army1, factions, subfactions, players, input_data)
         army2 = input_army_details(2, army2, factions, subfactions, players, input_data)
@@ -106,7 +104,7 @@ def main():
 
             raise Exception('x')
 
-        show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
+        show_id = add_show(release_date, game_id, showtype_id, slug, input_data.youtube, servoskull_id, cursor)
 
         add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
         if army2:
