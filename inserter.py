@@ -27,35 +27,27 @@ def load_subfactions(cursor):
 def load_players(cursor):
     return load_objects('nickname', 'players', cursor)
 
-def get_id(value, table, column, objecttype, cursor):
-    cursor.execute(f'select id from {table} where {column} = %s', (value,))
-    results = cursor.fetchall()
-    if not results:
-        raise Exception(f'{objecttype} "{value}" does not exist. Are you sure?')
-
-    return results[0][0]
-
-def get_player(player, cursor):
-    return get_id(player, 'players', 'nickname', 'Player', cursor)
+def get_data(prompt):
+    return input(prompt + '? ')
 
 def input_missing(objtype):
-    return input(f"Couldn't obtain {objtype} automatically, please input manually: ")
+    return get_data(f"Couldn't obtain {objtype} automatically, please input manually")
 
 def input_army_details(n, army, factions, subfactions, players):
-    player = input(f'Army {n} player? ') or None
+    player = get_data(f'Army {n} player') or None
     if army:
         if player is None:
             raise Exception(f'Must have a player for the {army.faction} army')
     else:
         if player is None:
             return None
-        faction = input(f'Army {n} faction? ')
+        faction = get_data(f'Army {n} faction')
         army = tt.ArmyInfo(faction_id=factions[faction], faction=faction)
 
     army.player_id = players[player]
 
     if army.subfaction_id is None:
-        subfaction = input(f'Army {n} subfaction? ')
+        subfaction = get_data(f'Army {n} subfaction')
         army.subfaction_id = subfactions[subfaction][0] if subfaction else None
 
     return army
@@ -77,7 +69,7 @@ def main():
         subfactions = load_subfactions(cursor)
         players = load_players(cursor)
 
-        raw_url = input('URL? ')
+        raw_url = get_data('URL')
         release_date, slug = tt.parse_url(raw_url)
 
         game_id, game = tt.get_game(slug, games, lambda: input_missing('game'))
@@ -85,27 +77,29 @@ def main():
 
         army1, army2 = tt.extract_armies_from_slug(slug, factions, subfactions)
 
-        youtube_slug = input('YouTube slug? ') or None
+        youtube_slug = get_data('YouTube slug') or None
 
         army1 = input_army_details(1, army1, factions, subfactions, players)
         army2 = input_army_details(2, army2, factions, subfactions, players)
         if army2:
-            winner = input('Winner? ') or None
-            winner_id = get_player(winner, cursor) if winner else None
+            winner = get_data('Winner') or None
+            winner_id = players[winner] if winner else None
         else:
             winner_id = None
 
-        servoskull = input('Servoskull? ')
-        servoskull_id = get_player(servoskull, cursor) if servoskull else None
-
-        show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
+        servoskull = get_data('Servoskull')
+        servoskull_id = players[servoskull] if servoskull else None
 
         army1_is_winner = army1.player_id == winner_id if winner_id else None
         army1_edition = tt.get_edition(army1, game, release_date)
-        add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
         if army2:
             army2_is_winner = army2.player_id == winner_id if winner_id else None
             army2_edition = tt.get_edition(army2, game, release_date)
+
+        show_id = add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor)
+
+        add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
+        if army2:
             add_army(show_id, army2, army2_is_winner, army2_edition, cursor)
 
         conn.commit()
