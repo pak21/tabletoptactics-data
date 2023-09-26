@@ -48,8 +48,8 @@ def input_army_details(n, army, factions, subfactions, players, input_data):
 
     return army
 
-def add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id, cursor):
-    cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id))
+def add_show(showdata, cursor):
+    cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (showdata.release_date, showdata.game_id, showdata.showtype_id, showdata.slug, showdata.youtube_slug, showdata.servoskull_id))
     return cursor.fetchall()[0][0]
 
 def add_army(show_id, army, cursor):
@@ -92,23 +92,19 @@ def main():
         servoskull = input_data.servoskull
         servoskull_id = players[servoskull] if servoskull else None
 
+        showdata = tt.ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
+
         if True:
             print()
-            print(release_date)
-            print(slug)
-            print(game_id)
-            print(showtype_id)
-            print(army1)
-            print(army2)
-            print(servoskull_id)
+            print(showdata)
 
             raise Exception('x')
 
-        show_id = add_show(release_date, game_id, showtype_id, slug, input_data.youtube, servoskull_id, cursor)
+        show_id = add_show(showdata, cursor)
 
-        add_army(show_id, army1, cursor)
-        if army2:
-            add_army(show_id, army2, cursor)
+        add_army(show_id, showdata.army1, cursor)
+        if showdata.army2:
+            add_army(show_id, showdata.army2, cursor)
 
         conn.commit()
 

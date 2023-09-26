@@ -12,6 +12,19 @@ class ArmyInfo:
     winner: bool = None
 
 @dataclasses.dataclass
+class ShowData:
+    release_date: datetime.date
+    slug: str
+    youtube_slug: str
+
+    game_id: int
+    showtype_id: int
+    servoskull_id: int
+
+    army1: ArmyInfo
+    army2: ArmyInfo
+
+@dataclasses.dataclass
 class InputData:
     url: str = None
     youtube: str = None
