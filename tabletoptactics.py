@@ -106,3 +106,11 @@ _EDITION_FUNCTIONS = {
 
 def get_edition(army, game, release_date):
     return _EDITION_FUNCTIONS[game](army, release_date)
+
+def parse_input(data):
+    input_data = InputData()
+    for line in data.split('\n'):
+        key, value = line.split(': ', 1)
+        setattr(input_data, key, value)
+
+    return input_data
