@@ -69,3 +69,36 @@ def extract_armies_from_slug(slug, factions, subfactions):
 
         case _:
             raise Exception(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
+
+FACTION_DATES_9TH = {
+    'Aeldari': datetime.date(2022, 2, 26),
+    'Harlequins': datetime.date(2022, 2, 26),
+    'Tyranids': datetime.date(2022, 4, 9),
+    'Chaos Knights': datetime.date(2022, 5, 7),
+    'Imperial Knights': datetime.date(2022, 5, 10),
+    'Chaos Space Marines': datetime.date(2022, 6, 25),
+    'Chaos Daemons': datetime.date(2022, 8, 27),
+    'Leagues of Votann': datetime.date(2022, 9, 17), # Included for reference, but can't be any games before this!
+    'Astra Militarum': datetime.date(2022, 11, 12),
+    'World Eaters': datetime.date(2023, 2, 4),
+}
+
+def _get_edition_wh40k(army, release_date):
+    # Last 9th Edition game on the channel was 2023-05-30
+    if release_date > datetime.date(2023, 5, 30):
+        return 10
+
+    try:
+        is_8th = release_date < FACTION_DATES_9TH[army.faction]
+    except KeyError:
+        is_8th = False
+
+    return 8 if is_8th else 9
+
+_EDITION_FUNCTIONS = {
+    'Warhammer 40,000': _get_edition_wh40k,
+    'Age of Sigmar': lambda a, rd: 3
+}
+
+def get_edition(army, game, release_date):
+    return _EDITION_FUNCTIONS[game](army, release_date)

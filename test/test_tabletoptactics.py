@@ -143,3 +143,39 @@ def test_get_showtype_uses_missing_callback_if_unmatched(showtypes):
     showtype_id = tt.get_showtype(slug, showtypes, lambda: 'Battle report')
 
     assert showtype_id == 1
+
+def test_get_edition_returns_3_for_age_of_sigmar():
+    army = tt.ArmyInfo(faction_id=1, faction='Seraphon')
+    game = 'Age of Sigmar'
+    release_date = datetime.date(2023, 9, 26)
+
+    edition = tt.get_edition(army, game, release_date)
+
+    assert edition == 3
+
+def test_get_edition_returns_10_after_release_of_10th_edition():
+    army = tt.ArmyInfo(faction_id=1, faction='Space Marines')
+    game = 'Warhammer 40,000'
+    release_date = datetime.date(2023, 9, 26)
+
+    edition = tt.get_edition(army, game, release_date)
+
+    assert edition == 10
+
+def test_get_edition_returns_9_after_9th_edition_codex_release():
+    army = tt.ArmyInfo(faction_id=1, faction='Harlequins')
+    game = 'Warhammer 40,000'
+    release_date = datetime.date(2023, 1, 1)
+
+    edition = tt.get_edition(army, game, release_date)
+
+    assert edition == 9
+
+def test_get_edition_returns_8_before_9th_edition_codex_release():
+    army = tt.ArmyInfo(faction_id=1, faction='Harlequins')
+    game = 'Warhammer 40,000'
+    release_date = datetime.date(2022, 1, 1)
+
+    edition = tt.get_edition(army, game, release_date)
+
+    assert edition == 8
