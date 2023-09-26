@@ -8,6 +8,8 @@ class ArmyInfo:
     faction: str
     player_id: int = None
     subfaction_id: int = None
+    edition: int = None
+    winner: bool = None
 
 @dataclasses.dataclass
 class InputData:

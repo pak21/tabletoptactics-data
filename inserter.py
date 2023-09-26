@@ -52,8 +52,8 @@ def add_show(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_
     cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id))
     return cursor.fetchall()[0][0]
 
-def add_army(show_id, army, winner, edition, cursor):
-    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, winner, edition))
+def add_army(show_id, army, cursor):
+    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, army.winner, army.edition))
 
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
@@ -83,11 +83,11 @@ def main():
         else:
             winner_id = None
 
-        army1_is_winner = army1.player_id == winner_id if winner_id else None
-        army1_edition = tt.get_edition(army1, game, release_date)
+        army1.winner = army1.player_id == winner_id if winner_id else None
+        army1.edition = tt.get_edition(army1, game, release_date)
         if army2:
-            army2_is_winner = army2.player_id == winner_id if winner_id else None
-            army2_edition = tt.get_edition(army2, game, release_date)
+            army2.winner = army2.player_id == winner_id if winner_id else None
+            army2.edition = tt.get_edition(army2, game, release_date)
 
         servoskull = input_data.servoskull
         servoskull_id = players[servoskull] if servoskull else None
@@ -98,17 +98,17 @@ def main():
             print(slug)
             print(game_id)
             print(showtype_id)
-            print(army1, army1_is_winner, army1_edition)
-            print(army2, army2_is_winner, army2_edition)
+            print(army1)
+            print(army2)
             print(servoskull_id)
 
             raise Exception('x')
 
         show_id = add_show(release_date, game_id, showtype_id, slug, input_data.youtube, servoskull_id, cursor)
 
-        add_army(show_id, army1, army1_is_winner, army1_edition, cursor)
+        add_army(show_id, army1, cursor)
         if army2:
-            add_army(show_id, army2, army2_is_winner, army2_edition, cursor)
+            add_army(show_id, army2, cursor)
 
         conn.commit()
 
