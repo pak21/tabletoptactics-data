@@ -10,7 +10,10 @@ def factions():
         'Space Marines': 1,
         'Chaos Space Marines': 2,
         'World Eaters': 3,
-        'Astra Militarum': 4
+        'Astra Militarum': 4,
+
+        'Hedonites of Slaanesh': 5,
+        'Slaves to Darkness': 6,
     }
 
 @pytest.fixture
@@ -19,6 +22,7 @@ def subfactions():
         "Emperor's Children": (1, 'Chaos Space Marines', 2),
         'Dark Angels': (2, 'Space Marines', 1),
         'World Eaters': (3, 'World Eaters', 3),
+        'Slaves to Darkness': (4, 'Chaos Space Marines', 2),
     }
 
 @pytest.fixture
@@ -76,6 +80,14 @@ def test_extract_armies_from_slug_recognises_world_eaters_as_a_faction(factions,
 
     assert armies[0].faction_id == 3
     assert armies[0].subfaction_id is None
+
+def test_extract_armies_from_slug_recognises_slaves_to_darkness_as_a_faction(factions, subfactions):
+    slug = 'hedonites-of-slaanesh-vs-slaves-to-darkness-age-of-sigmar-battle-report'
+
+    armies = tt.extract_armies_from_slug(slug, factions, subfactions)
+
+    assert armies[0].faction_id == 5
+    assert armies[1].faction_id == 6
 
 def test_extract_armies_from_slug_throws_exception_if_no_armies_found(factions, subfactions):
     slug = 'starfleet-vs-klingons-star-trek-battle-report'
@@ -249,6 +261,7 @@ def test_set_winner_does_nothing_if_not_specified(players):
     tt.set_winner(army1, army2, tt.InputData(), players)
 
     assert army1.winner is None
+    assert army2.winner is None
 
 def test_sets_winner_if_specified(players):
     army1 = tt.ArmyInfo(faction_id=1, faction='Space Marines', player_id=1)

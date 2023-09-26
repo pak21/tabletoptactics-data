@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import contextlib
-import datetime
 import sys
 
 import psycopg2

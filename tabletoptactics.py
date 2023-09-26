@@ -80,8 +80,9 @@ def extract_armies_from_slug(slug, factions, subfactions):
                 armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
 
     for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
-        if subfaction == 'World Eaters':
-            # This causes problems because it is also the name of the faction
+        if subfaction in factions:
+            # Occurs for "World Eaters" where we want to match the faction not the subfaction
+            # and "Slaves to Darkness" where we want to match the AoS faction not the Chaos Space Marines detachment
             continue
         subfaction_index = slug.find(normalize_for_slug(subfaction))
         if subfaction_index != -1:
