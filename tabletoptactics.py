@@ -172,7 +172,10 @@ class ShowDataBuilder:
 
         subfaction = getattr(input_data, prefix + 'subfaction')
         if subfaction:
-            army.subfaction_id = self._subfactions[subfaction].subfaction_id
+            try:
+                army.subfaction_id = self._subfactions[subfaction].subfaction_id
+            except KeyError:
+                raise DataException(f'Unknown subfaction {subfaction} specified for army {army_number}')
 
         return army
 
@@ -231,6 +234,9 @@ def parse_input(data):
         setattr(input_data, key, value)
 
     return input_data
+
+class DataException(Exception):
+    pass
 
 class ValidationException(Exception):
     pass

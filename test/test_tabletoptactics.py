@@ -265,6 +265,13 @@ def test_update_army_sets_subfaction(showdatabuilder):
 
     assert new_army.subfaction_id == 1
 
+def test_update_army_gives_correct_exception_if_unknown_subfaction(showdatabuilder):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Space Marines')
+    input_data = tt.InputData(army1player='Spider', army1subfaction='Legion of the Damned')
+
+    with pytest.raises(tt.DataException):
+        new_army = showdatabuilder.update_army_info(old_army, input_data, 1)
+
 def test_update_army_creates_army(showdatabuilder):
     input_data = tt.InputData(army1player='Spider', army1faction='Chaos Space Marines')
 

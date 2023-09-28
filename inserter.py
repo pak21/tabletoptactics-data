@@ -50,7 +50,13 @@ def main():
 
         builder = tt.ShowDataBuilder(games, showtypes, players, factions, subfactions)
 
+        print(input_data)
+
         showdata = builder.build(input_data)
+
+        print(showdata)
+
+        raise Exception('boom')
 
         show_id = add_show(showdata, cursor)
 
