@@ -47,7 +47,9 @@ def main():
         factions = load_factions(cursor)
         subfactions = load_subfactions(cursor)
 
-        showdata = tt.create_show_data(input_data, games, showtypes, players, factions, subfactions)
+        builder = tt.ShowDataBuilder()
+
+        showdata = builder.build(input_data, games, showtypes, players, factions, subfactions)
 
         show_id = add_show(showdata, cursor)
 
