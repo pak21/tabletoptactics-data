@@ -42,6 +42,11 @@ class InputData:
     army2subfaction: str = None
 
 @dataclasses.dataclass
+class FactionInfo:
+    faction_id: int
+    game_id: int
+
+@dataclasses.dataclass
 class SubfactionInfo:
     subfaction_id: int
     faction: str
@@ -52,8 +57,10 @@ class ShowDataBuilder:
         self._games = games
         self._showtypes = showtypes
         self._players = players
-        self._factions = factions
-        self._subfactions = subfactions
+        self._factions = {f: FactionInfo(fid, gid) for fid, f, gid in factions}
+        self._factions_to_games = {fid: gid for fid, _, gid in factions}
+        self._subfactions = {s: SubfactionInfo(sid, f, fid) for sid, s, fid, f in subfactions}
+        self._subfactions_to_factions = {sid: fid for sid, _, fid, _ in subfactions}
 
     def parse_url(self, raw_url):
         url = urllib.parse.urlparse(raw_url)
@@ -84,14 +91,14 @@ class ShowDataBuilder:
     def extract_armies_from_slug(self, slug):
         armies_found = {}
 
-        for faction, faction_id in self._factions.items():
+        for faction, faction_info in self._factions.items():
             faction_index = slug.find(self.normalize_for_slug(faction))
             if faction_index != -1:
                 # If we found 'chaos-space-marines', we don't want to match this as a Space Marines army
                 if faction == 'Space Marines' and faction_index >= 6 and slug[faction_index-6:faction_index] == 'chaos-':
                     pass
                 else:
-                    armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
+                    armies_found[faction_index] = ArmyInfo(faction_id=faction_info.faction_id, faction=faction)
 
         for subfaction, subfaction_info in self._subfactions.items():
             if subfaction in self._factions:
@@ -159,7 +166,7 @@ class ShowDataBuilder:
         else:
             if player:
                 faction = getattr(input_data, prefix + 'faction')
-                army = ArmyInfo(faction_id=self._factions[faction], faction=faction, player_id=self._players[player])
+                army = ArmyInfo(faction_id=self._factions[faction].faction_id, faction=faction, player_id=self._players[player])
             else:  
                 return None
 
@@ -194,7 +201,24 @@ class ShowDataBuilder:
         if army2:
             army2.edition = self.get_edition(army2, game, release_date)
 
-        return ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
+        showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
+
+        self._validate(showdata)
+
+        return showdata
+
+    def _validate_army(self, army, game_id):
+        if game_id != self._factions_to_games[army.faction_id]:
+            raise ValidationException(f'Faction {army.faction} does not belong to game ID {game_id}')
+
+        if army.subfaction_id:
+            if army.faction_id != self._subfactions_to_factions[army.subfaction_id]:
+                raise ValidationException(f'Subfaction ID {army.subfaction_id} is not a subfaction of {army.faction}')
+
+    def validate(self, showdata):
+        for army in [showdata.army1, showdata.army2]:
+            if army:
+                self._validate_army(army, showdata.game_id)
 
 def parse_input(data):
     input_data = InputData()
@@ -207,3 +231,6 @@ def parse_input(data):
         setattr(input_data, key, value)
 
     return input_data
+
+class ValidationException(Exception):
+    pass

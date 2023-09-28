@@ -6,24 +6,24 @@ import tabletoptactics as tt
 
 @pytest.fixture
 def factions():
-    return {
-        'Space Marines': 1,
-        'Chaos Space Marines': 2,
-        'World Eaters': 3,
-        'Astra Militarum': 4,
+    return [
+        (1, 'Space Marines', 1),
+        (2, 'Chaos Space Marines', 1),
+        (3, 'World Eaters', 1),
+        (4, 'Astra Militarum', 1),
 
-        'Hedonites of Slaanesh': 5,
-        'Slaves to Darkness': 6,
-    }
+        (5, 'Hedonites of Slaanesh', 2),
+        (6, 'Slaves to Darkness', 2),
+    ]
 
 @pytest.fixture
 def subfactions():
-    return {
-        "Emperor's Children": tt.SubfactionInfo(1, 'Chaos Space Marines', 2),
-        'Dark Angels': tt.SubfactionInfo(2, 'Space Marines', 1),
-        'World Eaters': tt.SubfactionInfo(3, 'World Eaters', 3),
-        'Slaves to Darkness': tt.SubfactionInfo(4, 'Chaos Space Marines', 2),
-    }
+    return [
+        (1, "Emperor's Children", 2, 'Chaos Space Marines'),
+        (2, 'Dark Angels', 1, 'Space Marines'),
+        (3, 'World Eaters', 3, 'World Eaters'),
+        (4, 'Slaves to Darkness', 2, 'Chaos Space Marines'),
+    ]
 
 @pytest.fixture
 def games():
@@ -43,6 +43,21 @@ def players():
         'Spider': 1,
         'Jinx': 2
     }
+
+@pytest.fixture
+def dummyshow(games, showtypes):
+    return tt.ShowData(
+        release_date=datetime.date(2023, 1, 1),
+        slug='some-slug',
+        youtube_slug=None,
+
+        game_id=1,
+        showtype_id=1,
+        servoskull_id=None,
+
+        army1=None,
+        army2=None
+    )
 
 @pytest.fixture
 def showdatabuilder(games, showtypes, players, factions, subfactions):
@@ -276,3 +291,49 @@ def test_sets_winner_if_specified(showdatabuilder):
 
     assert army1.winner == False
     assert army2.winner == True
+
+def _create_showdata(game, faction, subfaction, games, factions, subfactions):
+    army1 = tt.ArmyInfo(
+        faction_id=[fid for fid, f, _ in factions if f == faction][0],
+        faction=faction,
+        subfaction_id=[sid for sid, s, _, _ in subfactions if s == subfaction][0] if subfaction else None
+    )
+
+    return tt.ShowData(
+        release_date=datetime.date(2023, 1, 1),
+        slug='some-slug',
+        youtube_slug=None,
+
+        game_id=games[game],
+        showtype_id=1,
+        servoskull_id=None,
+
+        army1=army1,
+        army2=None
+    )
+
+def test_validate_does_not_throw_if_faction_matches_game(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Space Marines', None, games, factions, subfactions)
+
+    showdatabuilder.validate(showdata)
+
+    # Success is not throwing
+
+def test_validate_throws_exception_if_faction_doesnt_match_game(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Hedonites of Slaanesh', None, games, factions, subfactions)
+
+    with pytest.raises(tt.ValidationException):
+        showdatabuilder.validate(showdata)
+
+def test_validate_does_not_throw_if_subfaction_matches_faction(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Space Marines', 'Dark Angels', games, factions, subfactions)
+
+    showdatabuilder.validate(showdata)
+
+    # Success is not throwing
+
+def test_validate_throws_exception_if_subfaction_doesnt_match_faction(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Chaos Space Marines', 'Dark Angels', games, factions, subfactions)
+
+    with pytest.raises(tt.ValidationException):
+        showdatabuilder.validate(showdata)
