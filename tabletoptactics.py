@@ -206,7 +206,7 @@ class ShowDataBuilder:
 
         showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
 
-        self._validate(showdata)
+        self.validate(showdata)
 
         return showdata
 
