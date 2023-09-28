@@ -42,6 +42,13 @@ class InputData:
     army2subfaction: str = None
 
 class ShowDataBuilder:
+    def __init__(self, games, showtypes, players, factions, subfactions):
+        self._games = games
+        self._showtypes = showtypes
+        self._players = players
+        self._factions = factions
+        self._subfactions = subfactions
+
     def parse_url(self, raw_url):
         url = urllib.parse.urlparse(raw_url)
         components = url.path.split('/')
@@ -58,20 +65,20 @@ class ShowDataBuilder:
 
         return lookup[missing_value], missing_value
 
-    def get_game(self, slug, games, missing_value):
+    def get_game(self, slug, missing_value):
         if 'warhammer-40k' in slug:
-            return games['Warhammer 40,000'], 'Warhammer 40,000'
+            return self._games['Warhammer 40,000'], 'Warhammer 40,000'
 
-        return self._get_id_from_slug(slug, games, missing_value)
+        return self._get_id_from_slug(slug, self._games, missing_value)
 
-    def get_showtype(self, slug, showtypes, missing_value):
-        showtype_id, _ = self._get_id_from_slug(slug, showtypes, missing_value)
+    def get_showtype(self, slug, missing_value):
+        showtype_id, _ = self._get_id_from_slug(slug, self._showtypes, missing_value)
         return showtype_id
 
-    def extract_armies_from_slug(self, slug, factions, subfactions):
+    def extract_armies_from_slug(self, slug):
         armies_found = {}
 
-        for faction, faction_id in factions.items():
+        for faction, faction_id in self._factions.items():
             faction_index = slug.find(self.normalize_for_slug(faction))
             if faction_index != -1:
                 # If we found 'chaos-space-marines', we don't want to match this as a Space Marines army
@@ -80,8 +87,8 @@ class ShowDataBuilder:
                 else:
                     armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
 
-        for subfaction, (subfaction_id, faction, faction_id) in subfactions.items():
-            if subfaction in factions:
+        for subfaction, (subfaction_id, faction, faction_id) in self._subfactions.items():
+            if subfaction in self._factions:
                 # Occurs for "World Eaters" where we want to match the faction not the subfaction
                 # and "Slaves to Darkness" where we want to match the AoS faction not the Chaos Space Marines detachment
                 continue
@@ -137,49 +144,49 @@ class ShowDataBuilder:
     def get_edition(self, army, game, release_date):
         return self._EDITION_FUNCTIONS[game](army, release_date)
 
-    def update_army_info(self, army, input_data, army_number, players, factions, subfactions):
+    def update_army_info(self, army, input_data, army_number):
         prefix = f'army{army_number}'
         player = getattr(input_data, prefix + 'player')
 
         if army:
-            army.player_id = players[player]
+            army.player_id = self._players[player]
         else:
             if player:
                 faction = getattr(input_data, prefix + 'faction')
-                army = ArmyInfo(faction_id=factions[faction], faction=faction, player_id=players[player])
+                army = ArmyInfo(faction_id=self._factions[faction], faction=faction, player_id=self._players[player])
             else:  
                 return None
 
         subfaction = getattr(input_data, prefix + 'subfaction')
         if subfaction:
-            army.subfaction_id = subfactions[subfaction][0]
+            army.subfaction_id = self._subfactions[subfaction][0]
 
         return army
 
-    def set_winner(self, army1, army2, input_data, players):
+    def set_winner(self, army1, army2, input_data):
         if input_data.winner:
-            winner_id = players[input_data.winner]
+            winner_id = self._players[input_data.winner]
             army1.winner = army1.player_id == winner_id
             army2.winner = army2.player_id == winner_id
 
-    def build(self, input_data, games, showtypes, players, factions, subfactions):
-        release_date, slug = parse_url(input_data.url)
+    def build(self, input_data):
+        release_date, slug = self.parse_url(input_data.url)
 
-        game_id, game = get_game(slug, games, input_data.game)
-        showtype_id = get_showtype(slug, showtypes, input_data.showtype)
+        game_id, game = self.get_game(slug, input_data.game)
+        showtype_id = self.get_showtype(slug, input_data.showtype)
         servoskull = input_data.servoskull
-        servoskull_id = players[servoskull] if servoskull else None
+        servoskull_id = self._players[servoskull] if servoskull else None
 
-        army1, army2 = extract_armies_from_slug(slug, factions, subfactions)
+        army1, army2 = self.extract_armies_from_slug(slug)
 
-        army1 = update_army_info(army1, input_data, 1, players, factions, subfactions)
-        army2 = update_army_info(army2, input_data, 2, players, factions, subfactions)
+        army1 = self.update_army_info(army1, input_data, 1)
+        army2 = self.update_army_info(army2, input_data, 2)
 
-        set_winner(army1, army2, input_data, players)
+        self.set_winner(army1, army2, input_data)
 
-        army1.edition = get_edition(army1, game, release_date)
+        army1.edition = self.get_edition(army1, game, release_date)
         if army2:
-            army2.edition = get_edition(army2, game, release_date)
+            army2.edition = self.get_edition(army2, game, release_date)
 
         return ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
 
