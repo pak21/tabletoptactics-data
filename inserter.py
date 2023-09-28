@@ -22,7 +22,7 @@ def load_factions(cursor):
 
 def load_subfactions(cursor):
     cursor.execute(f'select s.id, s.subfaction, f.id, f.faction from subfactions as s join factions as f on s.faction_id = f.id')
-    return {s: (sid, f, fid) for sid, s, fid, f in cursor.fetchall()}
+    return {s: tt.SubfactionInfo(sid, f, fid) for sid, s, fid, f in cursor.fetchall()}
 
 def load_players(cursor):
     return load_objects('nickname', 'players', cursor)

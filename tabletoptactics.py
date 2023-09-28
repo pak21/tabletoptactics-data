@@ -41,6 +41,12 @@ class InputData:
     army2faction: str = None
     army2subfaction: str = None
 
+@dataclasses.dataclass
+class SubfactionInfo:
+    subfaction_id: int
+    faction: str
+    faction_id: int
+
 class ShowDataBuilder:
     def __init__(self, games, showtypes, players, factions, subfactions):
         self._games = games
@@ -87,14 +93,14 @@ class ShowDataBuilder:
                 else:
                     armies_found[faction_index] = ArmyInfo(faction_id=faction_id, faction=faction)
 
-        for subfaction, (subfaction_id, faction, faction_id) in self._subfactions.items():
+        for subfaction, subfaction_info in self._subfactions.items():
             if subfaction in self._factions:
                 # Occurs for "World Eaters" where we want to match the faction not the subfaction
                 # and "Slaves to Darkness" where we want to match the AoS faction not the Chaos Space Marines detachment
                 continue
             subfaction_index = slug.find(self.normalize_for_slug(subfaction))
             if subfaction_index != -1:
-                armies_found[subfaction_index] = ArmyInfo(faction_id=faction_id, faction=faction, subfaction_id=subfaction_id)
+                armies_found[subfaction_index] = ArmyInfo(faction_id=subfaction_info.faction_id, faction=subfaction_info.faction, subfaction_id=subfaction_info.subfaction_id)
 
         match len(armies_found):
             case 0:
@@ -159,7 +165,7 @@ class ShowDataBuilder:
 
         subfaction = getattr(input_data, prefix + 'subfaction')
         if subfaction:
-            army.subfaction_id = self._subfactions[subfaction][0]
+            army.subfaction_id = self._subfactions[subfaction].subfaction_id
 
         return army
 

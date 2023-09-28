@@ -19,10 +19,10 @@ def factions():
 @pytest.fixture
 def subfactions():
     return {
-        "Emperor's Children": (1, 'Chaos Space Marines', 2),
-        'Dark Angels': (2, 'Space Marines', 1),
-        'World Eaters': (3, 'World Eaters', 3),
-        'Slaves to Darkness': (4, 'Chaos Space Marines', 2),
+        "Emperor's Children": tt.SubfactionInfo(1, 'Chaos Space Marines', 2),
+        'Dark Angels': tt.SubfactionInfo(2, 'Space Marines', 1),
+        'World Eaters': tt.SubfactionInfo(3, 'World Eaters', 3),
+        'Slaves to Darkness': tt.SubfactionInfo(4, 'Chaos Space Marines', 2),
     }
 
 @pytest.fixture
