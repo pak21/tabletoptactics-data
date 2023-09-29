@@ -76,7 +76,10 @@ class ShowDataBuilder:
             if self.normalize_for_slug(obj) in slug:
                 return obj_id, obj
 
-        return lookup[missing_value], missing_value
+        try:
+            return lookup[missing_value], missing_value
+        except KeyError:
+            raise DataException(f'No value found in slug {slug} and missing value {missing_value} invalid')
 
     def get_game(self, slug, missing_value):
         if 'warhammer-40k' in slug:
@@ -111,7 +114,7 @@ class ShowDataBuilder:
 
         match len(armies_found):
             case 0:
-                raise Exception(f'Found no armies in slug "{slug}"; giving up')
+                raise DataException(f'Found no armies in slug "{slug}"; giving up')
 
             case 1:
                 idx = list(armies_found)[0]
@@ -121,7 +124,7 @@ class ShowDataBuilder:
                 return [armies_found[k] for k in sorted(armies_found)]
 
             case _:
-                raise Exception(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
+                raise DataException(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
 
     _FACTION_DATES_9TH = {
         'Aeldari': datetime.date(2022, 2, 26),
@@ -162,7 +165,10 @@ class ShowDataBuilder:
         player = getattr(input_data, prefix + 'player')
 
         if army:
-            army.player_id = self._players[player]
+            try:
+                army.player_id = self._players[player]
+            except KeyError:
+                raise DataException(f'Invalid player {player} supplied for army {army_number}')
         else:
             if player:
                 faction = getattr(input_data, prefix + 'faction')

@@ -111,7 +111,7 @@ def test_extract_armies_from_slug_recognises_slaves_to_darkness_as_a_faction(sho
 def test_extract_armies_from_slug_throws_exception_if_no_armies_found(showdatabuilder):
     slug = 'starfleet-vs-klingons-star-trek-battle-report'
 
-    with pytest.raises(Exception):
+    with pytest.raises(tt.DataException):
         armies = showdatabuilder.extract_armies_from_slug(slug)
 
 def test_extract_armies_from_slug_extracts_one_army(showdatabuilder):
@@ -126,7 +126,7 @@ def test_extract_armies_from_slug_extracts_one_army(showdatabuilder):
 def test_extract_armies_from_slug_throws_exception_if_three_armies_found(showdatabuilder):
     slug = 'dark-angels-vs-emperors-children-vs-world-eaters-warhammer-40000-mega-battle-report'
 
-    with pytest.raises(Exception):
+    with pytest.raises(tt.DataException):
         armies = showdatabuilder.extract_armies_from_slug(slug)
 
 def test_extract_armies_from_slug_handles_chaos_space_marines(showdatabuilder):
@@ -171,8 +171,8 @@ def test_get_game_uses_missing_value_if_unmatched(showdatabuilder):
 def test_get_game_throws_exception_if_no_value(showdatabuilder):
     slug = 'space-marines-vs-orks-boarding-action-battle-report'
 
-    with pytest.raises(Exception):
-        showdatabuilder.get_game(slug, games, None)
+    with pytest.raises(tt.DataException):
+        showdatabuilder.get_game(slug, None)
 
 def test_get_showtype_parses_correctly(showdatabuilder):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
@@ -191,8 +191,8 @@ def test_get_showtype_uses_missing_value_if_unmatched(showdatabuilder):
 def test_get_showtype_throws_exception_if_unmatched(showdatabuilder):
     slug = 'aeldari-vs-imperial-knights-warhammer-40k'
 
-    with pytest.raises(Exception):
-        showtype_id = showdatabuilder.get_showtype(slug, showtypes, None)
+    with pytest.raises(tt.DataException):
+        showtype_id = showdatabuilder.get_showtype(slug, None)
 
 def test_get_edition_returns_3_for_age_of_sigmar(showdatabuilder):
     army = tt.ArmyInfo(faction_id=1, faction='Seraphon')
@@ -249,7 +249,7 @@ def test_update_army_set_army2_player(showdatabuilder):
 def test_update_army_requires_player(showdatabuilder):
     old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
 
-    with pytest.raises(Exception):
+    with pytest.raises(tt.DataException):
         new_army = showdatabuilder.update_army_info(old_army, tt.InputData(), 1)
 
 def test_update_army_does_not_require_player_if_none(showdatabuilder):
