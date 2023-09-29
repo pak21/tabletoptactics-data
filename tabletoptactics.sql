@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.4 (Debian 15.4-1)
--- Dumped by pg_dump version 15.4 (Debian 15.4-1)
+-- Dumped from database version 15.4 (Debian 15.4-3)
+-- Dumped by pg_dump version 15.4 (Debian 15.4-3)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1058,6 +1058,32 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 592	327	2	2	11	t	9
 593	328	4	11	\N	f	8
 594	328	9	1	51	t	9
+595	329	3	36	81	t	9
+596	329	2	25	78	f	9
+597	330	6	11	\N	t	8
+598	330	5	14	\N	f	8
+599	331	4	32	54	f	8
+600	331	1	1	22	t	9
+601	332	5	6	101	t	9
+602	332	23	27	28	f	8
+603	333	6	11	143	t	10
+604	333	2	2	132	f	10
+605	334	1	33	144	f	10
+606	334	6	1	119	t	10
+608	335	1	25	129	f	10
+607	335	5	1	1	t	10
+609	336	5	14	131	f	10
+610	336	1	27	124	t	10
+611	337	5	12	\N	t	3
+612	337	4	24	19	f	3
+613	339	4	32	54	t	8
+614	339	3	20	156	f	9
+615	340	1	31	130	t	10
+616	340	4	16	139	f	10
+617	341	4	15	145	f	9
+618	341	2	1	83	t	9
+619	342	1	2	26	t	9
+620	342	2	25	99	f	9
 \.
 
 
@@ -1237,6 +1263,7 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 21	Steve Joll	Steve
 22	James Beaver	Beaver
 12	Ridvan Martinez	Skaredcast
+23	Rob	Rob
 \.
 
 
@@ -1559,6 +1586,19 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 326	2022-02-26	1	1	new-codex-aeldari-craftworlds-vs-necrons-2000pts-warhammer-40000-battle-report	5_ed8ZIT6z8	4
 327	2022-02-25	1	2	drukhari-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	1
 328	2022-02-22	1	1	world-eaters-vs-black-templars-2000pts-warhammer-40000-battle-report	\N	3
+329	2022-02-11	1	1	genestealer-cults-vs-adeptus-mechanicus-2000pts-warhammer-40000-battle-report	\N	4
+330	2022-02-15	1	1	world-eaters-vs-astra-militarum-2000pts-warhammer-40000-battle-report-2	\N	4
+331	2022-02-12	1	2	tyranids-vs-ultramarines-2000pts-warhammer-40000-league-report	uErPkG9WdWI	6
+332	2022-02-18	1	2	grey-knights-vs-emperors-children-2000pts-warhammer-40000-league-report	\N	6
+333	2023-09-12	1	1	world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report	\N	4
+334	2023-09-15	1	3	death-guard-vs-space-marines-the-plague-war-ep-2-warhammer-40k-crusade-report	\N	5
+335	2023-09-16	1	1	6000-points-dark-mechanics-vs-dark-angels-warhammer-40k-battle-report	y3ATrJRTENw	5
+336	2023-09-19	1	1	astra-militarum-vs-chaos-space-marines-warhammer-40k-battle-report	\N	6
+337	2023-09-20	2	1	maggotkin-of-nurgle-vs-ossiarch-bonereapers-warhammer-age-of-sigmar-battle-report	\N	1
+339	2022-02-08	1	1	tyranids-vs-tau-empire-2000pts-warhammer-40000-battle-report	\N	1
+340	2023-09-26	1	1	adepta-sororitas-vs-necrons-warhammer-40k-battle-report	\N	5
+341	2022-02-01	1	1	drukhari-vs-space-marines-2000pts-warhammer-40000-battle-report	\N	3
+342	2022-02-05	1	1	adeptus-custodes-vs-adeptus-mechanicus-2000pts-warhammer-40000-battle-report	PH0efcR1dwU	4
 \.
 
 
@@ -1670,7 +1710,6 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 86	Mortarion's Anvil	33
 87	Wardmakers	6
 88	Dread Host	2
-89	Dark	38
 90	Prescient Brethren	6
 91	Sa'cea	20
 92	Rusted Claw	36
@@ -1679,7 +1718,6 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 95	Imperial Fists	1
 96	Creations of Bile	27
 97	Mars	25
-98	Twilight	38
 99	Ryza	25
 100	Mortis Praetorians	24
 102	Saim-Hann	4
@@ -1734,6 +1772,9 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 153	Assimilation Swarm	32
 154	Vanguard Onslaught	32
 155	Synaptic Nexus	32
+89	Dark Saedath	38
+98	Twilight Saedath	38
+156	T'au Sept	20
 \.
 
 
@@ -1741,7 +1782,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 594, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 620, true);
 
 
 --
@@ -1783,14 +1824,14 @@ SELECT pg_catalog.setval('public.narrativeshows_id_seq', 23, true);
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.players_id_seq', 22, true);
+SELECT pg_catalog.setval('public.players_id_seq', 23, true);
 
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 328, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 342, true);
 
 
 --
@@ -1804,7 +1845,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 155, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 156, true);
 
 
 --
