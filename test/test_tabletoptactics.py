@@ -35,6 +35,7 @@ def games():
 def showtypes():
     return {
         'Battle report': 1,
+        'Narrative report': 2,
     }
 
 @pytest.fixture
@@ -200,6 +201,13 @@ def test_get_showtype_throws_exception_if_unmatched(showdatabuilder):
 
     with pytest.raises(tt.DataException):
         showtype_id = showdatabuilder.get_showtype(slug, None)
+
+def test_get_showtype_matches_crusade(showdatabuilder):
+    slug = 'space-marines-vs-death-guard-the-plague-war-ep-4-warhammer-40k-crusade-report'
+
+    showtype_id = showdatabuilder.get_showtype(slug, None)
+
+    assert showtype_id == 2
 
 def test_get_edition_returns_3_for_age_of_sigmar(showdatabuilder):
     army = tt.ArmyInfo(faction_id=1, faction='Seraphon')

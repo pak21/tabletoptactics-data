@@ -103,6 +103,9 @@ class ShowDataBuilder:
         return game_id, game
 
     def get_showtype(self, slug, missing_value):
+        if 'crusade-report' in slug:
+            return self._showtypes['Narrative report']
+
         showtype_id, _ = self._get_id_from_slug(slug, self._showtypes, missing_value)
 
         if showtype_id is None:

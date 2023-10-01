@@ -49,6 +49,8 @@ def main():
 
         showdata = builder.build(input_data)
 
+        raise Exception(showdata)
+
         show_id = add_show(showdata, cursor)
 
         add_army(show_id, showdata.army1, cursor)
