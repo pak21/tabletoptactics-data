@@ -27,6 +27,8 @@ class ShowData:
     showtype_id: int
     servoskull_id: int
 
+    campaign: CampaignInfo
+
     army1: ArmyInfo
     army2: ArmyInfo
 
@@ -194,7 +196,18 @@ class ShowDataBuilder:
         else:
             if player:
                 faction = getattr(input_data, prefix + 'faction')
-                army = ArmyInfo(faction_id=self._factions[faction].faction_id, faction=faction, player_id=self._players[player])
+
+                try:
+                    faction_id = self._factions[faction].faction_id
+                except KeyError:
+                    raise DataException(f'Invalid faction {faction} supplied for army {army_number}')
+    
+                try:
+                    player_id = self._players[player]
+                except KeyError:
+                    raise DataException(f'Invalid player {player} supplied for army {army_number}')
+
+                army = ArmyInfo(faction_id=faction_id, faction=faction, player_id=player_id)
             else:  
                 return None
 
@@ -235,7 +248,9 @@ class ShowDataBuilder:
         if army2:
             army2.edition = self.get_edition(army2, game, release_date)
 
-        showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, army1, army2)
+        campaign = self.get_campaign_info(slug, input_data)
+
+        showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, campaign, army1, army2)
 
         self.validate(showdata)
 

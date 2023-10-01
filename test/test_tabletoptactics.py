@@ -53,21 +53,6 @@ def campaigns():
     }
 
 @pytest.fixture
-def dummyshow(games, showtypes):
-    return tt.ShowData(
-        release_date=datetime.date(2023, 1, 1),
-        slug='some-slug',
-        youtube_slug=None,
-
-        game_id=1,
-        showtype_id=1,
-        servoskull_id=None,
-
-        army1=None,
-        army2=None
-    )
-
-@pytest.fixture
 def showdatabuilder(games, showtypes, players, campaigns, factions, subfactions):
     return tt.ShowDataBuilder(games, showtypes, players, campaigns, factions, subfactions)
 
@@ -280,6 +265,12 @@ def test_update_army_sets_subfaction(showdatabuilder):
 
     assert new_army.subfaction_id == 1
 
+def test_update_army_gives_correct_exception_if_unknown_faction(showdatabuilder):
+    input_data = tt.InputData(army1player='Spider', army1faction='Dark Mechanicum')
+
+    with pytest.raises(tt.DataException):
+        army = showdatabuilder.update_army_info(None, input_data, 1)
+
 def test_update_army_gives_correct_exception_if_unknown_subfaction(showdatabuilder):
     old_army = tt.ArmyInfo(faction_id=1, faction='Space Marines')
     input_data = tt.InputData(army1player='Spider', army1subfaction='Legion of the Damned')
@@ -337,6 +328,7 @@ def _create_showdata(game, faction, subfaction, games, factions, subfactions):
         game_id=games[game],
         showtype_id=1,
         servoskull_id=None,
+        campaign=None,
 
         army1=army1,
         army2=None

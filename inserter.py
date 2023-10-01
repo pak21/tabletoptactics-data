@@ -28,8 +28,8 @@ def add_army(show_id, army, cursor):
         cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, army.winner, army.edition))
 
 def add_campaign_entry(showdata, show_id, cursor):
-    if showdata.campaign_info:
-        cursor.execute('insert into narrativeshows(show_id, campaign_id, campaign_sequence) values (%s, %s, %s)', (show_id, showdata.campaign_info.campaign_id, showdata.campaign_info.sequence))
+    if showdata.campaign:
+        cursor.execute('insert into narrativeshows(show_id, campaign_id, campaign_sequence) values (%s, %s, %s)', (show_id, showdata.campaign.campaign_id, showdata.campaign.sequence))
 
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
@@ -48,8 +48,6 @@ def main():
         builder = tt.ShowDataBuilder(games, showtypes, players, campaigns, factions, subfactions)
 
         showdata = builder.build(input_data)
-
-        raise Exception(showdata)
 
         show_id = add_show(showdata, cursor)
 
