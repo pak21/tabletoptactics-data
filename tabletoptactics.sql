@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.4 (Debian 15.4-3)
--- Dumped by pg_dump version 15.4 (Debian 15.4-3)
+-- Dumped from database version 16.0 (Debian 16.0-2)
+-- Dumped by pg_dump version 16.0 (Debian 16.0-2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -64,7 +64,7 @@ CREATE SEQUENCE public.armies_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.armies_id_seq OWNER TO philip;
+ALTER SEQUENCE public.armies_id_seq OWNER TO philip;
 
 --
 -- Name: armies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -98,7 +98,7 @@ CREATE SEQUENCE public.campaigns_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.campaigns_id_seq OWNER TO philip;
+ALTER SEQUENCE public.campaigns_id_seq OWNER TO philip;
 
 --
 -- Name: campaigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -133,7 +133,7 @@ CREATE SEQUENCE public.factions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.factions_id_seq OWNER TO philip;
+ALTER SEQUENCE public.factions_id_seq OWNER TO philip;
 
 --
 -- Name: factions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -167,7 +167,7 @@ CREATE SEQUENCE public.games_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.games_id_seq OWNER TO philip;
+ALTER SEQUENCE public.games_id_seq OWNER TO philip;
 
 --
 -- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -203,7 +203,7 @@ CREATE SEQUENCE public.leagueseasons_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.leagueseasons_id_seq OWNER TO philip;
+ALTER SEQUENCE public.leagueseasons_id_seq OWNER TO philip;
 
 --
 -- Name: leagueseasons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -239,7 +239,7 @@ CREATE SEQUENCE public.narrativeshows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.narrativeshows_id_seq OWNER TO philip;
+ALTER SEQUENCE public.narrativeshows_id_seq OWNER TO philip;
 
 --
 -- Name: narrativeshows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -274,7 +274,7 @@ CREATE SEQUENCE public.players_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.players_id_seq OWNER TO philip;
+ALTER SEQUENCE public.players_id_seq OWNER TO philip;
 
 --
 -- Name: players_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -313,7 +313,7 @@ CREATE SEQUENCE public.shows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.shows_id_seq OWNER TO philip;
+ALTER SEQUENCE public.shows_id_seq OWNER TO philip;
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -347,7 +347,7 @@ CREATE SEQUENCE public.showtypes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.showtypes_id_seq OWNER TO philip;
+ALTER SEQUENCE public.showtypes_id_seq OWNER TO philip;
 
 --
 -- Name: showtypes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -382,7 +382,7 @@ CREATE SEQUENCE public.subfactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.subfactions_id_seq OWNER TO philip;
+ALTER SEQUENCE public.subfactions_id_seq OWNER TO philip;
 
 --
 -- Name: subfactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: philip
@@ -1084,6 +1084,14 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 618	341	2	1	83	t	9
 619	342	1	2	26	t	9
 620	342	2	25	99	f	9
+623	344	5	1	119	f	10
+624	344	1	33	144	t	10
+625	345	1	33	144	f	10
+626	345	5	40	\N	t	10
+627	346	5	1	157	t	10
+628	346	6	27	28	f	10
+629	346	1	1	158	t	10
+630	346	4	5	127	f	10
 \.
 
 
@@ -1146,6 +1154,7 @@ COPY public.factions (id, faction, game_id) FROM stdin;
 37	Skaven	2
 38	Harlequins	1
 39	Fyreslayers	2
+40	Imperium	1
 \.
 
 
@@ -1233,6 +1242,9 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 21	271	8	1
 22	272	8	2
 23	324	9	1
+24	334	9	2
+25	344	9	4
+26	345	9	3
 \.
 
 
@@ -1599,6 +1611,9 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 340	2023-09-26	1	1	adepta-sororitas-vs-necrons-warhammer-40k-battle-report	\N	5
 341	2022-02-01	1	1	drukhari-vs-space-marines-2000pts-warhammer-40000-battle-report	\N	3
 342	2022-02-05	1	1	adeptus-custodes-vs-adeptus-mechanicus-2000pts-warhammer-40000-battle-report	PH0efcR1dwU	4
+344	2023-09-29	1	3	space-marines-vs-death-guard-the-plague-war-ep-4-warhammer-40k-crusade-report	\N	6
+345	2023-09-22	1	3	death-guard-vs-ordo-sepultura-the-plague-war-ep-3-warhammer-40k-crusade-report	\N	\N
+346	2023-09-30	1	1	new-codex-4-player-game-space-marines-vs-emperors-children-warhammer-40k-battle-report	JhtDrSUAWGY	3
 \.
 
 
@@ -1775,6 +1790,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 89	Dark Saedath	38
 98	Twilight Saedath	38
 156	T'au Sept	20
+157	Anvil Siege Force	1
+158	First Company Task Force	1
 \.
 
 
@@ -1782,7 +1799,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 620, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 630, true);
 
 
 --
@@ -1796,7 +1813,7 @@ SELECT pg_catalog.setval('public.campaigns_id_seq', 9, true);
 -- Name: factions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.factions_id_seq', 39, true);
+SELECT pg_catalog.setval('public.factions_id_seq', 40, true);
 
 
 --
@@ -1817,7 +1834,7 @@ SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 23, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 26, true);
 
 
 --
@@ -1831,7 +1848,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 23, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 342, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 346, true);
 
 
 --
@@ -1845,7 +1862,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 156, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 158, true);
 
 
 --
