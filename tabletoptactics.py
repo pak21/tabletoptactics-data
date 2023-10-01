@@ -12,6 +12,11 @@ class ArmyInfo:
     winner: bool = None
 
 @dataclasses.dataclass
+class CampaignInfo:
+    campaign_id: int
+    sequence: int
+
+@dataclasses.dataclass
 class ShowData:
     release_date: datetime.date
     slug: str
@@ -33,6 +38,9 @@ class InputData:
     winner: str = None
     servoskull: str = None
 
+    campaign: str = None
+    campaignsequence: int = None
+
     army1player: str = None
     army1faction: str = None
     army1subfaction: str = None
@@ -53,10 +61,11 @@ class SubfactionInfo:
     faction_id: int
 
 class ShowDataBuilder:
-    def __init__(self, games, showtypes, players, factions, subfactions):
+    def __init__(self, games, showtypes, players, campaigns, factions, subfactions):
         self._games = games
         self._showtypes = showtypes
         self._players = players
+        self._campaigns = campaigns
         self._factions = {f: FactionInfo(fid, gid) for fid, f, gid in factions}
         self._factions_to_games = {fid: gid for fid, _, gid in factions}
         self._subfactions = {s: SubfactionInfo(sid, f, fid) for sid, s, fid, f in subfactions}
@@ -187,7 +196,10 @@ class ShowDataBuilder:
 
     def set_winner(self, army1, army2, input_data):
         if input_data.winner:
-            winner_id = self._players[input_data.winner]
+            try:
+                winner_id = self._players[input_data.winner]
+            except KeyError:
+                raise DataException(f'Unknown winner {input_data.winner} specified')
             army1.winner = army1.player_id == winner_id
             army2.winner = army2.player_id == winner_id
 
@@ -228,6 +240,12 @@ class ShowDataBuilder:
         for army in [showdata.army1, showdata.army2]:
             if army:
                 self._validate_army(army, showdata.game_id)
+
+    def get_campaign_info(self, input_data):
+        if input_data.campaign:
+            return CampaignInfo(campaign_id=self._campaigns[input_data.campaign], sequence=input_data.campaignsequence)
+        else:
+            return None
 
 def parse_input(data):
     input_data = InputData()

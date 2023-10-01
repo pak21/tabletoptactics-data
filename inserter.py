@@ -11,12 +11,6 @@ def load_objects(objecttype, table, cursor):
     cursor.execute(f'select {objecttype}, id from {table}')
     return dict(cursor.fetchall())
 
-def load_games(cursor):
-    return load_objects('game', 'games', cursor)
-
-def load_showtypes(cursor):
-    return load_objects('showtype', 'showtypes', cursor)
-
 def load_factions(cursor):
     cursor.execute('select f.id, f.faction, g.id from factions as f join games as g on f.game_id = g.id')
     return cursor.fetchall()
@@ -25,15 +19,17 @@ def load_subfactions(cursor):
     cursor.execute('select s.id, s.subfaction, f.id, f.faction from subfactions as s join factions as f on s.faction_id = f.id')
     return cursor.fetchall()
 
-def load_players(cursor):
-    return load_objects('nickname', 'players', cursor)
-
 def add_show(showdata, cursor):
     cursor.execute('insert into shows(release_date, game_id, showtype_id, slug, youtube_slug, servoskull_id) values (%s, %s, %s, %s, %s, %s) returning id', (showdata.release_date, showdata.game_id, showdata.showtype_id, showdata.slug, showdata.youtube_slug, showdata.servoskull_id))
     return cursor.fetchall()[0][0]
 
 def add_army(show_id, army, cursor):
-    cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, army.winner, army.edition))
+    if army:
+        cursor.execute('insert into armies(show_id, player_id, faction_id, subfaction_id, winner, codex_edition) values (%s, %s, %s, %s, %s, %s)', (show_id, army.player_id, army.faction_id, army.subfaction_id, army.winner, army.edition))
+
+def add_campaign_entry(showdata, show_id, cursor):
+    if showdata.campaign_info:
+        cursor.execute('insert into narrativeshows(show_id, campaign_id, campaign_sequence) values (%s, %s, %s)', (show_id, showdata.campaign_info.campaign_id, showdata.campaign_info.sequence))
 
 def main():
     conn = psycopg2.connect('dbname=tabletoptactics')
@@ -42,21 +38,23 @@ def main():
         input_data = tt.parse_input(f.read())
 
     with contextlib.closing(conn.cursor()) as cursor:
-        games = load_games(cursor)
-        showtypes = load_showtypes(cursor)
-        players = load_players(cursor)
+        games = load_objects('game', 'games', cursor)
+        showtypes = load_objects('showtype', 'showtypes', cursor)
+        players = load_objects('nickname', 'players', cursor)
+        campaigns = load_objects('campaign', 'campaigns', cursor)
         factions = load_factions(cursor)
         subfactions = load_subfactions(cursor)
 
-        builder = tt.ShowDataBuilder(games, showtypes, players, factions, subfactions)
+        builder = tt.ShowDataBuilder(games, showtypes, players, campaigns, factions, subfactions)
 
         showdata = builder.build(input_data)
 
         show_id = add_show(showdata, cursor)
 
         add_army(show_id, showdata.army1, cursor)
-        if showdata.army2:
-            add_army(show_id, showdata.army2, cursor)
+        add_army(show_id, showdata.army2, cursor)
+
+        add_campaign_entry(showdata, show_id, cursor)
 
         conn.commit()
 

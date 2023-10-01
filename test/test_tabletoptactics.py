@@ -45,6 +45,12 @@ def players():
     }
 
 @pytest.fixture
+def campaigns():
+    return {
+        'Cinder Ark': 1,
+    }
+
+@pytest.fixture
 def dummyshow(games, showtypes):
     return tt.ShowData(
         release_date=datetime.date(2023, 1, 1),
@@ -60,8 +66,8 @@ def dummyshow(games, showtypes):
     )
 
 @pytest.fixture
-def showdatabuilder(games, showtypes, players, factions, subfactions):
-    return tt.ShowDataBuilder(games, showtypes, players, factions, subfactions)
+def showdatabuilder(games, showtypes, players, campaigns, factions, subfactions):
+    return tt.ShowDataBuilder(games, showtypes, players, campaigns, factions, subfactions)
 
 @pytest.mark.parametrize('unnormalized,expected',[
     ('Dark Angels', 'dark-angels'),
@@ -299,6 +305,14 @@ def test_sets_winner_if_specified(showdatabuilder):
     assert army1.winner == False
     assert army2.winner == True
 
+def test_set_winner_throws_correct_exception_if_unknown_player(showdatabuilder):
+    army1 = tt.ArmyInfo(faction_id=1, faction='Space Marines', player_id=1)
+    army2 = tt.ArmyInfo(faction_id=2, faction='Tyranids', player_id=2)
+    input_data = tt.InputData(winner='Grotty')
+
+    with pytest.raises(tt.DataException):
+        showdatabuilder.set_winner(army1, army2, input_data)
+
 def _create_showdata(game, faction, subfaction, games, factions, subfactions):
     army1 = tt.ArmyInfo(
         faction_id=[fid for fid, f, _ in factions if f == faction][0],
@@ -344,3 +358,16 @@ def test_validate_throws_exception_if_subfaction_doesnt_match_faction(showdatabu
 
     with pytest.raises(tt.ValidationException):
         showdatabuilder.validate(showdata)
+
+def test_get_campaign_returns_object_if_campaign_is_set(showdatabuilder):
+    input_data = tt.InputData(campaign='Cinder Ark', campaignsequence=2)
+
+    campaign_info = showdatabuilder.get_campaign_info(input_data)
+
+    assert campaign_info.campaign_id == 1
+    assert campaign_info.sequence == 2
+
+def test_get_campaign_returns_none_if_campaign_is_not_set(showdatabuilder):
+    campaign_info = showdatabuilder.get_campaign_info(tt.InputData())
+
+    assert campaign_info is None
