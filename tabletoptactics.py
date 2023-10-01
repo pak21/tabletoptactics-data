@@ -1,5 +1,6 @@
 import dataclasses
 import datetime
+import re
 import urllib.parse
 
 @dataclasses.dataclass
@@ -88,16 +89,25 @@ class ShowDataBuilder:
         try:
             return lookup[missing_value], missing_value
         except KeyError:
-            raise DataException(f'No value found in slug {slug} and missing value {missing_value} invalid')
+            return None, None
 
     def get_game(self, slug, missing_value):
         if 'warhammer-40k' in slug:
             return self._games['Warhammer 40,000'], 'Warhammer 40,000'
 
-        return self._get_id_from_slug(slug, self._games, missing_value)
+        game_id, game = self._get_id_from_slug(slug, self._games, missing_value)
+
+        if game_id is None:
+            raise DataException(f'No game found in slug {slug} and missing value {missing_value} invalid')
+
+        return game_id, game
 
     def get_showtype(self, slug, missing_value):
         showtype_id, _ = self._get_id_from_slug(slug, self._showtypes, missing_value)
+
+        if showtype_id is None:
+            raise DataException(f'No show type found in slug {slug} and missing value {missing_value} invalid')
+
         return showtype_id
 
     def extract_armies_from_slug(self, slug):
@@ -241,9 +251,23 @@ class ShowDataBuilder:
             if army:
                 self._validate_army(army, showdata.game_id)
 
-    def get_campaign_info(self, input_data):
-        if input_data.campaign:
-            return CampaignInfo(campaign_id=self._campaigns[input_data.campaign], sequence=input_data.campaignsequence)
+    @staticmethod
+    def _get_episode_number_from_slug(slug):
+        match = re.search(r'-ep-([0-9])-+', slug)
+        return int(match.group(1)) if match else None
+
+    def get_campaign_info(self, slug, input_data):
+        if input_data.campaign is not None:
+            campaign_id = self._campaigns[input_data.campaign]
+        else:
+            campaign_id, _ = self._get_id_from_slug(slug, self._campaigns, None)
+
+        sequence = input_data.campaignsequence or self._get_episode_number_from_slug(slug)
+
+        if campaign_id is not None:
+            if sequence is None:
+                raise DataException(f'Campaign ID {campaign_id} specified without sequence number')
+            return CampaignInfo(campaign_id=campaign_id, sequence=sequence)
         else:
             return None
 

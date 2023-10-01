@@ -48,6 +48,7 @@ def players():
 def campaigns():
     return {
         'Cinder Ark': 1,
+        'The Plague War': 2,
     }
 
 @pytest.fixture
@@ -359,15 +360,42 @@ def test_validate_throws_exception_if_subfaction_doesnt_match_faction(showdatabu
     with pytest.raises(tt.ValidationException):
         showdatabuilder.validate(showdata)
 
-def test_get_campaign_returns_object_if_campaign_is_set(showdatabuilder):
+def test_get_campaign_returns_object_if_campaign_is_in_slug(showdatabuilder):
+    slug = 'death-guard-vs-ordo-sepultura-the-plague-war-ep-3-warhammer-40k-crusade-report'
+
+    campaign_info = showdatabuilder.get_campaign_info(slug, tt.InputData())
+
+    assert campaign_info.campaign_id == 2
+    assert campaign_info.sequence == 3
+
+def test_get_campaign_returns_object_if_campaign_is_in_input_data(showdatabuilder):
+    slug = 'dark-angels-vs-red-corsairs-warhammer-40000-narrative-report'
     input_data = tt.InputData(campaign='Cinder Ark', campaignsequence=2)
 
-    campaign_info = showdatabuilder.get_campaign_info(input_data)
+    campaign_info = showdatabuilder.get_campaign_info(slug, input_data)
+
+    assert campaign_info.campaign_id == 1
+    assert campaign_info.sequence == 2
+
+def test_get_campaign_prefers_inputdata_if_both_are_set(showdatabuilder):
+    slug = 'death-guard-vs-ordo-sepultura-the-plague-war-ep-3-warhammer-40k-crusade-report'
+    input_data = tt.InputData(campaign='Cinder Ark', campaignsequence=2)
+
+    campaign_info = showdatabuilder.get_campaign_info(slug, input_data)
 
     assert campaign_info.campaign_id == 1
     assert campaign_info.sequence == 2
 
 def test_get_campaign_returns_none_if_campaign_is_not_set(showdatabuilder):
-    campaign_info = showdatabuilder.get_campaign_info(tt.InputData())
+    slug = 'dark-angels-vs-red-corsairs-warhammer-40000-narrative-report'
+
+    campaign_info = showdatabuilder.get_campaign_info(slug, tt.InputData())
 
     assert campaign_info is None
+
+def test_get_campaign_throws_exception_if_campaign_specified_without_sequence(showdatabuilder):
+    slug = 'dark-angels-vs-red-corsairs-warhammer-40000-narrative-report'
+    input_data = tt.InputData(campaign='Cinder Ark')
+
+    with pytest.raises(tt.DataException):
+        campaign_info = showdatabuilder.get_campaign_info(slug, input_data)
