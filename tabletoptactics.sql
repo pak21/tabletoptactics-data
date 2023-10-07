@@ -1092,6 +1092,10 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 628	346	6	27	28	f	10
 629	346	1	1	158	t	10
 630	346	4	5	127	f	10
+631	347	7	1	22	\N	10
+632	348	5	1	159	t	10
+633	348	1	7	140	f	10
+634	349	7	1	22	\N	10
 \.
 
 
@@ -1614,6 +1618,9 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 344	2023-09-29	1	3	space-marines-vs-death-guard-the-plague-war-ep-4-warhammer-40k-crusade-report	\N	6
 345	2023-09-22	1	3	death-guard-vs-ordo-sepultura-the-plague-war-ep-3-warhammer-40k-crusade-report	\N	\N
 346	2023-09-30	1	1	new-codex-4-player-game-space-marines-vs-emperors-children-warhammer-40k-battle-report	JhtDrSUAWGY	3
+347	2023-09-30	1	7	how-to-paint-ultramarines-warhammer-40k-painting-guide	\N	\N
+348	2023-10-03	1	1	new-codex-space-marines-vs-orks-warhammer-40k-battle-report	\N	4
+349	2023-10-04	1	7	how-to-paint-helmets-warhammer-40k-painting-guide	\N	\N
 \.
 
 
@@ -1792,6 +1799,8 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 156	T'au Sept	20
 157	Anvil Siege Force	1
 158	First Company Task Force	1
+159	Firestorm Assault Force	1
+160	Vanguard Spearhead	1
 \.
 
 
@@ -1799,7 +1808,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 630, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 634, true);
 
 
 --
@@ -1848,7 +1857,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 23, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 346, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 349, true);
 
 
 --
@@ -1862,7 +1871,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 158, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 160, true);
 
 
 --
