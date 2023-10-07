@@ -138,7 +138,7 @@ class ShowDataBuilder:
 
         match len(armies_found):
             case 0:
-                raise DataException(f'Found no armies in slug "{slug}"; giving up')
+                return [None, None]
 
             case 1:
                 idx = list(armies_found)[0]
@@ -265,6 +265,9 @@ class ShowDataBuilder:
                 raise ValidationException(f'Subfaction ID {army.subfaction_id} is not a subfaction of {army.faction}')
 
     def validate(self, showdata):
+        if showdata.army1 is None:
+            raise ValidationException(f'Army 1 missing')
+
         for army in [showdata.army1, showdata.army2]:
             if army:
                 self._validate_army(army, showdata.game_id)

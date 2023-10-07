@@ -101,11 +101,13 @@ def test_extract_armies_from_slug_recognises_slaves_to_darkness_as_a_faction(sho
     assert armies[0].faction_id == 5
     assert armies[1].faction_id == 6
 
-def test_extract_armies_from_slug_throws_exception_if_no_armies_found(showdatabuilder):
+def test_extract_armies_from_slug_does_not_throw_exception_if_no_armies_found(showdatabuilder):
     slug = 'starfleet-vs-klingons-star-trek-battle-report'
 
-    with pytest.raises(tt.DataException):
-        armies = showdatabuilder.extract_armies_from_slug(slug)
+    armies = showdatabuilder.extract_armies_from_slug(slug)
+
+    assert armies[0] is None
+    assert armies[1] is None
 
 def test_extract_armies_from_slug_extracts_one_army(showdatabuilder):
     slug = 'how-to-paint-dark-angels-warhammer-40k-painting-tutorial'
@@ -356,6 +358,13 @@ def test_validate_does_not_throw_if_subfaction_matches_faction(showdatabuilder, 
 
 def test_validate_throws_exception_if_subfaction_doesnt_match_faction(showdatabuilder, games, factions, subfactions):
     showdata = _create_showdata('Warhammer 40,000', 'Chaos Space Marines', 'Dark Angels', games, factions, subfactions)
+
+    with pytest.raises(tt.ValidationException):
+        showdatabuilder.validate(showdata)
+
+def test_validate_throws_exception_if_no_army1(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Space Marines', 'Dark Angels', games, factions, subfactions)
+    showdata.army1 = None
 
     with pytest.raises(tt.ValidationException):
         showdatabuilder.validate(showdata)
