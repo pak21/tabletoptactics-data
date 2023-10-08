@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import contextlib
 import sys
 
@@ -32,9 +33,14 @@ def add_campaign_entry(showdata, show_id, cursor):
         cursor.execute('insert into narrativeshows(show_id, campaign_id, campaign_sequence) values (%s, %s, %s)', (show_id, showdata.campaign.campaign_id, showdata.campaign.sequence))
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--dryrun', action='store_true', help='Print out what would be written to the database instead of doing it')
+    parser.add_argument('inputdata')
+    args = parser.parse_args()
+
     conn = psycopg2.connect('dbname=tabletoptactics')
 
-    with open(sys.argv[1]) as f:
+    with open(args.inputdata) as f:
         input_data = tt.parse_input(f.read())
 
     with contextlib.closing(conn.cursor()) as cursor:
@@ -49,14 +55,17 @@ def main():
 
         showdata = builder.build(input_data)
 
-        show_id = add_show(showdata, cursor)
+        if args.dryrun:
+            print(showdata)
+        else:
+            show_id = add_show(showdata, cursor)
 
-        add_army(show_id, showdata.army1, cursor)
-        add_army(show_id, showdata.army2, cursor)
+            add_army(show_id, showdata.army1, cursor)
+            add_army(show_id, showdata.army2, cursor)
 
-        add_campaign_entry(showdata, show_id, cursor)
+            add_campaign_entry(showdata, show_id, cursor)
 
-        conn.commit()
+            conn.commit()
 
 if __name__ == '__main__':
     main()
