@@ -1096,6 +1096,10 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 632	348	5	1	159	t	10
 633	348	1	7	140	f	10
 634	349	7	1	22	\N	10
+635	350	5	1	119	f	10
+636	350	1	33	144	t	10
+637	351	4	3	126	f	10
+638	351	3	11	143	t	10
 \.
 
 
@@ -1249,6 +1253,7 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 24	334	9	2
 25	344	9	4
 26	345	9	3
+27	350	9	5
 \.
 
 
@@ -1621,6 +1626,8 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 347	2023-09-30	1	7	how-to-paint-ultramarines-warhammer-40k-painting-guide	\N	\N
 348	2023-10-03	1	1	new-codex-space-marines-vs-orks-warhammer-40k-battle-report	\N	4
 349	2023-10-04	1	7	how-to-paint-helmets-warhammer-40k-painting-guide	\N	\N
+350	2023-10-06	1	3	space-marines-vs-death-guard-the-plague-war-ep-5-warhammer-40k-crusade-report	\N	6
+351	2023-10-07	1	1	thousand-sons-vs-world-eaters-warhammer-40k-battle-report	RTp3P_Hz8Bg	5
 \.
 
 
@@ -1808,7 +1815,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 634, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 638, true);
 
 
 --
@@ -1843,7 +1850,7 @@ SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 26, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 27, true);
 
 
 --
@@ -1857,7 +1864,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 23, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 349, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 351, true);
 
 
 --

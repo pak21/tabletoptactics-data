@@ -42,11 +42,11 @@ order by n desc;
 ```
      fullname     | n
 ------------------+----
- Katie Foad       | 72
- James Jordan     | 72
- Lawrence Baker   | 46
- Michael Hebditch | 40
- Joe Ponting      | 35
+ Katie Foad       | 77
+ James Jordan     | 76
+ Lawrence Baker   | 51
+ Michael Hebditch | 42
+ Joe Ponting      | 37
 ```
 
 ### Most played faction by player
@@ -74,23 +74,24 @@ where rank = 1;
  Fletcher Giles   | T'au Empire         | 12
  James Beaver     | Necrons             |  1
  James Hamill     | Adepta Sororitas    |  1
- James Jordan     | Space Marines       | 26
+ James Jordan     | Space Marines       | 31
  James Otero      | Astra Militarum     |  1
- Joe Ponting      | Chaos Space Marines | 25
- Josh Hill        | Sylvaneth           |  1
- Josh Hill        | Slaves to Darkness  |  1
+ Joe Ponting      | Chaos Space Marines | 26
  Josh Hill        | Space Marines       |  1
- Katie Foad       | Tyranids            | 25
- Lawrence Baker   | Space Marines       | 20
+ Josh Hill        | Slaves to Darkness  |  1
+ Josh Hill        | Sylvaneth           |  1
+ Katie Foad       | Tyranids            | 27
+ Lawrence Baker   | Space Marines       | 21
  Lennard          | Space Marines       |  1
  Mark             | Genestealer Cults   |  1
  Matt Jarvis      | Aeldari             |  2
  Maxine Blythin   | Space Marines       |  1
  Michael Hebditch | Necrons             | 19
  Ridvan Martinez  | Drukhari            |  2
+ Rob              | Chaos Space Marines |  1
  Sam Weeks        | Space Marines       |  2
  Steve Joll       | Space Marines       |  1
- Stig             | Adeptus Mechanicus  | 21
+ Stig             | Adeptus Mechanicus  | 23
 ```
 
 i.e. Chaos Lord Beard's most played faction is Chaos Space Marines, which he has done 25 times.
@@ -114,41 +115,42 @@ order by wins desc, losses;
 ```
         faction        | wins | losses
 -----------------------+------+--------
- Space Marines         |   39 |     28
- Orks                  |   21 |     10
+ Space Marines         |   46 |     30
+ Orks                  |   21 |     11
+ Chaos Space Marines   |   17 |     19
  Aeldari               |   16 |     13
- Chaos Space Marines   |   16 |     17
- T'au Empire           |   15 |     12
- Necrons               |   12 |      9
- Astra Militarum       |   12 |     16
- World Eaters          |   10 |      4
+ T'au Empire           |   15 |     13
+ World Eaters          |   13 |      4
+ Necrons               |   12 |     10
+ Astra Militarum       |   12 |     18
  Soulblight Gravelords |    9 |      0
- Adeptus Custodes      |    8 |     10
- Adeptus Mechanicus    |    8 |     14
- Tyranids              |    8 |     16
- Death Guard           |    7 |      5
+ Death Guard           |    9 |      7
+ Adeptus Custodes      |    9 |     11
+ Tyranids              |    9 |     17
+ Adeptus Mechanicus    |    8 |     17
+ Adepta Sororitas      |    7 |      9
+ Grey Knights          |    7 |     12
  Chaos Knights         |    6 |      3
  Imperial Knights      |    6 |      6
  Leagues of Votann     |    6 |      8
- Adepta Sororitas      |    6 |      9
- Drukhari              |    6 |     10
- Grey Knights          |    6 |     12
+ Drukhari              |    6 |     11
  Harlequins            |    5 |      0
  Seraphon              |    5 |      2
  Idoneth Deepkin       |    5 |      3
- Genestealer Cults     |    4 |      6
- Thousand Sons         |    4 |      7
- Chaos Daemons         |    4 |      8
- Stormcast Eternals    |    3 |      4
+ Genestealer Cults     |    5 |      6
+ Maggotkin of Nurgle   |    4 |      5
+ Thousand Sons         |    4 |      8
+ Chaos Daemons         |    4 |      9
  Orruk Warclans        |    3 |      4
- Maggotkin of Nurgle   |    3 |      5
- Slaves to Darkness    |    3 |      5
+ Stormcast Eternals    |    3 |      4
  Hedonites of Slaanesh |    3 |      5
- Ossiarch Bonereapers  |    3 |      6
+ Slaves to Darkness    |    3 |      5
+ Ossiarch Bonereapers  |    3 |      7
  Blades of Khorne      |    2 |      1
  Skaven                |    2 |      1
- Nighthaunt            |    2 |      3
  Ogor Mawtribes        |    2 |      3
+ Nighthaunt            |    2 |      3
+ Imperium              |    1 |      0
  Fyreslayers           |    0 |      1
  Sylvaneth             |    0 |      2
 ```
