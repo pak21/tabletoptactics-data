@@ -187,16 +187,22 @@ class ShowDataBuilder:
     def update_army_info(self, army, input_data, army_number):
         prefix = f'army{army_number}'
         player = getattr(input_data, prefix + 'player')
+        faction = getattr(input_data, prefix + 'faction')
 
         if army:
             try:
                 army.player_id = self._players[player]
             except KeyError:
                 raise DataException(f'Invalid player {player} supplied for army {army_number}')
+
+            if faction:
+                try:
+                    army.faction_id = self._factions[faction].faction_id
+                    army.faction = faction
+                except KeyError:
+                    raise DataException(f'Invalid faction {faction} supplied for army {army_number}')
         else:
             if player:
-                faction = getattr(input_data, prefix + 'faction')
-
                 try:
                     faction_id = self._factions[faction].faction_id
                 except KeyError:

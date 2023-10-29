@@ -288,6 +288,14 @@ def test_update_army_creates_army(showdatabuilder):
     assert new_army is not None
     assert new_army.faction_id == 2
 
+def test_update_army_prefers_faction_from_input_data(showdatabuilder):
+    old_army = tt.ArmyInfo(faction_id=1, faction='Space Marines')
+    input_data = tt.InputData(army1player='Spider', army1faction='Chaos Space Marines')
+
+    new_army = showdatabuilder.update_army_info(old_army, input_data, 1)
+
+    assert new_army.faction_id == 2
+
 def test_set_winner_does_nothing_if_not_specified(showdatabuilder):
     army1 = tt.ArmyInfo(faction_id=1, faction='Space Marines')
     army2 = tt.ArmyInfo(faction_id=2, faction='Tyranids')
