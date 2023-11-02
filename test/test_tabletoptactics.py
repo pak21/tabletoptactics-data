@@ -219,6 +219,13 @@ def test_get_showtype_matches_crusade(showdatabuilder):
 
     assert showtype_id == 2
 
+def test_get_showtype_prefers_override_value(showdatabuilder):
+    slug = 'aeldari-vs-imperial-knights-warhammer-40k-battle-report'
+
+    showtype_id = showdatabuilder.get_showtype(slug, 'Narrative report')
+
+    assert showtype_id == 2
+
 def test_get_edition_returns_3_for_age_of_sigmar(showdatabuilder):
     army = tt.ArmyInfo(faction_id=1, faction='Seraphon')
     game = 'Age of Sigmar'

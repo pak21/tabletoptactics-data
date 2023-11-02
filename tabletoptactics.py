@@ -83,35 +83,35 @@ class ShowDataBuilder:
     def normalize_for_slug(self, s):
         return s.lower().replace(' ', '-').replace(',', '').replace('é', 'e').replace("'", '')
 
-    def _get_id_from_slug(self, slug, lookup, missing_value):
+    def _get_id_from_slug(self, slug, lookup, override_value):
+        if override_value:
+            return lookup[override_value], override_value
+
         for obj, obj_id in lookup.items():
             if self.normalize_for_slug(obj) in slug:
                 return obj_id, obj
 
-        try:
-            return lookup[missing_value], missing_value
-        except KeyError:
-            return None, None
+        return None, None
 
-    def get_game(self, slug, missing_value):
+    def get_game(self, slug, override_value):
         if 'warhammer-40k' in slug:
             return self._games['Warhammer 40,000'], 'Warhammer 40,000'
 
-        game_id, game = self._get_id_from_slug(slug, self._games, missing_value)
+        game_id, game = self._get_id_from_slug(slug, self._games, override_value)
 
         if game_id is None:
-            raise DataException(f'No game found in slug {slug} and missing value {missing_value} invalid')
+            raise DataException(f'No game found in slug {slug} and override value {override_value} invalid')
 
         return game_id, game
 
-    def get_showtype(self, slug, missing_value):
+    def get_showtype(self, slug, override_value):
         if 'crusade-report' in slug:
             return self._showtypes['Narrative report']
 
-        showtype_id, _ = self._get_id_from_slug(slug, self._showtypes, missing_value)
+        showtype_id, _ = self._get_id_from_slug(slug, self._showtypes, override_value)
 
         if showtype_id is None:
-            raise DataException(f'No show type found in slug {slug} and missing value {missing_value} invalid')
+            raise DataException(f'No show type found in slug {slug} and override value {override_value} invalid')
 
         return showtype_id
 
