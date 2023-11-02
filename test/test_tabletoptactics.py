@@ -132,6 +132,29 @@ def test_extract_armies_from_slug_handles_chaos_space_marines(showdatabuilder):
     assert armies[0].faction_id == 4
     assert armies[1].faction_id == 2
 
+def test_extract_armies_from_slug_finds_player(showdatabuilder):
+    slug = 'spiders-world-eaters-league-list-warhammer-40k-faction-focus'
+
+    armies = showdatabuilder.extract_armies_from_slug(slug)
+
+    assert armies[0].player_id == 1
+
+def test_extract_armies_from_slug_finds_player_without_faction(showdatabuilder):
+    slug = 'jinx-climbs-a-wall'
+
+    armies = showdatabuilder.extract_armies_from_slug(slug)
+
+    assert armies[0].player_id == 2
+    assert armies[0].faction_id is None
+
+def test_extract_armies_from_slug_extracts_two_players(showdatabuilder):
+    slug = 'jinxs-space-marines-vs-spiders-chaos-space-marines-warhammer-40000-battle-report'
+
+    armies = showdatabuilder.extract_armies_from_slug(slug)
+
+    assert armies[0].player_id == 2
+    assert armies[1].player_id == 1
+
 def test_parse_url_parses_correctly(showdatabuilder):
     raw_url = 'https://tabletoptactics.tv/2023/09/12/world-eaters-vs-adeptus-custodes-warhammer-40k-battle-report/'
 

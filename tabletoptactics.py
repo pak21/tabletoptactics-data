@@ -115,8 +115,19 @@ class ShowDataBuilder:
 
         return showtype_id
 
+    @staticmethod
+    def _merge_army_and_player(army, player_id):
+        match (army, player_id):
+            case (None, None): return None
+            case (None, _): return ArmyInfo(faction=None, faction_id=None, player_id=player_id)
+            case (_, None): return army
+            case (_, _):
+                army.player_id = player_id
+                return army
+
     def extract_armies_from_slug(self, slug):
         armies_found = {}
+        players_found = {}
 
         for faction, faction_info in self._factions.items():
             faction_index = slug.find(self.normalize_for_slug(faction))
@@ -136,19 +147,21 @@ class ShowDataBuilder:
             if subfaction_index != -1:
                 armies_found[subfaction_index] = ArmyInfo(faction_id=subfaction_info.faction_id, faction=subfaction_info.faction, subfaction_id=subfaction_info.subfaction_id)
 
-        match len(armies_found):
-            case 0:
-                return [None, None]
+        if len(armies_found) > 2:
+            raise DataException(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
 
-            case 1:
-                idx = list(armies_found)[0]
-                return [armies_found[idx], None]
+        for player, player_id in self._players.items():
+            player_index = slug.find(self.normalize_for_slug(player))
+            if player_index != -1:
+                players_found[player_index] = player_id
 
-            case 2:
-                return [armies_found[k] for k in sorted(armies_found)]
+        if len(players_found) > 2:
+            raise DataException(f'Found {len(players_found)} players in slug "{slug}"; giving up')
 
-            case _:
-                raise DataException(f'Found {len(armies_found)} armies in slug "{slug}"; giving up')
+        armies = [army for _, army in sorted(armies_found.items())] + [None] * (2 - len(armies_found))
+        players = [player_id for _, player_id in sorted(players_found.items())] + [None] * (2 - len(players_found))
+
+        return [self._merge_army_and_player(a, p) for a, p in zip(armies, players)]
 
     _FACTION_DATES_9TH = {
         'Aeldari': datetime.date(2022, 2, 26),
