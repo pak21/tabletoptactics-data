@@ -203,10 +203,11 @@ class ShowDataBuilder:
         faction = getattr(input_data, prefix + 'faction')
 
         if army:
-            try:
-                army.player_id = self._players[player]
-            except KeyError:
-                raise DataException(f'Invalid player {player} supplied for army {army_number}')
+            if player:
+                try:
+                    army.player_id = self._players[player]
+                except KeyError:
+                    raise DataException(f'Invalid player {player} supplied for army {army_number}')
 
             if faction:
                 try:
@@ -276,6 +277,9 @@ class ShowDataBuilder:
         return showdata
 
     def _validate_army(self, army, game_id):
+        if army.player_id is None:
+            raise ValidationException(f'Army does not have a player set')
+
         if game_id != self._factions_to_games[army.faction_id]:
             raise ValidationException(f'Faction {army.faction} does not belong to game ID {game_id}')
 

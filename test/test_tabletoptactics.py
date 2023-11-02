@@ -271,11 +271,12 @@ def test_update_army_set_army2_player(showdatabuilder):
 
     assert new_army.player_id == 1
 
-def test_update_army_requires_player(showdatabuilder):
+def test_update_army_throws_if_unknown_player(showdatabuilder):
     old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
+    input_data = tt.InputData(army1player='Grotty')
 
     with pytest.raises(tt.DataException):
-        new_army = showdatabuilder.update_army_info(old_army, tt.InputData(), 1)
+        new_army = showdatabuilder.update_army_info(old_army, input_data, 1)
 
 def test_update_army_does_not_require_player_if_none(showdatabuilder):
     new_army = showdatabuilder.update_army_info(None, tt.InputData(), 1)
@@ -348,6 +349,7 @@ def test_set_winner_throws_correct_exception_if_unknown_player(showdatabuilder):
 
 def _create_showdata(game, faction, subfaction, games, factions, subfactions):
     army1 = tt.ArmyInfo(
+        player_id=1,
         faction_id=[fid for fid, f, _ in factions if f == faction][0],
         faction=faction,
         subfaction_id=[sid for sid, s, _, _ in subfactions if s == subfaction][0] if subfaction else None
@@ -396,6 +398,13 @@ def test_validate_throws_exception_if_subfaction_doesnt_match_faction(showdatabu
 def test_validate_throws_exception_if_no_army1(showdatabuilder, games, factions, subfactions):
     showdata = _create_showdata('Warhammer 40,000', 'Space Marines', 'Dark Angels', games, factions, subfactions)
     showdata.army1 = None
+
+    with pytest.raises(tt.ValidationException):
+        showdatabuilder.validate(showdata)
+
+def test_validate_throws_exception_if_no_player_set(showdatabuilder, games, factions, subfactions):
+    showdata = _create_showdata('Warhammer 40,000', 'Space Marines', 'Dark Angels', games, factions, subfactions)
+    showdata.army1.player_id = None
 
     with pytest.raises(tt.ValidationException):
         showdatabuilder.validate(showdata)
