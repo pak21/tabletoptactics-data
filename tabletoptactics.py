@@ -18,6 +18,11 @@ class CampaignInfo:
     sequence: int
 
 @dataclasses.dataclass
+class LeagueInfo:
+    season: int
+    episode: int
+
+@dataclasses.dataclass
 class ShowData:
     release_date: datetime.date
     slug: str
@@ -28,6 +33,7 @@ class ShowData:
     servoskull_id: int
 
     campaign: CampaignInfo
+    league: LeagueInfo
 
     army1: ArmyInfo
     army2: ArmyInfo
@@ -43,6 +49,9 @@ class InputData:
 
     campaign: str = None
     campaignsequence: int = None
+
+    leagueseason: str = None
+    leagueepisode: str = None
 
     army1player: str = None
     army1faction: str = None
@@ -269,8 +278,9 @@ class ShowDataBuilder:
             army2.edition = self.get_edition(army2, game, release_date)
 
         campaign = self.get_campaign_info(slug, input_data)
+        league = self.get_league_info(input_data)
 
-        showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, campaign, army1, army2)
+        showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, campaign, league, army1, army2)
 
         self.validate(showdata)
 
@@ -314,6 +324,12 @@ class ShowDataBuilder:
             return CampaignInfo(campaign_id=campaign_id, sequence=sequence)
         else:
             return None
+
+    def get_league_info(self, input_data):
+        if input_data.leagueseason is None:
+            return None
+
+        return LeagueInfo(season=int(input_data.leagueseason), episode=int(input_data.leagueepisode))
 
 def parse_input(data):
     input_data = InputData()

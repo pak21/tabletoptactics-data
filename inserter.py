@@ -32,6 +32,10 @@ def add_campaign_entry(showdata, show_id, cursor):
     if showdata.campaign:
         cursor.execute('insert into narrativeshows(show_id, campaign_id, campaign_sequence) values (%s, %s, %s)', (show_id, showdata.campaign.campaign_id, showdata.campaign.sequence))
 
+def add_league_entry(showdata, show_id, cursor):
+    if showdata.league:
+        cursor.execute('insert into leagueshows(show_id, league_season, episode) values (%s, %s, %s)', (show_id, showdata.league.season, showdata.league.episode))
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dryrun', action='store_true', help='Print out what would be written to the database instead of doing it')
@@ -64,6 +68,7 @@ def main():
             add_army(show_id, showdata.army2, cursor)
 
             add_campaign_entry(showdata, show_id, cursor)
+            add_league_entry(showdata, show_id, cursor)
 
             conn.commit()
 

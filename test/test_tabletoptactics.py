@@ -371,6 +371,7 @@ def _create_showdata(game, faction, subfaction, games, factions, subfactions):
         showtype_id=1,
         servoskull_id=None,
         campaign=None,
+        league=None,
 
         army1=army1,
         army2=None
@@ -455,3 +456,16 @@ def test_get_campaign_throws_exception_if_campaign_specified_without_sequence(sh
 
     with pytest.raises(tt.DataException):
         campaign_info = showdatabuilder.get_campaign_info(slug, input_data)
+
+def test_get_league_info_returns_none_if_league_is_not_set(showdatabuilder):
+    league_info = showdatabuilder.get_league_info(tt.InputData())
+
+    assert league_info is None
+
+def test_get_league_info_returns_object_if_league_is_set(showdatabuilder):
+    input_data = tt.InputData(leagueseason=1, leagueepisode=2)
+
+    league_info = showdatabuilder.get_league_info(input_data)
+
+    assert league_info.season == 1
+    assert league_info.episode == 2
