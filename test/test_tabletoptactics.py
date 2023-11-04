@@ -458,14 +458,34 @@ def test_get_campaign_throws_exception_if_campaign_specified_without_sequence(sh
         campaign_info = showdatabuilder.get_campaign_info(slug, input_data)
 
 def test_get_league_info_returns_none_if_league_is_not_set(showdatabuilder):
-    league_info = showdatabuilder.get_league_info(tt.InputData())
+    slug = 'tau-empire-vs-death-guard-warhammer-40k-league-report'
+
+    league_info = showdatabuilder.get_league_info(slug, tt.InputData())
 
     assert league_info is None
 
 def test_get_league_info_returns_object_if_league_is_set(showdatabuilder):
+    slug = 'tau-empire-vs-death-guard-warhammer-40k-league-report'
     input_data = tt.InputData(leagueseason=1, leagueepisode=2)
 
-    league_info = showdatabuilder.get_league_info(input_data)
+    league_info = showdatabuilder.get_league_info(slug, input_data)
 
     assert league_info.season == 1
     assert league_info.episode == 2
+
+def test_get_league_info_returns_data_from_slug(showdatabuilder):
+    slug = 'adepta-sororitas-vs-chaos-knights-warhammer-40k-league-report-s3-ep-2'
+
+    league_info = showdatabuilder.get_league_info(slug, tt.InputData())
+
+    assert league_info.season == 3
+    assert league_info.episode == 2
+
+def test_get_league_info_prefers_data_from_inputdata(showdatabuilder):
+    slug = 'adepta-sororitas-vs-chaos-knights-warhammer-40k-league-report-s3-ep-2'
+    input_data = tt.InputData(leagueseason=1, leagueepisode=4)
+
+    league_info = showdatabuilder.get_league_info(slug, input_data)
+
+    assert league_info.season == 1
+    assert league_info.episode == 4

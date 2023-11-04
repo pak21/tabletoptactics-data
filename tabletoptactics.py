@@ -278,7 +278,7 @@ class ShowDataBuilder:
             army2.edition = self.get_edition(army2, game, release_date)
 
         campaign = self.get_campaign_info(slug, input_data)
-        league = self.get_league_info(input_data)
+        league = self.get_league_info(slug, input_data)
 
         showdata = ShowData(release_date, slug, input_data.youtube, game_id, showtype_id, servoskull_id, campaign, league, army1, army2)
 
@@ -306,8 +306,13 @@ class ShowDataBuilder:
                 self._validate_army(army, showdata.game_id)
 
     @staticmethod
+    def _get_season_from_slug(slug):
+        match = re.search(r'-s([0-9]+)-?', slug)
+        return int(match.group(1)) if match else None
+
+    @staticmethod
     def _get_episode_number_from_slug(slug):
-        match = re.search(r'-ep-([0-9])-+', slug)
+        match = re.search(r'-ep-([0-9]+)-?', slug)
         return int(match.group(1)) if match else None
 
     def get_campaign_info(self, slug, input_data):
@@ -325,11 +330,11 @@ class ShowDataBuilder:
         else:
             return None
 
-    def get_league_info(self, input_data):
-        if input_data.leagueseason is None:
-            return None
+    def get_league_info(self, slug, input_data):
+        season = int(input_data.leagueseason) if input_data.leagueseason else self._get_season_from_slug(slug)
+        episode = int(input_data.leagueepisode) if input_data.leagueepisode else self._get_episode_number_from_slug(slug)
 
-        return LeagueInfo(season=int(input_data.leagueseason), episode=int(input_data.leagueepisode))
+        return LeagueInfo(season=season, episode=episode) if season and episode else None
 
 def parse_input(data):
     input_data = InputData()
