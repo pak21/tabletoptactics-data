@@ -34,7 +34,7 @@ def add_campaign_entry(showdata, show_id, cursor):
 
 def add_league_entry(showdata, show_id, cursor):
     if showdata.league:
-        cursor.execute('insert into leagueshows(show_id, league_season, episode) values (%s, %s, %s)', (show_id, showdata.league.season, showdata.league.episode))
+        cursor.execute('insert into leagueseasons(show_id, league_season, episode) values (%s, %s, %s)', (show_id, showdata.league.season, showdata.league.episode))
 
 def main():
     parser = argparse.ArgumentParser()
