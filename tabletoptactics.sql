@@ -1100,6 +1100,43 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 636	350	1	33	144	t	10
 637	351	4	3	126	f	10
 638	351	3	11	143	t	10
+639	352	6	1	119	t	10
+640	352	1	5	127	f	10
+641	353	5	20	141	f	10
+642	353	1	14	131	t	10
+643	354	24	31	130	f	10
+644	354	1	5	127	t	10
+645	355	5	1	161	t	10
+646	355	3	36	137	f	10
+647	356	3	27	124	t	10
+648	356	1	7	140	f	10
+649	357	3	4	135	t	10
+650	357	5	2	132	f	10
+651	358	1	33	144	\N	10
+652	359	5	20	141	\N	10
+653	360	5	20	141	f	10
+654	360	1	33	144	t	10
+655	361	4	32	\N	f	10
+656	361	1	27	124	t	10
+657	362	5	1	122	t	10
+658	362	4	5	127	f	10
+659	363	4	31	130	\N	10
+660	364	3	30	128	\N	10
+661	365	4	31	130	f	10
+662	365	3	30	128	t	10
+663	366	5	1	119	t	10
+664	366	1	33	144	f	10
+665	367	3	1	160	f	10
+666	367	1	32	154	t	10
+667	368	3	20	61	t	9
+668	368	5	1	94	f	9
+669	369	6	6	133	\N	10
+672	371	6	6	\N	f	10
+673	371	3	30	128	t	10
+674	372	25	4	42	t	8
+675	372	5	1	39	f	9
+676	373	1	7	5	t	9
+677	373	25	4	42	f	8
 \.
 
 
@@ -1219,6 +1256,9 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 36	223	2	16
 37	219	2	17
 38	220	2	18
+39	360	3	1
+40	365	3	2
+41	371	3	3
 \.
 
 
@@ -1254,6 +1294,7 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 25	344	9	4
 26	345	9	3
 27	350	9	5
+28	352	9	6
 \.
 
 
@@ -1285,6 +1326,8 @@ COPY public.players (id, fullname, nickname) FROM stdin;
 22	James Beaver	Beaver
 12	Ridvan Martinez	Skaredcast
 23	Rob	Rob
+24	Laurens	Laurens
+25	Linden Forster	Linden
 \.
 
 
@@ -1628,6 +1671,27 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 349	2023-10-04	1	7	how-to-paint-helmets-warhammer-40k-painting-guide	\N	\N
 350	2023-10-06	1	3	space-marines-vs-death-guard-the-plague-war-ep-5-warhammer-40k-crusade-report	\N	6
 351	2023-10-07	1	1	thousand-sons-vs-world-eaters-warhammer-40k-battle-report	RTp3P_Hz8Bg	5
+352	2023-10-13	1	3	space-marines-vs-death-guard-the-plague-war-ep-6-warhammer-40k-crusade-report	\N	5
+353	2023-10-16	1	1	tau-vs-tallarn-warhammer-40k-battle-report	IMFAOlzWy7k	4
+354	2023-10-17	1	1	adepta-sororitas-vs-chaos-daemons-warhammer-40k-battle-report	\N	6
+355	2023-10-19	1	1	space-marines-vs-genestealer-cults-warhammer-40k-battle-report	\N	4
+356	2023-10-23	1	1	chaos-space-marines-vs-orks-warhammer-40k-battle-report	nIlyegacIWM	4
+357	2023-10-24	1	1	harlequins-vs-adeptus-custodes-warhammer-40k-battle-report	\N	4
+358	2023-10-25	1	4	beards-death-guard-league-list-warhammer-40k-faction-focus	\N	\N
+359	2023-10-25	1	4	bards-tau-empire-league-list-warhammer-40k-faction-focus	\N	\N
+360	2023-10-26	1	2	tau-empire-vs-death-guard-warhammer-40k-league-report	\N	3
+361	2023-10-30	1	1	10000-points-tyranids-vs-iron-warriors-warhammer-40k-battle-report	eMrbWYq2UJs	3
+362	2023-10-31	1	1	halloween-special-blood-angels-vs-daemons-warhammer-40k-battle-report	\N	1
+363	2023-11-01	1	4	jinxs-adepta-sororitas-league-list-warhammer-40000-faction-focus	\N	\N
+364	2023-11-01	1	4	chefs-chaos-knight-league-list-warhammer-40000-faction-focus	\N	\N
+365	2023-11-02	1	2	adepta-sororitas-vs-chaos-knights-warhammer-40k-league-report-s3-ep-2	\N	1
+366	2023-11-04	1	1	ultramarines-vs-death-guard-warhammer-40000-battle-report	vui_ufKNi8w	4
+367	2023-11-07	1	1	space-marines-vs-tyranids-warhammer-40k-battle-report	\N	4
+368	2022-01-29	1	1	new-codex-tau-empire-vs-white-scars-warhammer-40000-battle-report	zOdfW9Ar-iU	6
+369	2023-11-08	1	4	spiders-grey-knights-league-list-warhammer-40000-faction-focus	\N	\N
+371	2023-11-09	1	2	grey-knights-vs-chaos-knights-warhammer-40k-league-report-s3-ep-3	\N	5
+372	2022-01-28	1	1	iyanden-vs-space-marines-2000pts-warhammer-40000-battle-report	\N	6
+373	2022-01-25	1	2	orks-vs-iyanden-2000pts-warhammer-40000-league-report	\N	6
 \.
 
 
@@ -1808,6 +1872,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 158	First Company Task Force	1
 159	Firestorm Assault Force	1
 160	Vanguard Spearhead	1
+161	Stormlance Task Force	1
 \.
 
 
@@ -1815,7 +1880,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 638, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 677, true);
 
 
 --
@@ -1843,28 +1908,28 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 38, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 41, true);
 
 
 --
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 27, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 28, true);
 
 
 --
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.players_id_seq', 23, true);
+SELECT pg_catalog.setval('public.players_id_seq', 25, true);
 
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 351, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 373, true);
 
 
 --
@@ -1878,7 +1943,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 160, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 161, true);
 
 
 --
