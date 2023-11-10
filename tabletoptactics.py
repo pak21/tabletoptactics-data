@@ -173,6 +173,7 @@ class ShowDataBuilder:
         return [self._merge_army_and_player(a, p) for a, p in zip(armies, players)]
 
     _FACTION_DATES_9TH = {
+        "T'au Empire": datetime.date(2022, 1, 29),
         'Aeldari': datetime.date(2022, 2, 26),
         'Harlequins': datetime.date(2022, 2, 26),
         'Tyranids': datetime.date(2022, 4, 9),
