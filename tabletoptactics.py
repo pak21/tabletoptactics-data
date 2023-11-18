@@ -56,10 +56,12 @@ class InputData:
     army1player: str = None
     army1faction: str = None
     army1subfaction: str = None
+    army1edition: int = None
 
     army2player: str = None
     army2faction: str = None
     army2subfaction: str = None
+    army2edition: int = None
 
 @dataclasses.dataclass
 class FactionInfo:
@@ -204,8 +206,8 @@ class ShowDataBuilder:
         'Age of Sigmar': lambda a, rd: 3
     }
 
-    def get_edition(self, army, game, release_date):
-        return self._EDITION_FUNCTIONS[game](army, release_date)
+    def get_edition(self, army, game, release_date, edition):
+        return edition if edition else self._EDITION_FUNCTIONS[game](army, release_date)
 
     def update_army_info(self, army, input_data, army_number):
         prefix = f'army{army_number}'
@@ -274,9 +276,9 @@ class ShowDataBuilder:
 
         self.set_winner(army1, army2, input_data)
 
-        army1.edition = self.get_edition(army1, game, release_date)
+        army1.edition = self.get_edition(army1, game, release_date, input_data.army1edition)
         if army2:
-            army2.edition = self.get_edition(army2, game, release_date)
+            army2.edition = self.get_edition(army2, game, release_date, input_data.army2edition)
 
         campaign = self.get_campaign_info(slug, input_data)
         league = self.get_league_info(slug, input_data)

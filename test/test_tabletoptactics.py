@@ -231,7 +231,7 @@ def test_get_edition_returns_3_for_age_of_sigmar(showdatabuilder):
     game = 'Age of Sigmar'
     release_date = datetime.date(2023, 9, 26)
 
-    edition = showdatabuilder.get_edition(army, game, release_date)
+    edition = showdatabuilder.get_edition(army, game, release_date, None)
 
     assert edition == 3
 
@@ -240,7 +240,7 @@ def test_get_edition_returns_10_after_release_of_10th_edition(showdatabuilder):
     game = 'Warhammer 40,000'
     release_date = datetime.date(2023, 9, 26)
 
-    edition = showdatabuilder.get_edition(army, game, release_date)
+    edition = showdatabuilder.get_edition(army, game, release_date, None)
 
     assert edition == 10
 
@@ -249,7 +249,7 @@ def test_get_edition_returns_9_after_9th_edition_codex_release(showdatabuilder):
     game = 'Warhammer 40,000'
     release_date = datetime.date(2023, 1, 1)
 
-    edition = showdatabuilder.get_edition(army, game, release_date)
+    edition = showdatabuilder.get_edition(army, game, release_date, None)
 
     assert edition == 9
 
@@ -258,9 +258,18 @@ def test_get_edition_returns_8_before_9th_edition_codex_release(showdatabuilder)
     game = 'Warhammer 40,000'
     release_date = datetime.date(2022, 1, 1)
 
-    edition = showdatabuilder.get_edition(army, game, release_date)
+    edition = showdatabuilder.get_edition(army, game, release_date, None)
 
     assert edition == 8
+
+def test_get_edition_honours_parameter(showdatabuilder):
+    army = tt.ArmyInfo(faction_id=1, faction='Space Marines')
+    game = 'Warhammer 40,000'
+    release_date = datetime.date(2023, 9, 26)
+
+    edition = showdatabuilder.get_edition(army, game, release_date, 2)
+
+    assert edition == 2
 
 def test_update_army_sets_army1_player(showdatabuilder):
     old_army = tt.ArmyInfo(faction_id=1, faction='Drukhari')
