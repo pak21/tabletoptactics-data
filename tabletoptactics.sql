@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.0 (Debian 16.0-2)
--- Dumped by pg_dump version 16.0 (Debian 16.0-2)
+-- Dumped from database version 16.1 (Debian 16.1-1)
+-- Dumped by pg_dump version 16.1 (Debian 16.1-1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1137,6 +1137,18 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 675	372	5	1	39	f	9
 676	373	1	7	5	t	9
 677	373	25	4	42	f	8
+678	374	14	36	137	f	10
+679	374	4	31	130	t	10
+680	375	3	16	139	f	10
+681	375	1	1	162	t	10
+682	376	4	31	130	f	10
+683	376	5	20	141	t	10
+684	377	6	1	122	t	2
+685	377	14	32	\N	f	2
+686	378	6	1	122	t	2
+687	378	14	32	\N	f	2
+688	379	8	5	\N	f	8
+689	379	3	3	3	t	9
 \.
 
 
@@ -1154,6 +1166,7 @@ COPY public.campaigns (id, campaign) FROM stdin;
 7	Eldor Minor
 8	Caligula IX
 9	The Plague War
+10	Blood Scent
 \.
 
 
@@ -1259,6 +1272,7 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 39	360	3	1
 40	365	3	2
 41	371	3	3
+42	376	3	4
 \.
 
 
@@ -1295,6 +1309,8 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 26	345	9	3
 27	350	9	5
 28	352	9	6
+29	377	10	1
+30	378	10	2
 \.
 
 
@@ -1692,6 +1708,12 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 371	2023-11-09	1	2	grey-knights-vs-chaos-knights-warhammer-40k-league-report-s3-ep-3	\N	5
 372	2022-01-28	1	1	iyanden-vs-space-marines-2000pts-warhammer-40000-battle-report	\N	6
 373	2022-01-25	1	2	orks-vs-iyanden-2000pts-warhammer-40000-league-report	\N	6
+374	2023-11-11	1	1	new-presenter-adepta-sorortias-vs-genestealer-cults-warhammer-40000-battle-report	hFs8Fyokp3Q	3
+375	2023-11-14	1	1	necrons-vs-deathwatch-warhammer-40k-battle-report	\N	5
+376	2023-11-16	1	2	adepta-sororitas-vs-tau-empire-warhammer-40k-league-report-s3-ep-4	\N	3
+377	2023-11-18	1	3	blood-angels-vs-tyranids-second-edition-warhammer-40k-battle-report	nXX5-dPlsHc	\N
+378	2023-11-18	1	3	blood-angels-vs-tyranids-mission-2-second-edition-warhammer-40k-battle-report	\N	\N
+379	2022-01-22	1	2	chaos-daemons-vs-thousand-sons-2000pts-warhammer-40000-league-report	orVbYAnhfhY	6
 \.
 
 
@@ -1873,6 +1895,7 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 159	Firestorm Assault Force	1
 160	Vanguard Spearhead	1
 161	Stormlance Task Force	1
+162	Black Spear Task Force	1
 \.
 
 
@@ -1880,14 +1903,14 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 677, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 689, true);
 
 
 --
 -- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.campaigns_id_seq', 9, true);
+SELECT pg_catalog.setval('public.campaigns_id_seq', 10, true);
 
 
 --
@@ -1908,14 +1931,14 @@ SELECT pg_catalog.setval('public.games_id_seq', 2, true);
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 41, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 42, true);
 
 
 --
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 28, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 30, true);
 
 
 --
@@ -1929,7 +1952,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 25, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 373, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 379, true);
 
 
 --
@@ -1943,7 +1966,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 161, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 162, true);
 
 
 --
