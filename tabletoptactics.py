@@ -203,7 +203,8 @@ class ShowDataBuilder:
 
     _EDITION_FUNCTIONS = {
         'Warhammer 40,000': _get_edition_wh40k,
-        'Age of Sigmar': lambda a, rd: 3
+        'Age of Sigmar': lambda a, rd: 3,
+        'The Old World': lambda a, rd: 1,
     }
 
     def get_edition(self, army, game, release_date, edition):

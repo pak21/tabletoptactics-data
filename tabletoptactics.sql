@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.1 (Debian 16.1-1)
--- Dumped by pg_dump version 16.1 (Debian 16.1-1)
+-- Dumped from database version 16.1 (Debian 16.1-1+b1)
+-- Dumped by pg_dump version 16.1 (Debian 16.1-1+b1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1149,6 +1149,67 @@ COPY public.armies (id, show_id, player_id, faction_id, subfaction_id, winner, c
 687	378	14	32	\N	f	2
 688	379	8	5	\N	f	8
 689	379	3	3	3	t	9
+690	380	3	7	163	t	9
+691	380	2	2	11	f	9
+692	381	2	26	134	f	10
+693	381	5	11	143	t	10
+694	382	7	33	\N	\N	10
+695	383	6	6	133	t	10
+696	383	1	33	144	f	10
+697	384	6	15	75	t	9
+698	384	15	2	164	f	8
+699	385	1	2	88	t	9
+700	385	3	36	92	f	9
+701	386	3	5	\N	t	8
+702	386	17	26	165	f	8
+703	387	4	32	45	t	8
+704	387	1	11	\N	f	8
+705	388	4	15	12	f	9
+706	388	5	1	1	t	9
+707	389	3	16	167	t	10
+708	389	1	25	166	f	10
+709	390	4	16	168	f	10
+710	390	5	1	159	t	10
+711	391	7	27	31	\N	10
+712	392	3	30	\N	f	10
+713	392	1	33	144	t	10
+714	393	6	6	133	t	10
+715	393	5	20	141	f	10
+716	394	1	25	169	f	10
+717	394	5	7	140	t	10
+718	396	5	1	1	f	10
+719	396	3	5	127	t	10
+720	397	6	6	133	t	10
+721	397	1	33	144	f	10
+722	398	3	5	127	f	10
+723	398	6	6	133	t	10
+724	399	1	1	160	f	10
+725	399	5	20	141	t	10
+726	400	4	16	170	f	10
+727	400	2	2	132	t	10
+728	401	17	26	134	t	10
+729	401	5	20	141	f	10
+730	402	5	2	\N	f	10
+731	402	3	7	140	t	10
+732	402	5	14	131	f	10
+733	403	1	7	140	f	10
+734	403	5	1	1	t	10
+735	403	3	7	140	f	10
+736	403	6	1	122	t	10
+737	403	5	14	131	t	10
+738	404	1	7	140	\N	10
+739	404	5	1	1	\N	10
+740	404	3	7	140	\N	10
+741	405	14	36	137	f	10
+742	405	4	32	120	t	10
+743	406	1	27	124	f	10
+744	406	3	31	130	t	10
+745	407	5	14	131	f	10
+746	407	6	15	136	t	10
+747	408	14	1	22	t	10
+748	408	1	25	171	f	10
+749	409	6	41	\N	t	1
+750	409	1	42	\N	f	1
 \.
 
 
@@ -1167,6 +1228,7 @@ COPY public.campaigns (id, campaign) FROM stdin;
 8	Caligula IX
 9	The Plague War
 10	Blood Scent
+11	Rise of the Mechaserpent
 \.
 
 
@@ -1213,6 +1275,8 @@ COPY public.factions (id, faction, game_id) FROM stdin;
 38	Harlequins	1
 39	Fyreslayers	2
 40	Imperium	1
+41	Tomb Kings	3
+42	The Empire of Man	3
 \.
 
 
@@ -1223,6 +1287,7 @@ COPY public.factions (id, faction, game_id) FROM stdin;
 COPY public.games (id, game) FROM stdin;
 1	Warhammer 40,000
 2	Age of Sigmar
+3	The Old World
 \.
 
 
@@ -1273,6 +1338,10 @@ COPY public.leagueseasons (id, show_id, league_season, episode) FROM stdin;
 40	365	3	2
 41	371	3	3
 42	376	3	4
+43	383	3	5
+44	392	3	6
+45	393	3	7
+46	397	3	8
 \.
 
 
@@ -1311,6 +1380,7 @@ COPY public.narrativeshows (id, show_id, campaign_id, campaign_sequence) FROM st
 28	352	9	6
 29	377	10	1
 30	378	10	2
+31	408	11	1
 \.
 
 
@@ -1714,6 +1784,35 @@ COPY public.shows (id, release_date, game_id, showtype_id, slug, youtube_slug, s
 377	2023-11-18	1	3	blood-angels-vs-tyranids-second-edition-warhammer-40k-battle-report	nXX5-dPlsHc	\N
 378	2023-11-18	1	3	blood-angels-vs-tyranids-mission-2-second-edition-warhammer-40k-battle-report	\N	\N
 379	2022-01-22	1	2	chaos-daemons-vs-thousand-sons-2000pts-warhammer-40000-league-report	orVbYAnhfhY	6
+380	2022-01-21	1	2	orks-vs-adeptus-custodes-2000pts-warhammer-40000-league-report	\N	4
+381	2023-11-21	1	1	imperial-knights-vs-world-eaters-warhammer-40k-battle-report	\N	4
+382	2023-11-22	1	7	give-your-models-a-glow-up-warhammer-40k-painting-guide	\N	\N
+383	2023-11-23	1	2	grey-knights-vs-death-guard-warhammer-40k-league-report-s3-ep-5	\N	5
+384	2022-01-07	1	2	drukhari-vs-custodes-2000pts-warhammer-40000-league-report	\N	4
+385	2022-01-08	1	1	new-codex-adeptus-custodes-vs-genestealer-cult-2000pts-warhammer-40000-battle-report	T6_dtbB64n0	6
+386	2022-01-11	1	1	chaos-daemons-vs-imperial-knights-2000pts-warhammer-40000-battle-report	\N	6
+387	2022-01-14	1	1	tyranids-vs-world-eaters-2000pts-warhammer-40000-battle-report	\N	\N
+388	2022-01-18	1	1	drukhari-vs-dark-angels-2000pts-warhammer-40000-battle-report	\N	1
+389	2023-11-25	1	1	new-codex-necrons-vs-adeptus-mechanicus-warhammer-40k-battle-report	ErXSmgRfsf8	5
+390	2023-11-28	1	1	new-codex-necrons-vs-space-marines-warhammer-40k-battle-report	\N	3
+391	2023-11-29	1	7	forging-an-army-the-sons-of-horus	02ycYJgKsKE	\N
+392	2023-11-30	1	2	chaos-knights-vs-death-guard-warhammer-40k-league-report-s3-ep-6	\N	5
+393	2023-12-07	1	2	grey-knights-vs-tau-empire-warhammer-40k-league-report-s3-ep-7	\N	4
+394	2023-12-05	1	1	new-codex-adeptus-mechanicus-vs-orks-warhammer-40k-battle-report	\N	4
+396	2023-12-09	1	1	dark-angels-vs-chaos-daemons-warhammer-40k-battle-report	IkDEKxOf-XA	1
+397	2023-12-14	1	2	the-final-grey-knights-vs-death-guard-warhammer-40k-league-report-s3-ep-8	\N	5
+398	2023-12-21	1	1	chaos-daemons-vs-grey-knights-warhammer-40k-battle-report	\N	5
+400	2023-12-19	1	1	necrons-vs-adeptus-custodes-warhammer-40k-battle-report	\N	5
+401	2023-12-12	1	1	imperial-knights-vs-tau-empire-warhammer-40k-battle-report	\N	4
+399	2023-12-16	1	1	space-marines-vs-tau-empire-warhammer-40k-onslaught-battle-report	Mch09uUoApE	4
+402	2023-12-02	1	1	adeptus-custodes-imperial-guard-vs-orks-warhammer-40k-battle-report-2	TCD1UfIczh4	4
+404	2023-12-26	1	1	chrismassacre-4-part-2-the-red-gobbo-vs-the-grinch-warhammer-40k-battle-report	\N	4
+405	2023-12-28	1	1	genestealer-cults-vs-tyranids-warhammer-40k-battle-report	\N	6
+406	2023-12-30	1	1	chaos-space-marines-vs-adepta-sororitas-warhammer-40k-battle-report	6F5aAYKJb_M	5
+403	2023-12-23	1	1	chrismassacre-4-the-red-gobbo-vs-the-grinch-warhammer-40k-battle-report	rM7SDdYnccY	4
+407	2024-01-02	1	1	astra-militarum-vs-drukhari-warhammer-40k-battle-report	\N	4
+408	2024-01-04	1	3	new-crusade-dark-mechanicum-vs-ultramarines-rise-of-the-mechaserpent-ep-1-warhammer-40k-crusade-report	\N	5
+409	2024-01-06	3	1	the-old-world-tomb-kings-vs-the-empire-of-man-warhammer-old-world-battle-report	BLZ99zpOE3Y	3
 \.
 
 
@@ -1896,6 +1995,15 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 160	Vanguard Spearhead	1
 161	Stormlance Task Force	1
 162	Black Spear Task Force	1
+163	Freebooterz	7
+164	Shadowkeepers	2
+165	House Hawkshroud	26
+166	Cohort Cybernetica	25
+167	Hypercrit Legion	16
+168	Canoptek Court	16
+169	Data-Psalm Conclave	25
+170	Obesiance Phalanx	16
+171	Rad-Zone Corps	25
 \.
 
 
@@ -1903,42 +2011,42 @@ COPY public.subfactions (id, subfaction, faction_id) FROM stdin;
 -- Name: armies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.armies_id_seq', 689, true);
+SELECT pg_catalog.setval('public.armies_id_seq', 750, true);
 
 
 --
 -- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.campaigns_id_seq', 10, true);
+SELECT pg_catalog.setval('public.campaigns_id_seq', 11, true);
 
 
 --
 -- Name: factions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.factions_id_seq', 40, true);
+SELECT pg_catalog.setval('public.factions_id_seq', 42, true);
 
 
 --
 -- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.games_id_seq', 2, true);
+SELECT pg_catalog.setval('public.games_id_seq', 3, true);
 
 
 --
 -- Name: leagueseasons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.leagueseasons_id_seq', 42, true);
+SELECT pg_catalog.setval('public.leagueseasons_id_seq', 46, true);
 
 
 --
 -- Name: narrativeshows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.narrativeshows_id_seq', 30, true);
+SELECT pg_catalog.setval('public.narrativeshows_id_seq', 31, true);
 
 
 --
@@ -1952,7 +2060,7 @@ SELECT pg_catalog.setval('public.players_id_seq', 25, true);
 -- Name: shows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.shows_id_seq', 379, true);
+SELECT pg_catalog.setval('public.shows_id_seq', 409, true);
 
 
 --
@@ -1966,7 +2074,7 @@ SELECT pg_catalog.setval('public.showtypes_id_seq', 7, true);
 -- Name: subfactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: philip
 --
 
-SELECT pg_catalog.setval('public.subfactions_id_seq', 162, true);
+SELECT pg_catalog.setval('public.subfactions_id_seq', 171, true);
 
 
 --
